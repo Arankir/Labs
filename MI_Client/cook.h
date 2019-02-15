@@ -4,6 +4,8 @@
 #include <QWidget>
 
 #include <QSqlDatabase>
+#include <q123.h>
+#include <QLayout>
 
 namespace Ui {
 class Cook;
@@ -20,8 +22,12 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_6_clicked();
+
 private:
     Ui::Cook *ui;
+    q123 *Form3;
+
 };
 
 #endif // COOK_H

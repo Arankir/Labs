@@ -27,15 +27,18 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    cook.cpp
+    cook.cpp \
+    q123.cpp
 
 HEADERS += \
         mainwindow.h \
-    cook.h
+    cook.h \
+    q123.h
 
 FORMS += \
         mainwindow.ui \
-    cook.ui
+    cook.ui \
+    q123.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
