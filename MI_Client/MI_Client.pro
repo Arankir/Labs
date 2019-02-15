@@ -28,17 +28,17 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     cook.cpp \
-    q123.cpp
+    cform1.cpp
 
 HEADERS += \
         mainwindow.h \
     cook.h \
-    q123.h
+    cform1.h
 
 FORMS += \
         mainwindow.ui \
     cook.ui \
-    q123.ui
+    cform1.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

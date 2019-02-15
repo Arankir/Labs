@@ -15,17 +15,18 @@ Cook::~Cook()
     delete ui;
 }
 
-void Cook::on_pushButton_clicked()
-{
-    Form3=new q123;
-    QGridLayout *l = new QGridLayout;
-    l->addWidget(Form3);
-    ui->widget->setLayout(l);
-    ui->widget->show();
-    //MySocket* socket = new MySocket("SELECT * FROM workers");
+
+
+void Cook::setDB(QSqlDatabase *db){
+    this->db = db;
 }
 
-void Cook::on_pushButton_6_clicked()
+void Cook::on_whatchDish_clicked()
 {
-    ui->widget->hide();
+    QVBoxLayout *layout = new QVBoxLayout;
+    cform1 = new CForm1;
+    cform1->setDB(db);
+    layout->addWidget(cform1);
+    ui->widget->setLayout(layout);
+    ui->widget->show();
 }

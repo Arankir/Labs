@@ -37,6 +37,7 @@ void MainWindow::on_Connect_clicked()
 
     if(1/*position == "cook"*/){
         cook = new Cook();
+        cook->setDB(&db);
         cook->show(); // Делается не так, это временно. Потом через сигналы и слоты будет.
         this->hide();
     }
