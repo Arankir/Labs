@@ -30,12 +30,12 @@ void MainWindow::on_Connect_clicked()
         qry->prepare(req);
         qry->exec();
         while(qry->next()){
-             position = qry->record().fieldName(0);
+             position = qry->record().value(0).toString();
 
         }
     }
 
-    if(1/*position == "cook"*/){
+    if(position == "cook"){
         cook = new Cook();
         cook->show(); // Делается не так, это временно. Потом через сигналы и слоты будет.
         this->hide();
