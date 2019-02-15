@@ -30,3 +30,13 @@ void Cook::on_whatchDish_clicked()
     ui->widget->setLayout(layout);
     ui->widget->show();
 }
+
+void Cook::on_pushButton_2_clicked()
+{
+    QVBoxLayout *layout = new QVBoxLayout;
+    cform2 = new CForm2;
+    cform2->setDB(db);
+    layout->addWidget(cform2);
+    ui->widget->setLayout(layout);
+    ui->widget->show();
+}

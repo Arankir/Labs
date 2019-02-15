@@ -6,7 +6,7 @@
 #include <QSqlDatabase>
 #include <QLayout>
 #include <cform1.h>
-
+#include <cform2.h>
 namespace Ui {
 class Cook;
 }
@@ -24,10 +24,13 @@ public:
 private slots:
     void on_whatchDish_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::Cook* ui;
     QSqlDatabase* db;
     CForm1* cform1;
+    CForm2* cform2;
 };
 
 #endif // COOK_H
