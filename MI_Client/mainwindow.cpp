@@ -7,6 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("test");
+    db.setUserName("root");
+    db.setPassword("1423");
 
 }
 
@@ -18,7 +23,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Connect_clicked()
 {
-    if(ui->LoginEdit->text()=="root" && ui->PaswordEdit->text()=="1423"){
+    QString position;
+    if(db.open()){
+        QString req = "SELECT position FROM pass WHERE login = '"+ui->LoginEdit->text()+"' AND password = '"+ui->PaswordEdit->text()+"'";
+        QSqlQuery *qry = new QSqlQuery(db);
+        qry->prepare(req);
+        qry->exec();
+        while(qry->next()){
+             position = qry->record().value(0).toString();
+
+        }
+    }
+
+    if(position == "cook"){
         cook = new Cook();
         cook->show(); // Делается не так, это временно. Потом через сигналы и слоты будет.
         this->hide();

@@ -8,7 +8,14 @@ Cook::Cook(QWidget *parent) :
     ui->setupUi(this);
 }
 
+
+
 Cook::~Cook()
 {
     delete ui;
+}
+
+void Cook::on_pushButton_clicked()
+{
+    //MySocket* socket = new MySocket("SELECT * FROM workers");
 }
