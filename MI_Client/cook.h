@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <QSqlDatabase>
+
 namespace Ui {
 class Cook;
 }
@@ -14,6 +16,9 @@ class Cook : public QWidget
 public:
     explicit Cook(QWidget *parent = nullptr);
     ~Cook();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::Cook *ui;
