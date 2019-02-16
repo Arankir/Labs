@@ -1,0 +1,13 @@
+release/main.o
+release/mainwindow.o
+release/cook.o
+release/cform1.o
+release/cform2.o
+release/cform3.o
+release/cform4.o
+release/moc_mainwindow.o
+release/moc_cook.o
+release/moc_cform1.o
+release/moc_cform2.o
+release/moc_cform3.o
+release/moc_cform4.o

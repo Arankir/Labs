@@ -19,9 +19,9 @@ QT_BEGIN_NAMESPACE
 class Ui_CForm1
 {
 public:
-    QScrollArea *scrollArea;
+    QScrollArea *allDish;
     QWidget *scrollAreaWidgetContents;
-    QScrollArea *scrollArea_2;
+    QScrollArea *ingredientsCount;
     QWidget *scrollAreaWidgetContents_2;
 
     void setupUi(QWidget *CForm1)
@@ -29,22 +29,22 @@ public:
         if (CForm1->objectName().isEmpty())
             CForm1->setObjectName(QString::fromUtf8("CForm1"));
         CForm1->resize(555, 363);
-        scrollArea = new QScrollArea(CForm1);
-        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
-        scrollArea->setGeometry(QRect(30, 20, 181, 311));
-        scrollArea->setWidgetResizable(true);
+        allDish = new QScrollArea(CForm1);
+        allDish->setObjectName(QString::fromUtf8("allDish"));
+        allDish->setGeometry(QRect(30, 20, 181, 311));
+        allDish->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 179, 309));
-        scrollArea->setWidget(scrollAreaWidgetContents);
-        scrollArea_2 = new QScrollArea(CForm1);
-        scrollArea_2->setObjectName(QString::fromUtf8("scrollArea_2"));
-        scrollArea_2->setGeometry(QRect(260, 20, 211, 311));
-        scrollArea_2->setWidgetResizable(true);
+        allDish->setWidget(scrollAreaWidgetContents);
+        ingredientsCount = new QScrollArea(CForm1);
+        ingredientsCount->setObjectName(QString::fromUtf8("ingredientsCount"));
+        ingredientsCount->setGeometry(QRect(260, 20, 211, 311));
+        ingredientsCount->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_2"));
         scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 209, 309));
-        scrollArea_2->setWidget(scrollAreaWidgetContents_2);
+        ingredientsCount->setWidget(scrollAreaWidgetContents_2);
 
         retranslateUi(CForm1);
 

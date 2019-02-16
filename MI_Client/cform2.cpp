@@ -8,11 +8,11 @@ CForm2::CForm2(QWidget *parent) :
     ui->setupUi(this);
 
     QSqlQuery* qry = new QSqlQuery;
-    qry->prepare("SELECT * FROM ingtable");
+    qry->prepare("SELECT `ingredients`.`title_ingredient` as `ингредиент`, `stock`.`title_stock` as `склад`, `ingredients-stock`.`amount_ingredient` as `количество` FROM `ingredients-stock`INNER JOIN `ingredients` ON `ingredients-stock`.`id_ingredient`=`ingredients`.`id_ingredient`INNER JOIN `stock` ON `ingredients-stock`.`id_stock` = `stock`.`id_stock`");
     qry->exec();
     model = new QSqlQueryModel;
     model->setQuery(*qry);
-    ui->tableView->setModel(model);
+    ui->IngredientsTable->setModel(model);
 }
 
 CForm2::~CForm2()

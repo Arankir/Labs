@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QScrollArea" name="scrollArea">
+  <widget class="QScrollArea" name="allDish">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -36,7 +36,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QScrollArea" name="scrollArea_2">
+  <widget class="QScrollArea" name="ingredientsCount">
    <property name="geometry">
     <rect>
      <x>260</x>

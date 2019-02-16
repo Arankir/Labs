@@ -33,6 +33,7 @@ public:
 
 private slots:
     void on_Connect_clicked();
+    void logShow();
 
 private:
     Ui::MainWindow *ui;

@@ -26,7 +26,7 @@
     <string>Посмотреть блюда</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="whatchIngredients">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -39,7 +39,7 @@
     <string>Посмотреть ингридиенты</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="createMenu">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -52,7 +52,7 @@
     <string>Создать меню</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="prevMenu">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -65,7 +65,7 @@
     <string>Посмотреть прошлые меню</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="LogOut">
    <property name="geometry">
     <rect>
      <x>750</x>
@@ -88,7 +88,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_6">
+  <widget class="QPushButton" name="Hide">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -159,6 +159,50 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>50</y>
+     <width>641</width>
+     <height>511</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_3" native="true">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>50</y>
+     <width>641</width>
+     <height>511</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_4" native="true">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>50</y>
+     <width>641</width>
+     <height>511</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>widget_4</zorder>
+  <zorder>widget_3</zorder>
+  <zorder>widget_2</zorder>
+  <zorder>widget</zorder>
+  <zorder>whatchDish</zorder>
+  <zorder>whatchIngredients</zorder>
+  <zorder>createMenu</zorder>
+  <zorder>prevMenu</zorder>
+  <zorder>LogOut</zorder>
+  <zorder>line</zorder>
+  <zorder>line_3</zorder>
+  <zorder>line_4</zorder>
+  <zorder>line_2</zorder>
+  <zorder>Hide</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -27,7 +27,7 @@ public:
 private:
     Ui::CForm1 *ui;
     QSqlDatabase *db;
-    QVector <QPair <QString,int>> ingredients;
+    QVector <QPair <QPair <QString,int>,QString>> ingredients;
 private slots:
     void chbChange(int state);
 };

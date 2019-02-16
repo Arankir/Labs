@@ -1,0 +1,87 @@
+/********************************************************************************
+** Form generated from reading UI file 'cform4.ui'
+**
+** Created by: Qt User Interface Compiler version 5.12.1
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_CFORM4_H
+#define UI_CFORM4_H
+
+#include <QtCore/QVariant>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QCalendarWidget>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QScrollArea>
+#include <QtWidgets/QWidget>
+
+QT_BEGIN_NAMESPACE
+
+class Ui_CForm4
+{
+public:
+    QCalendarWidget *calendar;
+    QRadioButton *breakfast;
+    QRadioButton *lunch;
+    QRadioButton *dinner;
+    QRadioButton *other;
+    QScrollArea *menu;
+    QWidget *scrollAreaWidgetContents;
+
+    void setupUi(QWidget *CForm4)
+    {
+        if (CForm4->objectName().isEmpty())
+            CForm4->setObjectName(QString::fromUtf8("CForm4"));
+        CForm4->resize(510, 354);
+        calendar = new QCalendarWidget(CForm4);
+        calendar->setObjectName(QString::fromUtf8("calendar"));
+        calendar->setGeometry(QRect(10, 10, 248, 183));
+        QFont font;
+        font.setKerning(true);
+        font.setStyleStrategy(QFont::PreferDefault);
+        calendar->setFont(font);
+        breakfast = new QRadioButton(CForm4);
+        breakfast->setObjectName(QString::fromUtf8("breakfast"));
+        breakfast->setGeometry(QRect(10, 220, 82, 17));
+        lunch = new QRadioButton(CForm4);
+        lunch->setObjectName(QString::fromUtf8("lunch"));
+        lunch->setGeometry(QRect(10, 250, 82, 17));
+        dinner = new QRadioButton(CForm4);
+        dinner->setObjectName(QString::fromUtf8("dinner"));
+        dinner->setGeometry(QRect(10, 280, 82, 17));
+        other = new QRadioButton(CForm4);
+        other->setObjectName(QString::fromUtf8("other"));
+        other->setGeometry(QRect(10, 310, 82, 17));
+        menu = new QScrollArea(CForm4);
+        menu->setObjectName(QString::fromUtf8("menu"));
+        menu->setGeometry(QRect(300, 10, 181, 311));
+        menu->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 179, 309));
+        menu->setWidget(scrollAreaWidgetContents);
+
+        retranslateUi(CForm4);
+
+        QMetaObject::connectSlotsByName(CForm4);
+    } // setupUi
+
+    void retranslateUi(QWidget *CForm4)
+    {
+        CForm4->setWindowTitle(QApplication::translate("CForm4", "Form", nullptr));
+        breakfast->setText(QApplication::translate("CForm4", "\320\267\320\260\320\262\321\202\321\200\320\260\320\272", nullptr));
+        lunch->setText(QApplication::translate("CForm4", "\320\276\320\261\320\265\320\264", nullptr));
+        dinner->setText(QApplication::translate("CForm4", "\321\203\320\266\320\270\320\275", nullptr));
+        other->setText(QApplication::translate("CForm4", "\320\264\321\200\321\203\320\263\320\276\320\265", nullptr));
+    } // retranslateUi
+
+};
+
+namespace Ui {
+    class CForm4: public Ui_CForm4 {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_CFORM4_H

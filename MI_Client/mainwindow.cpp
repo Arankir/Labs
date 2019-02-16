@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     db.setUserName("root");
     db.setPassword("1423");
 
+
+
 }
 
 MainWindow::~MainWindow()
@@ -37,8 +39,14 @@ void MainWindow::on_Connect_clicked()
 
     if(1/*position == "cook"*/){
         cook = new Cook();
+        connect(cook,SIGNAL(loginOpen()),this,SLOT(logShow()));
         cook->setDB(&db);
-        cook->show(); // Делается не так, это временно. Потом через сигналы и слоты будет.
+        cook->show();
         this->hide();
     }
+}
+
+void MainWindow::logShow()
+{
+    this->show();
 }
