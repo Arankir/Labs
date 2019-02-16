@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("127.0.0.1");
-    db.setDatabaseName("test");
+    db.setDatabaseName("sanatorii");
     db.setUserName("root");
     db.setPassword("1423");
 

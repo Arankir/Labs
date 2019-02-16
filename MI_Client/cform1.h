@@ -10,6 +10,8 @@
 #include <QCheckBox>
 #include <QLayout>
 #include <QLabel>
+#include <QVector>
+
 namespace Ui {
 class CForm1;
 }
@@ -25,9 +27,7 @@ public:
 private:
     Ui::CForm1 *ui;
     QSqlDatabase *db;
-    QWidget* dish;
-    QWidget* ingr;
-    QGridLayout* ingLay;
+    QVector <QPair <QString,int>> ingredients;
 private slots:
     void chbChange(int state);
 };
