@@ -17,6 +17,7 @@ CForm1::CForm1(QWidget *parent) :
         layout->addWidget(chb);
         connect(chb,SIGNAL(stateChanged(int)),this,SLOT(chbChange(int)));
     }
+
     QWidget* widget = new QWidget;
     widget->setLayout(layout);
     ui->scrollArea->setWidget(widget);
@@ -64,7 +65,7 @@ void CForm1::chbChange(int state){
         for(int i=0; i<ingredients.size();i++){
             if(ingredients[i].second > 0){
                 QLabel* lb = new QLabel;
-                lb->setText(ingredients[i].first);
+                lb->setText(ingredients[i].first + " " +QString::number(ingredients[i].second));
                 layout->addWidget(lb);
             }
         }
@@ -92,7 +93,7 @@ void CForm1::chbChange(int state){
         for(int i=0; i<ingredients.size();i++){
             if(ingredients[i].second > 0){
                 QLabel* lb = new QLabel;
-                lb->setText(ingredients[i].first);
+                lb->setText(ingredients[i].first + " " +QString::number(ingredients[i].second));
                 layout->addWidget(lb);
             }
         }
