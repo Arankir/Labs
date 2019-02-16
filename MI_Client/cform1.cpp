@@ -74,6 +74,31 @@ void CForm1::chbChange(int state){
         ui->scrollArea_2->setWidget(widget);
     }
     else {
-        //как сделать удаление????
+        QGridLayout* layout = new QGridLayout;
+        QSqlQuery* qry = new QSqlQuery;
+        qry->prepare("SELECT `dish`.`title_dish`, `ingredients`.`title_ingredient`, `ingredients-dish`.`amount_ingredient` FROM `ingredients` INNER JOIN (`dish` INNER JOIN `ingredients-dish` ON `dish`.`id_dish` = `ingredients-dish`.`id_dish`) ON `ingredients`.`id_ingredient` = `ingredients-dish`.`id_ingredient`WHERE (((`dish`.`title_dish`)=\""+chb->text()+"\"))");
+        qry->exec();
+        while(qry->next()){
+            for(int i=0; i<ingredients.size();i++){
+
+                if (ingredients[i].first == qry->record().value(1).toString()){
+                    qDebug() << qry->record().value(2).toString();
+                    ingredients[i].second-= qry->record().value(2).toInt();
+                }
+            }
+
+
+        }
+        for(int i=0; i<ingredients.size();i++){
+            if(ingredients[i].second > 0){
+                QLabel* lb = new QLabel;
+                lb->setText(ingredients[i].first);
+                layout->addWidget(lb);
+            }
+        }
+
+        QWidget* widget = new QWidget;
+        widget->setLayout(layout);
+        ui->scrollArea_2->setWidget(widget);
     }
 }
