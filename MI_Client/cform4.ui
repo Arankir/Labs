@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>510</width>
+    <width>575</width>
     <height>354</height>
    </rect>
   </property>
@@ -27,6 +27,9 @@
      <stylestrategy>PreferDefault</stylestrategy>
      <kerning>true</kerning>
     </font>
+   </property>
+   <property name="selectionMode">
+    <enum>QCalendarWidget::SingleSelection</enum>
    </property>
   </widget>
   <widget class="QRadioButton" name="breakfast">
@@ -84,7 +87,7 @@
   <widget class="QScrollArea" name="menu">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>370</x>
      <y>10</y>
      <width>181</width>
      <height>311</height>
@@ -103,6 +106,45 @@
      </rect>
     </property>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="search">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>290</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Поиск</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="selectDateText">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>230</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Выбранная дата:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="date">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>230</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources/>

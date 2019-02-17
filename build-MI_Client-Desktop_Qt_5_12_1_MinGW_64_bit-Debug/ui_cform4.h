@@ -12,6 +12,8 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCalendarWidget>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QWidget>
@@ -28,12 +30,15 @@ public:
     QRadioButton *other;
     QScrollArea *menu;
     QWidget *scrollAreaWidgetContents;
+    QPushButton *search;
+    QLabel *selectDateText;
+    QLabel *date;
 
     void setupUi(QWidget *CForm4)
     {
         if (CForm4->objectName().isEmpty())
             CForm4->setObjectName(QString::fromUtf8("CForm4"));
-        CForm4->resize(510, 354);
+        CForm4->resize(575, 354);
         calendar = new QCalendarWidget(CForm4);
         calendar->setObjectName(QString::fromUtf8("calendar"));
         calendar->setGeometry(QRect(10, 10, 248, 183));
@@ -41,6 +46,7 @@ public:
         font.setKerning(true);
         font.setStyleStrategy(QFont::PreferDefault);
         calendar->setFont(font);
+        calendar->setSelectionMode(QCalendarWidget::SingleSelection);
         breakfast = new QRadioButton(CForm4);
         breakfast->setObjectName(QString::fromUtf8("breakfast"));
         breakfast->setGeometry(QRect(10, 220, 82, 17));
@@ -55,12 +61,21 @@ public:
         other->setGeometry(QRect(10, 310, 82, 17));
         menu = new QScrollArea(CForm4);
         menu->setObjectName(QString::fromUtf8("menu"));
-        menu->setGeometry(QRect(300, 10, 181, 311));
+        menu->setGeometry(QRect(370, 10, 181, 311));
         menu->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 179, 309));
         menu->setWidget(scrollAreaWidgetContents);
+        search = new QPushButton(CForm4);
+        search->setObjectName(QString::fromUtf8("search"));
+        search->setGeometry(QRect(210, 290, 75, 23));
+        selectDateText = new QLabel(CForm4);
+        selectDateText->setObjectName(QString::fromUtf8("selectDateText"));
+        selectDateText->setGeometry(QRect(120, 230, 91, 21));
+        date = new QLabel(CForm4);
+        date->setObjectName(QString::fromUtf8("date"));
+        date->setGeometry(QRect(220, 230, 81, 21));
 
         retranslateUi(CForm4);
 
@@ -74,6 +89,9 @@ public:
         lunch->setText(QApplication::translate("CForm4", "\320\276\320\261\320\265\320\264", nullptr));
         dinner->setText(QApplication::translate("CForm4", "\321\203\320\266\320\270\320\275", nullptr));
         other->setText(QApplication::translate("CForm4", "\320\264\321\200\321\203\320\263\320\276\320\265", nullptr));
+        search->setText(QApplication::translate("CForm4", "\320\237\320\276\320\270\321\201\320\272", nullptr));
+        selectDateText->setText(QApplication::translate("CForm4", "\320\222\321\213\320\261\321\200\320\260\320\275\320\275\320\260\321\217 \320\264\320\260\321\202\320\260:", nullptr));
+        date->setText(QString());
     } // retranslateUi
 
 };

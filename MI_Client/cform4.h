@@ -8,6 +8,8 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QDate>
+#include <QLayout>
+#include <QLabel>
 namespace Ui {
 class CForm4;
 }
@@ -21,6 +23,11 @@ public:
     ~CForm4();
     void setDB(QSqlDatabase *db);
 
+
+private slots:
+    void on_search_clicked();
+
+    void on_calendar_selectionChanged();
 
 private:
     Ui::CForm4 *ui;
