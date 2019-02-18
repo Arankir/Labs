@@ -5,6 +5,7 @@
 //#include <QTcpSocket>
 #include <QMessageBox>
 #include <cook.h>
+#include <warehousekeeper.h>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
@@ -30,6 +31,7 @@ public:
     //void sockReady();
     // sockDisc();
     Cook* cook;
+    Warehousekeeper* whk;
 
 private slots:
     void on_Connect_clicked();

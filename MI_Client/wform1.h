@@ -1,5 +1,5 @@
-#ifndef CFORM2_H
-#define CFORM2_H
+#ifndef WFORM1_H
+#define WFORM1_H
 
 #include <QWidget>
 #include <QSqlQuery>
@@ -9,22 +9,25 @@
 #include <QSqlDatabase>
 
 namespace Ui {
-class CForm2;
+class Wform1;
 }
 
-class CForm2 : public QWidget
+class Wform1 : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit CForm2(QWidget *parent = nullptr);
-    ~CForm2();
+    explicit Wform1(QWidget *parent = nullptr);
+    ~Wform1();
     void setDB(QSqlDatabase *db);
 
+private slots:
+    void on_ApplyStockChangeFilter_clicked();
+
 private:
-    Ui::CForm2 *ui;
+    Ui::Wform1 *ui;
     QSqlDatabase* db;
     QSqlQueryModel* model;
 };
 
-#endif // CFORM2_H
+#endif // WFORM1_H

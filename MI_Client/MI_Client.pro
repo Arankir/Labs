@@ -31,7 +31,10 @@ SOURCES += \
     cform1.cpp \
     cform2.cpp \
     cform3.cpp \
-    cform4.cpp
+    cform4.cpp \
+    warehousekeeper.cpp \
+    wform1.cpp \
+    wform2.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +42,10 @@ HEADERS += \
     cform1.h \
     cform2.h \
     cform3.h \
-    cform4.h
+    cform4.h \
+    warehousekeeper.h \
+    wform1.h \
+    wform2.h
 
 FORMS += \
         mainwindow.ui \
@@ -47,7 +53,10 @@ FORMS += \
     cform1.ui \
     cform2.ui \
     cform3.ui \
-    cform4.ui
+    cform4.ui \
+    warehousekeeper.ui \
+    wform1.ui \
+    wform2.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

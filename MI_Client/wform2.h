@@ -1,5 +1,5 @@
-#ifndef CFORM2_H
-#define CFORM2_H
+#ifndef WFORM2_H
+#define WFORM2_H
 
 #include <QWidget>
 #include <QSqlQuery>
@@ -9,22 +9,22 @@
 #include <QSqlDatabase>
 
 namespace Ui {
-class CForm2;
+class Wform2;
 }
 
-class CForm2 : public QWidget
+class Wform2 : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit CForm2(QWidget *parent = nullptr);
-    ~CForm2();
+    explicit Wform2(QWidget *parent = nullptr);
+    ~Wform2();
     void setDB(QSqlDatabase *db);
 
 private:
-    Ui::CForm2 *ui;
+    Ui::Wform2 *ui;
     QSqlDatabase* db;
     QSqlQueryModel* model;
 };
 
-#endif // CFORM2_H
+#endif // WFORM2_H
