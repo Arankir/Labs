@@ -37,13 +37,13 @@ void MainWindow::on_Connect_clicked()
         }
     }
 
-    if(1){
-        cook = new Cook();
-        connect(cook,SIGNAL(loginOpen()),this,SLOT(logShow()));
-        cook->setDB(&db);
-        cook->show();
-        this->hide();
-    }
+//    if(1){
+//        cook = new Cook();
+//        connect(cook,SIGNAL(loginOpen()),this,SLOT(logShow()));
+//        cook->setDB(&db);
+//        cook->show();
+//        this->hide();
+//    }
 //    if(1){
 //        whk = new Warehousekeeper();
 //        connect(whk,SIGNAL(loginOpen()),this,SLOT(logShow()));
@@ -51,6 +51,13 @@ void MainWindow::on_Connect_clicked()
 //        whk->show();
 //        this->hide();
 //    }
+    if(1){
+        admin = new Admin();
+        connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
+        admin->setDB(&db);
+        admin->show();
+        this->hide();
+    }
 }
 
 void MainWindow::logShow()

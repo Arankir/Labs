@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <cook.h>
 #include <warehousekeeper.h>
+#include <admin.h>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
@@ -32,6 +33,7 @@ public:
     // sockDisc();
     Cook* cook;
     Warehousekeeper* whk;
+    Admin *admin;
 
 private slots:
     void on_Connect_clicked();
