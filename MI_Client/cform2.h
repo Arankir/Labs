@@ -21,6 +21,9 @@ public:
     ~CForm2();
     void setDB(QSqlDatabase *db);
 
+private slots:
+    void on_Search_clicked();
+
 private:
     Ui::CForm2 *ui;
     QSqlDatabase* db;

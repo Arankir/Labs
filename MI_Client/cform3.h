@@ -7,7 +7,10 @@
 #include <QSqlTableModel>
 #include <QtSql>
 #include <QSqlDatabase>
-
+#include <QPair>
+#include <QLabel>
+#include <QCheckBox>
+#include <QLayout>
 namespace Ui {
 class cForm3;
 }
@@ -25,6 +28,13 @@ private:
     Ui::cForm3 *ui;
     QSqlDatabase* db;
     QSqlQueryModel* model;
+    QVector <QPair<QString,int>> dishs;
+    QVector <QCheckBox*> checks;
+    QVector <QLabel*> menu;
+private slots:
+    void chbChange(int state);
+    void on_Cancel_clicked();
+    void on_Applay_clicked();
 };
 
 #endif // CFORM3_H

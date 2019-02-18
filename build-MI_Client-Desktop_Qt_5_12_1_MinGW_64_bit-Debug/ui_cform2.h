@@ -14,6 +14,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
@@ -29,15 +30,16 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
+    QPushButton *Search;
 
     void setupUi(QWidget *CForm2)
     {
         if (CForm2->objectName().isEmpty())
             CForm2->setObjectName(QString::fromUtf8("CForm2"));
-        CForm2->resize(579, 464);
+        CForm2->resize(641, 511);
         IngredientsTable = new QTableView(CForm2);
         IngredientsTable->setObjectName(QString::fromUtf8("IngredientsTable"));
-        IngredientsTable->setGeometry(QRect(10, 10, 321, 401));
+        IngredientsTable->setGeometry(QRect(10, 10, 321, 481));
         IngredientEdit = new QLineEdit(CForm2);
         IngredientEdit->setObjectName(QString::fromUtf8("IngredientEdit"));
         IngredientEdit->setGeometry(QRect(430, 30, 113, 20));
@@ -56,6 +58,9 @@ public:
         label_3 = new QLabel(CForm2);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(350, 110, 71, 16));
+        Search = new QPushButton(CForm2);
+        Search->setObjectName(QString::fromUtf8("Search"));
+        Search->setGeometry(QRect(440, 160, 75, 23));
 
         retranslateUi(CForm2);
 
@@ -68,6 +73,7 @@ public:
         label->setText(QApplication::translate("CForm2", "\320\270\320\275\320\263\321\200\320\270\320\264\320\270\320\265\320\275\321\202", nullptr));
         label_2->setText(QApplication::translate("CForm2", "\321\201\320\272\320\273\320\260\320\264", nullptr));
         label_3->setText(QApplication::translate("CForm2", "\320\272\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
+        Search->setText(QApplication::translate("CForm2", "\320\237\320\276\320\270\321\201\320\272", nullptr));
     } // retranslateUi
 
 };

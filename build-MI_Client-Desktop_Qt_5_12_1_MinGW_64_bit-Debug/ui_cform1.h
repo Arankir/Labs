@@ -28,22 +28,22 @@ public:
     {
         if (CForm1->objectName().isEmpty())
             CForm1->setObjectName(QString::fromUtf8("CForm1"));
-        CForm1->resize(555, 363);
+        CForm1->resize(641, 511);
         allDish = new QScrollArea(CForm1);
         allDish->setObjectName(QString::fromUtf8("allDish"));
-        allDish->setGeometry(QRect(30, 20, 181, 311));
+        allDish->setGeometry(QRect(30, 40, 261, 441));
         allDish->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 179, 309));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 259, 439));
         allDish->setWidget(scrollAreaWidgetContents);
         ingredientsCount = new QScrollArea(CForm1);
         ingredientsCount->setObjectName(QString::fromUtf8("ingredientsCount"));
-        ingredientsCount->setGeometry(QRect(260, 20, 211, 311));
+        ingredientsCount->setGeometry(QRect(320, 40, 291, 441));
         ingredientsCount->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 209, 309));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 289, 439));
         ingredientsCount->setWidget(scrollAreaWidgetContents_2);
 
         retranslateUi(CForm1);
