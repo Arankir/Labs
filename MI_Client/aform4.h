@@ -7,7 +7,7 @@
 #include <QSqlTableModel>
 #include <QtSql>
 #include <QSqlDatabase>
-
+#include <QMessageBox>
 namespace Ui {
 class AForm4;
 }
@@ -20,6 +20,10 @@ public:
     explicit AForm4(QWidget *parent = nullptr);
     ~AForm4();
     void setDB(QSqlDatabase *db);
+    void Refresh();
+
+private slots:
+    void on_Apply_clicked();
 
 private:
     Ui::AForm4 *ui;

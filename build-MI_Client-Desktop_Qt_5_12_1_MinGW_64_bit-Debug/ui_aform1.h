@@ -70,7 +70,7 @@ public:
     {
         AForm1->setWindowTitle(QApplication::translate("AForm1", "Form", nullptr));
         Reg->setText(QApplication::translate("AForm1", "\320\227\320\260\321\200\320\265\320\263\320\270\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214", nullptr));
-        Role->setItemText(0, QApplication::translate("AForm1", "\320\220\320\264\320\274\320\270\320\275\320\270\321\201\321\202\321\200\320\260\321\202\320\276\321\200", nullptr));
+        Role->setItemText(0, QApplication::translate("AForm1", "\320\220\320\264\320\274\320\270\320\275", nullptr));
         Role->setItemText(1, QApplication::translate("AForm1", "\320\237\320\276\320\262\320\260\321\200", nullptr));
         Role->setItemText(2, QApplication::translate("AForm1", "\320\237\320\276\321\200\321\202\321\214\320\265", nullptr));
         Role->setItemText(3, QApplication::translate("AForm1", "\320\241\320\272\320\273\320\260\320\264\320\276\320\262\321\211\320\270\320\272", nullptr));

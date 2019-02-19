@@ -27,6 +27,8 @@ public:
     QLabel *label;
     QPushButton *Apply;
     QTableView *Ingr;
+    QLabel *Unit;
+    QLineEdit *UnitEdit;
 
     void setupUi(QWidget *AForm2)
     {
@@ -44,10 +46,17 @@ public:
         label->setFont(font);
         Apply = new QPushButton(AForm2);
         Apply->setObjectName(QString::fromUtf8("Apply"));
-        Apply->setGeometry(QRect(290, 120, 75, 23));
+        Apply->setGeometry(QRect(290, 130, 75, 23));
         Ingr = new QTableView(AForm2);
         Ingr->setObjectName(QString::fromUtf8("Ingr"));
         Ingr->setGeometry(QRect(10, 10, 230, 250));
+        Unit = new QLabel(AForm2);
+        Unit->setObjectName(QString::fromUtf8("Unit"));
+        Unit->setGeometry(QRect(250, 90, 81, 21));
+        Unit->setFont(font);
+        UnitEdit = new QLineEdit(AForm2);
+        UnitEdit->setObjectName(QString::fromUtf8("UnitEdit"));
+        UnitEdit->setGeometry(QRect(350, 90, 81, 21));
 
         retranslateUi(AForm2);
 
@@ -59,6 +68,7 @@ public:
         AForm2->setWindowTitle(QApplication::translate("AForm2", "Form", nullptr));
         label->setText(QApplication::translate("AForm2", "\320\235\320\276\320\262\321\213\320\271", nullptr));
         Apply->setText(QApplication::translate("AForm2", "\320\237\321\200\320\276\320\262\320\265\321\201\321\202\320\270", nullptr));
+        Unit->setText(QApplication::translate("AForm2", "\320\230\320\267\320\274\320\265\321\200\320\265\320\275\320\270\320\265", nullptr));
     } // retranslateUi
 
 };

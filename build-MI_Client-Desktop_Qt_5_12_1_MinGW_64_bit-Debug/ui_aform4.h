@@ -23,7 +23,7 @@ QT_BEGIN_NAMESPACE
 class Ui_AForm4
 {
 public:
-    QLineEdit *DishEdit;
+    QLineEdit *StockEdit;
     QPushButton *Apply;
     QLabel *label;
     QTableView *stock;
@@ -33,9 +33,9 @@ public:
         if (AForm4->objectName().isEmpty())
             AForm4->setObjectName(QString::fromUtf8("AForm4"));
         AForm4->resize(459, 300);
-        DishEdit = new QLineEdit(AForm4);
-        DishEdit->setObjectName(QString::fromUtf8("DishEdit"));
-        DishEdit->setGeometry(QRect(320, 50, 110, 20));
+        StockEdit = new QLineEdit(AForm4);
+        StockEdit->setObjectName(QString::fromUtf8("StockEdit"));
+        StockEdit->setGeometry(QRect(320, 50, 110, 20));
         Apply = new QPushButton(AForm4);
         Apply->setObjectName(QString::fromUtf8("Apply"));
         Apply->setGeometry(QRect(290, 120, 75, 23));

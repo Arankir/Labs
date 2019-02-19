@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLineEdit" name="DishEdit">
+  <widget class="QLineEdit" name="StockEdit">
    <property name="geometry">
     <rect>
      <x>320</x>
