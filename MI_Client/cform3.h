@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QCheckBox>
 #include <QLayout>
+#include <QMessageBox>
 namespace Ui {
 class cForm3;
 }

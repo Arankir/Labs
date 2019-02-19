@@ -12,7 +12,7 @@
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
 #include <QtSql>
-
+#include <myclient.h>
 
 namespace Ui {
 class MainWindow;

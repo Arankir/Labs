@@ -82,36 +82,54 @@ void cForm3::on_Cancel_clicked()
 
 void cForm3::on_Applay_clicked()
 {
-    QString type;
-    if (ui->breakfast->isChecked()){
-        type="1";
-    }
-    else if(ui->lunch->isChecked()){
-        type="2";
-    }
-    else if (ui->dinner->isChecked()){
-        type="3";
-    }
-    else {
-        type="4";
-    }
-    QSqlQuery *qry = new QSqlQuery;
-    int id=1;
-    qry->prepare("SELECT COUNT(id_menu) FROM menu");
-    qry->exec();
-    while(qry->next()){
-        id += qry->record().value(0).toInt();
-    }
-    qry->prepare("INSERT INTO `menu`(`id_menu`, `date_menu`, `id_type`, `amount_portion`) VALUES ('"+QString::number(id)+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+type+"','"+ui->CountEdit->text()+"')");
-    qry->exec();
-
-    for(int i=0;i<dishs.size();i++){
-        for(int j=0; j<menu.size();j++){
-            if(menu[j]->text()==dishs[i].first){
-                qry->prepare("INSERT INTO `menu-dish`(`id_menu`, `id_dish`) VALUES ('"+QString::number(id)+"','"+QString::number(dishs[i].second)+"')");
-                qry->exec();
+    if (!ui->CountEdit->text().isEmpty() && (ui->lunch->isChecked() || ui->other->isChecked() || ui->dinner->isChecked() || ui->breakfast->isChecked()))
+    {
+        QMessageBox msg;
+        msg.setText("Вы уверены?");
+        msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        int res = msg.exec();
+        if(res == QMessageBox::Yes){
+            QString type;
+            if (ui->breakfast->isChecked()){
+                type="1";
             }
+            else if(ui->lunch->isChecked()){
+                type="2";
+            }
+            else if (ui->dinner->isChecked()){
+                type="3";
+            }
+            else {
+                type="4";
+            }
+            QSqlQuery *qry = new QSqlQuery;
+            int id=1;
+            qry->prepare("SELECT COUNT(id_menu) FROM menu");
+            qry->exec();
+            while(qry->next()){
+                id += qry->record().value(0).toInt();
+            }
+            qry->prepare("INSERT INTO `menu`(`id_menu`, `date_menu`, `id_type`, `amount_portion`) VALUES ('"+QString::number(id)+"','"+ui->dateEdit->date().toString("yyyy-MM-dd")+"','"+type+"','"+ui->CountEdit->text()+"')");
+            qry->exec();
+
+            for(int i=0;i<dishs.size();i++){
+                for(int j=0; j<menu.size();j++){
+                    if(menu[j]->text()==dishs[i].first){
+                        qry->prepare("INSERT INTO `menu-dish`(`id_menu`, `id_dish`) VALUES ('"+QString::number(id)+"','"+QString::number(dishs[i].second)+"')");
+                        qry->exec();
+                    }
+                }
+            }
+            QMessageBox msg;
+            msg.setText("Успешно добавлено");
+            msg.exec();
         }
+    }
+
+    else {
+        QMessageBox msg;
+        msg.setText("Введите количество, и выберите тип (Завтрак, обед, ужин или другое)!");
+        msg.exec();
     }
 
 

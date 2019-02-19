@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,7 +39,8 @@ SOURCES += \
     aform1.cpp \
     aform2.cpp \
     aform3.cpp \
-    aform4.cpp
+    aform4.cpp \
+    myclient.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +56,8 @@ HEADERS += \
     aform1.h \
     aform2.h \
     aform3.h \
-    aform4.h
+    aform4.h \
+    myclient.h
 
 FORMS += \
         mainwindow.ui \

@@ -7,6 +7,13 @@ AForm3::AForm3(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QSqlQuery *qry = new QSqlQuery;
+    qry->prepare("SELECT * FROM ingredients");
+    qry->exec();
+    while(qry->next()){
+        ui->IngrBox->addItem(qry->record().value(1).toString());
+    }
+
     Refresh();
 }
 
@@ -39,16 +46,37 @@ void AForm3::on_Apply_clicked()
         qry->exec();
         while(qry->next())
         id += qry->record().value(0).toInt();
-        qDebug() << id;
+
         qry->prepare("INSERT INTO `dish`(`id_dish`, `title_dish`) VALUES ('"+QString::number(id)+"','"+ui->DishEdit->text()+"')");
         qry->exec();
-        QMessageBox mes;
-        mes.setWindowTitle("Поздравляю");
-        mes.setText("Блюдо добавлено успешно!");
-        mes.exec();
+
+        for (int i=0;i<ingredients.size();i++) {
+            qry->prepare("INSERT INTO `ingredients-dish`(`id_dish`, `id_ingredient`, `amount_ingredient`) VALUES ((SELECT `id_dish` FROM `dish` WHERE `dish`.`title_dish`=\""+ui->DishEdit->text()+"\"),(SELECT `id_ingredient` FROM `ingredients` WHERE `ingredients`.`title_ingredient`=\""+ingredients[i].first+"\"),'"+QString::number(ingredients[i].second)+"')");
+            qry->exec();
+        }
+        QMessageBox msg;
+        msg.setText("Блюдо успешно добавлено");
+        msg.exec();
         Refresh();
     }
-    else {
-        QMessageBox::warning(this,"Внимание","Введите название Блюда!");
+}
+
+void AForm3::on_Add_clicked()
+{
+    if(!ui->CountEdit->text().isEmpty()){
+        QPair <QString,int> pair;
+        pair.first = ui->IngrBox->currentText();
+        pair.second = ui->CountEdit->text().toInt();
+        ingredients.push_back(pair);
+        QGridLayout* layout = new QGridLayout;
+        for(int i=0; i<ingredients.size();i++){
+            QLabel* lb = new QLabel;
+            lb->setText(ingredients[i].first + " " + QString::number(ingredients[i].second));
+            layout->addWidget(lb);
+        }
+        QWidget* widget = new QWidget;
+        widget->setLayout(layout);
+        ui->Ingredients->setWidget(widget);
+
     }
 }

@@ -25,6 +25,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Connect_clicked()
 {
+    MyClient client;
+
     QString position;
     if(db.open()){
         QString req = "SELECT position FROM pass WHERE login = '"+ui->LoginEdit->text()+"' AND password = '"+ui->PaswordEdit->text()+"'";
