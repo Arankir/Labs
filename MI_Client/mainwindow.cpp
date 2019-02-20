@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     db.setHostName("127.0.0.1");
     db.setDatabaseName("sanatorii");
     db.setUserName("root");
-    db.setPassword("12345");
+    db.setPassword("1423");
 
 
 
@@ -25,6 +25,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Connect_clicked()
 {
+    MyClient client;
+
     QString position;
     if(db.open()){
         QString req = "SELECT position FROM pass WHERE login = '"+ui->LoginEdit->text()+"' AND password = '"+ui->PaswordEdit->text()+"'";
@@ -37,18 +39,25 @@ void MainWindow::on_Connect_clicked()
         }
     }
 
-    /*if(1/*position == "cook"*///){
-    /*    cook = new Cook();
-        connect(cook,SIGNAL(loginOpen()),this,SLOT(logShow()));
-        cook->setDB(&db);
-        cook->show();
-        this->hide();
-    }*/
-    if(1/*position == "whk"*/){
-        whk = new Warehousekeeper();
-        connect(whk,SIGNAL(loginOpen()),this,SLOT(logShow()));
-        whk->setDB(&db);
-        whk->show();
+//    if(1){
+//        cook = new Cook();
+//        connect(cook,SIGNAL(loginOpen()),this,SLOT(logShow()));
+//        cook->setDB(&db);
+//        cook->show();
+//        this->hide();
+//    }
+//    if(1){
+//        whk = new Warehousekeeper();
+//        connect(whk,SIGNAL(loginOpen()),this,SLOT(logShow()));
+//        whk->setDB(&db);
+//        whk->show();
+//        this->hide();
+//    }
+    if(1){
+        admin = new Admin();
+        connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
+        admin->setDB(&db);
+        admin->show();
         this->hide();
     }
 }

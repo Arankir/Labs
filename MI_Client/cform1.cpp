@@ -6,7 +6,7 @@ CForm1::CForm1(QWidget *parent) :
     ui(new Ui::CForm1)
 {
     ui->setupUi(this);
-
+    QWidget* widget = new QWidget;
     QGridLayout *layout = new QGridLayout;
     QSqlQuery *qry = new QSqlQuery;
     qry->prepare("SELECT * FROM dish");
@@ -18,10 +18,8 @@ CForm1::CForm1(QWidget *parent) :
         connect(chb,SIGNAL(stateChanged(int)),this,SLOT(chbChange(int)));
     }
 
-    QWidget* widget = new QWidget;
     widget->setLayout(layout);
     ui->allDish->setWidget(widget);
-
     qry->prepare("SELECT * FROM ingredients");
     qry->exec();
     while(qry->next()){

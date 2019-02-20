@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -34,7 +34,13 @@ SOURCES += \
     cform4.cpp \
     warehousekeeper.cpp \
     wform1.cpp \
-    wform2.cpp
+    wform2.cpp \
+    admin.cpp \
+    aform1.cpp \
+    aform2.cpp \
+    aform3.cpp \
+    aform4.cpp \
+    myclient.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -45,7 +51,13 @@ HEADERS += \
     cform4.h \
     warehousekeeper.h \
     wform1.h \
-    wform2.h
+    wform2.h \
+    admin.h \
+    aform1.h \
+    aform2.h \
+    aform3.h \
+    aform4.h \
+    myclient.h
 
 FORMS += \
         mainwindow.ui \
@@ -56,7 +68,12 @@ FORMS += \
     cform4.ui \
     warehousekeeper.ui \
     wform1.ui \
-    wform2.ui
+    wform2.ui \
+    admin.ui \
+    aform1.ui \
+    aform2.ui \
+    aform3.ui \
+    aform4.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
