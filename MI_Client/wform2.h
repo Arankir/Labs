@@ -7,6 +7,13 @@
 #include <QSqlTableModel>
 #include <QtSql>
 #include <QSqlDatabase>
+#include <QCheckBox>
+#include <QLayout>
+#include <QFormLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QVector>
 
 namespace Ui {
 class Wform2;
@@ -25,6 +32,11 @@ private:
     Ui::Wform2 *ui;
     QSqlDatabase* db;
     QSqlQueryModel* model;
+    QVector <QPair <QPair <QLabel*,QLineEdit*>, QLabel*>> ingredients;
+
+private slots:
+    void chbChange(int state);
+    void LiEdChange(QString &text);
 };
 
 #endif // WFORM2_H

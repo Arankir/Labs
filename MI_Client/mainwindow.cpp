@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     db.setHostName("127.0.0.1");
     db.setDatabaseName("sanatorii");
     db.setUserName("root");
-    db.setPassword("1423");
+    db.setPassword("12345");
 
 
 

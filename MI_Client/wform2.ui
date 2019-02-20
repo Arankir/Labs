@@ -72,29 +72,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QScrollArea" name="scrollArea">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>90</y>
-     <width>241</width>
-     <height>351</height>
-    </rect>
-   </property>
-   <property name="widgetResizable">
-    <bool>true</bool>
-   </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>239</width>
-      <height>349</height>
-     </rect>
-    </property>
-   </widget>
-  </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
@@ -108,15 +85,51 @@
     <string>Провести</string>
    </property>
   </widget>
-  <widget class="QTableView" name="tableView">
+  <widget class="QScrollArea" name="IngredientsInStock">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>300</x>
      <y>90</y>
-     <width>256</width>
+     <width>291</width>
      <height>351</height>
     </rect>
    </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>289</width>
+      <height>349</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QScrollArea" name="AllIngredients">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>261</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>259</width>
+      <height>349</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
