@@ -74,6 +74,7 @@ void Wform2::chbChange(int state){
         ui->IngredientsInStock->setWidget(widget2);
 
 
+
         while(qry->next()){
             for(int i=0; i<ingredients.size();i++){
                 if (ingredients[i].first.first->text() == qry->record().value(0).toString()){
@@ -143,4 +144,9 @@ void Wform2::chbChange(int state){
         widget->setLayout(layout);
         ui->ingredientsCount->setWidget(widget);
     }*/
+}
+
+void Wform2::LiEdChange(QString &text)
+{
+
 }

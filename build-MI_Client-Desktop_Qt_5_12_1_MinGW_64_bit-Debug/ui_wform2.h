@@ -11,12 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
-#include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,10 +27,11 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit;
     QLineEdit *lineEdit_2;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
     QPushButton *pushButton;
-    QTableView *tableView;
+    QScrollArea *IngredientsInStock;
+    QWidget *scrollAreaWidgetContents_2;
+    QScrollArea *AllIngredients;
+    QWidget *scrollAreaWidgetContents;
 
     void setupUi(QWidget *Wform2)
     {
@@ -54,20 +53,25 @@ public:
         lineEdit_2 = new QLineEdit(Wform2);
         lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
         lineEdit_2->setGeometry(QRect(90, 40, 113, 20));
-        scrollArea = new QScrollArea(Wform2);
-        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
-        scrollArea->setGeometry(QRect(10, 90, 241, 351));
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 239, 349));
-        scrollArea->setWidget(scrollAreaWidgetContents);
         pushButton = new QPushButton(Wform2);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(10, 460, 75, 23));
-        tableView = new QTableView(Wform2);
-        tableView->setObjectName(QString::fromUtf8("tableView"));
-        tableView->setGeometry(QRect(290, 90, 256, 351));
+        IngredientsInStock = new QScrollArea(Wform2);
+        IngredientsInStock->setObjectName(QString::fromUtf8("IngredientsInStock"));
+        IngredientsInStock->setGeometry(QRect(300, 90, 291, 351));
+        IngredientsInStock->setWidgetResizable(true);
+        scrollAreaWidgetContents_2 = new QWidget();
+        scrollAreaWidgetContents_2->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_2"));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 289, 349));
+        IngredientsInStock->setWidget(scrollAreaWidgetContents_2);
+        AllIngredients = new QScrollArea(Wform2);
+        AllIngredients->setObjectName(QString::fromUtf8("AllIngredients"));
+        AllIngredients->setGeometry(QRect(10, 90, 261, 351));
+        AllIngredients->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 259, 349));
+        AllIngredients->setWidget(scrollAreaWidgetContents);
 
         retranslateUi(Wform2);
 

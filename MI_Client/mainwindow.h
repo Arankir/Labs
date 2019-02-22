@@ -38,6 +38,7 @@ public:
 private slots:
     void on_Connect_clicked();
     void logShow();
+    void Login(MyClient* client);
 
 private:
     Ui::MainWindow *ui;

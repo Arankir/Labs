@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     db.setHostName("127.0.0.1");
     db.setDatabaseName("sanatorii");
     db.setUserName("root");
-    db.setPassword("12345");
+    db.setPassword("1423");
 
 
 
@@ -25,7 +25,35 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Connect_clicked()
 {
-    MyClient client;
+
+    QJsonArray data_arr;
+    QJsonObject arr_obj;
+    arr_obj["login"]=ui->LoginEdit->text();
+    arr_obj["password"]=ui->PaswordEdit->text();
+    data_arr.append(arr_obj);
+    QJsonObject obj;
+    obj["type"]="select";
+    obj["from"]="login";
+    obj["data"]=data_arr;
+    QJsonDocument doc;
+    doc.setObject(obj);
+    QString request = QString(doc.toJson()).toLocal8Bit();
+
+
+    MyClient* client = new MyClient;
+    connect(client,SIGNAL(ClientReady(MyClient*)),this,SLOT(Login(MyClient*)));
+    client->setRequest(request);
+
+}
+
+void MainWindow::logShow()
+{
+    this->show();
+}
+
+void MainWindow::Login(MyClient *client)
+{
+    qDebug() << client->answer;
 
     QString position;
     if(db.open()){
@@ -60,9 +88,4 @@ void MainWindow::on_Connect_clicked()
         admin->show();
         this->hide();
     }
-}
-
-void MainWindow::logShow()
-{
-    this->show();
 }

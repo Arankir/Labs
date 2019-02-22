@@ -18,9 +18,12 @@ public:
     explicit MyClient(QWidget *parent = nullptr);
     QTcpSocket* socket;
     QByteArray Data;
+    QString request;
+    QString answer;
+    void setRequest(QString req);
 
 signals:
-
+    void ClientReady(MyClient* client);
 public slots:
     void sockReady();
     void sockDisk();
