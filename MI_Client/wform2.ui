@@ -52,17 +52,7 @@
     <string>Продукты:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>10</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="NumberInvoice">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -130,6 +120,42 @@
      </rect>
     </property>
    </widget>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>40</y>
+     <width>31</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Дата:</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="DateInvoice">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>40</y>
+     <width>110</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="calendarPopup">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="Stocks">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>10</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>

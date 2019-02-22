@@ -13,26 +13,19 @@ Wform2::Wform2(QWidget *parent) :
     qry->exec();
     while(qry->next()){
         QCheckBox *chb = new QCheckBox(this);
-        chb->setText(qry->record().value(1).toString());
+        chb->setText(qry->record().value(1).toString()+" ("+qry->record().value(2).toString()+")");
         layout->addWidget(chb);
         connect(chb,SIGNAL(stateChanged(int)),this,SLOT(chbChange(int)));
     }
     widget->setLayout(layout);
     ui->AllIngredients->setWidget(widget);
 
-
-/*    qry->prepare("SELECT * FROM ingredients");
+    qry->prepare("SELECT * FROM stock");
     qry->exec();
     while(qry->next()){
-        QPair <QPair <QString,int>,QString> p;
-        QPair <QString,int> pair;
-        qDebug() << qry->record().value(1).toString();
-        pair.first = qry->record().value(1).toString();
-        pair.second=0;
-        p.first=pair;
-        p.second=qry->record().value(2).toString();
-       // ingredients.push_back(p);
-    }*/
+        ui->Stocks->addItem(qry->record().value(1).toString());
+    }
+
 
 }
 
@@ -50,100 +43,77 @@ void Wform2::chbChange(int state){
     QCheckBox* chb = (QCheckBox*) sender();
     QRegExp exp("[1-9]{1}[0-9]{0,10}");
     if(state == 2){
-        QHBoxLayout* layouth = new QHBoxLayout;
-        QSqlQuery* qry = new QSqlQuery;
-        qry->prepare("SELECT `ingredients`.`unit` FROM `ingredients` WHERE (((`ingredients`.`title_ingredient`)=\""+chb->text()+"\"))");
-        qry->exec();
-        while(qry->next()){
+        ingredients.push_back(chb);
+        QWidget* widget2 = new QWidget;
+        QFormLayout* layout = new QFormLayout;
+        for(int i=0; i<ingredients.size();i++){
+            QHBoxLayout* layouth = new QHBoxLayout;
             QLabel* lb1 = new QLabel;
-            lb1->setText(chb->text());
+            lb1->setText(ingredients[i]->text());
             layouth->addWidget(lb1);
             QLineEdit* LiEd = new QLineEdit();
+            LiEd->setObjectName(ingredients[i]->text().rightJustified(ingredients[i]->text().indexOf(" ("), '.', true));
             LiEd->setValidator(new QRegExpValidator(exp,this));
             layouth->addWidget(LiEd);
-            QLabel* Lb2 = new QLabel(this);
-            Lb2->setText(qry->record().value(0).toString());
-            layouth->addWidget(Lb2);
+            QWidget* widget = new QWidget;
+            widget->setLayout(layouth);
+            layout->addWidget(widget);
         }
-        QWidget* widget = new QWidget;
-        widget->setLayout(layouth);
-        QWidget* widget2 = new QWidget;
-        QGridLayout* layout = new QGridLayout;
-        layout->addWidget(widget);
         widget2->setLayout(layout);
         ui->IngredientsInStock->setWidget(widget2);
-
-
-
-        while(qry->next()){
-            for(int i=0; i<ingredients.size();i++){
-                if (ingredients[i].first.first->text() == qry->record().value(0).toString()){
-                    qDebug() << qry->record().value(1).toString();
-                    ingredients[i].second->text() = qry->record().value(1).toString();
-                }
-            }
-
-        }
- /*
-                QLabel* Lab = new QLabel(this);
-                Lab->setText(qry->record().value(1).toString());
-                layout2->addWidget(Lab);
-                QLineEdit* LiEd = new QLineEdit(this);
-                layout2->addWidget(LiEd);
-                QLabel* Lab2 = new QLabel(this);
-                Lab2->setText(qry->record().value(2).toString());
-                layout2->addWidget(Lab2);
-                QWidget* widget = new QWidget;
-                widget->setLayout(layout);
-                ui->IngredientsInStock->setWidget(widget);*/
-
+    } else {
         for(int i=0; i<ingredients.size();i++){
-            bool ok;
-            if(ingredients[i].first.second->text().toInt(&ok) > 0){
-              //  QLabel* lb1 = new QLabel;
-                //lb->setText("<span style=\"color: red\">text</span>"); тест для разноцветного текста
-               // lb1->setText(qry->record().value(1).toString());
-              //  layout->addWidget(lb1);
-              //  QLineEdit* LiEd = new QLineEdit();
-             //   layout->addWidget(LiEd);
-             //   QLabel* Lb2 = new QLabel(this);
-             //   Lb2->setText(qry->record().value(2).toString());
-             //   layout->addWidget(Lb2);
+            if (ingredients[i] == chb){
+                ingredients.takeAt(i);
             }
         }
-
-     //   QWidget* widget = new QWidget;
-     //   widget->setLayout(layout);
-     //   ui->IngredientsInStock->setWidget(widget);
+        QFormLayout* layout = new QFormLayout;
+        QWidget* widget2 = new QWidget;
+        for(int i=0; i<ingredients.size();i++){
+            QHBoxLayout* layouth = new QHBoxLayout;
+            QLabel* lb1 = new QLabel;
+            lb1->setText(ingredients[i]->text());
+            layouth->addWidget(lb1);
+            QLineEdit* LiEd = new QLineEdit();
+            LiEd->setObjectName(ingredients[i]->text().rightJustified(ingredients[i]->text().indexOf(" ("), '.', true));
+            LiEd->setValidator(new QRegExpValidator(exp,this));
+            layouth->addWidget(LiEd);
+            QWidget* widget = new QWidget;
+            widget->setLayout(layouth);
+            layout->addWidget(widget);
+        }
+        widget2->setLayout(layout);
+        ui->IngredientsInStock->setWidget(widget2);
     }
-  /*  else {
-        QGridLayout* layout = new QGridLayout;
-        QSqlQuery* qry = new QSqlQuery;
-        qry->prepare("SELECT `ingredients`.`title_ingredient`, `ingredients-dish`.`amount_ingredient` FROM `ingredients` INNER JOIN (`dish` INNER JOIN `ingredients-dish` ON `dish`.`id_dish` = `ingredients-dish`.`id_dish`) ON `ingredients`.`id_ingredient` = `ingredients-dish`.`id_ingredient`WHERE (((`dish`.`title_dish`)=\""+chb->text()+"\"))");
+}
+
+void Wform2::on_pushButton_clicked()
+{
+    QSqlQuery *qry = new QSqlQuery;
+    QSqlQuery *qry_stock = new QSqlQuery;
+    QSqlQuery *qry_ing = new QSqlQuery;
+    qry->prepare("SELECT * FROM `invoice` WHERE (`id_invoice`=\""+ui->NumberInvoice->text()+"\")");
+    qry->exec();
+    if (qry->size()==0){
+        qry->prepare("INSERT INTO `invoice`(`id_invoice`, `date_invoice`) VALUES ('"+ui->NumberInvoice->text()+"','"+ui->DateInvoice->text()+"')");
         qry->exec();
-        while(qry->next()){
-            for(int i=0; i<ingredients.size();i++){
-
-                if (ingredients[i].first.first == qry->record().value(0).toString()){
-                    qDebug() << qry->record().value(1).toString();
-                    ingredients[i].first.second-= qry->record().value(1).toInt();
-                }
-            }
-
-
+        qry_stock->prepare("SELECT * FROM `stock` WHERE (`title_stock`=\""+ui->Stocks->currentText()+"\")");
+        qry_stock->exec();
+        qry_stock->next();
+        while(ingredients.size()>0){
+            QCheckBox *s=ingredients.takeFirst();
+            qry_ing->prepare("SELECT * FROM `ingredients` WHERE (`title_ingredient`=\""+s->text().rightJustified(s->text().indexOf(" ("), '.', true)+"\")");
+            qry_ing->exec();
+            qry_ing->next();
+            qry->prepare("INSERT INTO `invoice-stock`(`id_invoice`,`id_ingredient`,`amount_ingredient`,`id_stock`) VALUES ('"+ui->NumberInvoice->text()+"','"+qry_ing->record().value(0).toString()+"','"+findChild<QLineEdit*>(s->text().rightJustified(s->text().indexOf(" ("), '.', true))->text()+"','"+qry_stock->record().value(0).toString()+"')");
+            qry->exec();
         }
-        for(int i=0; i<ingredients.size();i++){
-            if(ingredients[i].first.second > 0){
-                QLabel* lb = new QLabel;
-                lb->setText(ingredients[i].first.first + " " +QString::number(ingredients[i].first.second) + " " + ingredients[i].second);
-                layout->addWidget(lb);
-            }
-        }
-
-        QWidget* widget = new QWidget;
-        widget->setLayout(layout);
-        ui->ingredientsCount->setWidget(widget);
-    }*/
+        QMessageBox mes;
+        mes.setWindowTitle("Поздравляю!");
+        mes.setText("Накладная добавлена успешно!");
+        mes.exec();
+    } else QMessageBox::warning(this,"Внимание","Накладная с таким номером уже существует!");
+   // findChild<First *>("first")
 }
 
 void Wform2::LiEdChange(QString &text)
