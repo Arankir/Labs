@@ -8,7 +8,7 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QDate>
-#include <QLayout>
+#include <QFormLayout>
 #include <QLabel>
 namespace Ui {
 class CForm4;

@@ -41,7 +41,7 @@ void CForm4::on_search_clicked()
     QSqlQuery *qry = new QSqlQuery;
     qry->prepare("SELECT `dish`.`title_dish`,`type_menu`.`title_type`,`menu`.`date_menu`,`menu`.`amount_portion` FROM `menu-dish`INNER JOIN `dish` ON `dish`.`id_dish`=`menu-dish`.`id_dish`INNER JOIN `menu` ON `menu-dish`.`id_menu`=`menu`.`id_menu`INNER JOIN `type_menu` ON `menu`.`id_type`=`type_menu`.`id_type`WHERE `type_menu`.`title_type`=\""+type+"\" AND `menu`.`date_menu`=\""+ui->calendar->selectedDate().toString("yyyy-MM-dd")+"\"");
     qry->exec();
-    QGridLayout* layout = new QGridLayout;
+    QFormLayout* layout = new QFormLayout;
     while(qry->next()){
         qDebug() << qry->record().value(0).toString();
         QLabel* lb = new QLabel;

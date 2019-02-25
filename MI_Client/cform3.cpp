@@ -10,7 +10,7 @@ cForm3::cForm3(QWidget *parent) :
     ui->dateEdit->setDate(QDate::currentDate().addDays(1));
 
     QWidget* widget = new QWidget;
-    QGridLayout* layout = new QGridLayout;
+    QFormLayout* layout = new QFormLayout;
     QSqlQuery *qry = new QSqlQuery;
     qry->prepare("SELECT * FROM dish");
     qry->exec();
@@ -42,7 +42,7 @@ void cForm3::setDB(QSqlDatabase *db)
 void cForm3::chbChange(int state)
 {
     QCheckBox* chb = (QCheckBox*) sender();
-    QGridLayout* layout = new QGridLayout;
+    QFormLayout* layout = new QFormLayout;
     QWidget* widget = new QWidget;
     QString count = ui->CountEdit->text();
 

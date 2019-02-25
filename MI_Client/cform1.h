@@ -8,7 +8,7 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QCheckBox>
-#include <QLayout>
+#include <QFormLayout>
 #include <QLabel>
 #include <QVector>
 

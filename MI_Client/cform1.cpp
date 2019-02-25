@@ -7,7 +7,7 @@ CForm1::CForm1(QWidget *parent) :
 {
     ui->setupUi(this);
     QWidget* widget = new QWidget;
-    QGridLayout *layout = new QGridLayout;
+    QFormLayout *layout = new QFormLayout;
     QSqlQuery *qry = new QSqlQuery;
     qry->prepare("SELECT * FROM dish");
     qry->exec();
@@ -48,7 +48,7 @@ void CForm1::setDB(QSqlDatabase *db)
 void CForm1::chbChange(int state){
     QCheckBox* chb = (QCheckBox*) sender();
     if(state == 2){
-        QGridLayout* layout = new QGridLayout;
+        QFormLayout* layout = new QFormLayout;
         QSqlQuery* qry = new QSqlQuery;
         qry->prepare("SELECT `ingredients`.`title_ingredient`, `ingredients-dish`.`amount_ingredient` FROM `ingredients` INNER JOIN (`dish` INNER JOIN `ingredients-dish` ON `dish`.`id_dish` = `ingredients-dish`.`id_dish`) ON `ingredients`.`id_ingredient` = `ingredients-dish`.`id_ingredient`WHERE (((`dish`.`title_dish`)=\""+chb->text()+"\"))");
         qry->exec();
@@ -76,7 +76,7 @@ void CForm1::chbChange(int state){
         ui->ingredientsCount->setWidget(widget);
     }
     else {
-        QGridLayout* layout = new QGridLayout;
+        QFormLayout* layout = new QFormLayout;
         QSqlQuery* qry = new QSqlQuery;
         qry->prepare("SELECT `ingredients`.`title_ingredient`, `ingredients-dish`.`amount_ingredient` FROM `ingredients` INNER JOIN (`dish` INNER JOIN `ingredients-dish` ON `dish`.`id_dish` = `ingredients-dish`.`id_dish`) ON `ingredients`.`id_ingredient` = `ingredients-dish`.`id_ingredient`WHERE (((`dish`.`title_dish`)=\""+chb->text()+"\"))");
         qry->exec();
