@@ -7,12 +7,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("127.0.0.1");
-    db.setDatabaseName("sanatorii");
-    db.setUserName("root");
-    db.setPassword("1423");
-
 
 
 }
@@ -33,7 +27,7 @@ void MainWindow::on_Connect_clicked()
     data_arr.append(arr_obj);
     QJsonObject obj;
     obj["type"]="select";
-    obj["from"]="login";
+    obj["request"]="login";
     obj["data"]=data_arr;
     QJsonDocument doc;
     doc.setObject(obj);
@@ -55,37 +49,37 @@ void MainWindow::Login(MyClient *client)
 {
     qDebug() << client->answer;
 
-    QString position;
-    if(db.open()){
-        QString req = "SELECT position FROM pass WHERE login = '"+ui->LoginEdit->text()+"' AND password = '"+ui->PaswordEdit->text()+"'";
-        QSqlQuery *qry = new QSqlQuery(db);
-        qry->prepare(req);
-        qry->exec();
-        while(qry->next()){
-             position = qry->record().value(0).toString();
 
+    if(client->answer!="NO"){
+        QString str = client->answer;
+        QJsonDocument doc = QJsonDocument::fromJson(str.toUtf8());
+        QJsonObject obj = doc.object();
+        qDebug() << obj["position"].toString();
+
+    //    if(1){
+    //        cook = new Cook();
+    //        connect(cook,SIGNAL(loginOpen()),this,SLOT(logShow()));
+    //        cook->setDB(&db);
+    //        cook->show();
+    //        this->hide();
+    //    }
+    //    if(1){
+    //        whk = new Warehousekeeper();
+    //        connect(whk,SIGNAL(loginOpen()),this,SLOT(logShow()));
+    //        whk->setDB(&db);
+    //        whk->show();
+    //        this->hide();
+    //    }
+        if(1){
+            admin = new Admin();
+            connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
+            admin->setDB(&db);
+            admin->show();
+            this->hide();
         }
     }
-
-//    if(1){
-//        cook = new Cook();
-//        connect(cook,SIGNAL(loginOpen()),this,SLOT(logShow()));
-//        cook->setDB(&db);
-//        cook->show();
-//        this->hide();
-//    }
-//    if(1){
-//        whk = new Warehousekeeper();
-//        connect(whk,SIGNAL(loginOpen()),this,SLOT(logShow()));
-//        whk->setDB(&db);
-//        whk->show();
-//        this->hide();
-//    }
-    if(1){
-        admin = new Admin();
-        connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
-        admin->setDB(&db);
-        admin->show();
-        this->hide();
+    else {
+        QMessageBox::warning(this,"Ошибка","Введен неверный логин или пароль");
     }
+
 }

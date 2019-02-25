@@ -12,6 +12,7 @@
 #include <QCheckBox>
 #include <QLayout>
 #include <QMessageBox>
+#include <myclient.h>
 namespace Ui {
 class cForm3;
 }
@@ -32,10 +33,14 @@ private:
     QVector <QPair<QString,int>> dishs;
     QVector <QCheckBox*> checks;
     QVector <QLabel*> menu;
+    int id=0;
 private slots:
     void chbChange(int state);
     void on_Cancel_clicked();
     void on_Applay_clicked();
+    void dishRequest(MyClient* client);
+    void idRequest(MyClient* client);
+    void insertRequest(MyClient* client);
 };
 
 #endif // CFORM3_H

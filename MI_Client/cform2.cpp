@@ -6,15 +6,27 @@ CForm2::CForm2(QWidget *parent) :
     ui(new Ui::CForm2)
 {
     ui->setupUi(this);
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 
-    QSqlQuery* qry = new QSqlQuery;
-    qry->prepare("SELECT `ingredients`.`title_ingredient` as `ингредиент`, `stock`.`title_stock` as `склад`, `ingredients-stock`.`amount_ingredient` as `количество`, `ingredients`.`unit` as `измерение` FROM `ingredients-stock`INNER JOIN `ingredients` ON `ingredients-stock`.`id_ingredient`=`ingredients`.`id_ingredient`INNER JOIN `stock` ON `ingredients-stock`.`id_stock` = `stock`.`id_stock`");
-    qry->exec();
-    model = new QSqlQueryModel;
-    model->setQuery(*qry);
-    ui->IngredientsTable->setModel(model);
+    QJsonArray where_arr;
+    QJsonObject where_obj;
+    where_obj["where"]=ui->IngredientEdit->text();
+    where_arr.append(where_obj);
+    where_obj["where"]=ui->stockEdit->text();
+    where_arr.append(where_obj);
+    where_obj["where"]=ui->countEdit->text();
+    where_arr.append(where_obj);
+    QJsonObject ing_req_obj;
+    ing_req_obj["data"]=where_arr;
+    ing_req_obj["request"]="ing_select";
+    ing_req_obj["type"]="select";
+    QJsonDocument ing_doc;
+    ing_doc.setObject(ing_req_obj);
+    QString request = QString(ing_doc.toJson()).toLocal8Bit();
 
-
+    MyClient* ing_req = new MyClient;
+    connect(ing_req,SIGNAL(ClientReady(MyClient*)),this,SLOT(ingredientsRequest(MyClient*)));
+    ing_req->setRequest(request);
 
 }
 
@@ -30,31 +42,41 @@ void CForm2::setDB(QSqlDatabase *db)
 
 void CForm2::on_Search_clicked()
 {
-    QString query = "SELECT `ingredients`.`title_ingredient` as `ингредиент`, `stock`.`title_stock` as `склад`, `ingredients-stock`.`amount_ingredient` as `количество`, `ingredients`.`unit` as `измерение` FROM `ingredients-stock`INNER JOIN `ingredients` ON `ingredients-stock`.`id_ingredient`=`ingredients`.`id_ingredient`INNER JOIN `stock` ON `ingredients-stock`.`id_stock` = `stock`.`id_stock` ";
-    if(ui->IngredientEdit->text().isEmpty()){
-        query += "WHERE `ingredients`.`title_ingredient` != \"\" ";
-    }
-    else {
-        query += "WHERE `ingredients`.`title_ingredient` = '"+ ui->IngredientEdit->text() +"' ";
-    }
+    QJsonArray where_arr;
+    QJsonObject where_obj;
+    where_obj["where"]=ui->IngredientEdit->text();
+    where_arr.append(where_obj);
+    where_obj["where"]=ui->stockEdit->text();
+    where_arr.append(where_obj);
+    where_obj["where"]=ui->countEdit->text();
+    where_arr.append(where_obj);
+    QJsonObject ing_req_obj;
+    ing_req_obj["data"]=where_arr;
+    ing_req_obj["request"]="ing_select";
+    ing_req_obj["type"]="select";
+    QJsonDocument ing_doc;
+    ing_doc.setObject(ing_req_obj);
+    QString request = QString(ing_doc.toJson()).toLocal8Bit();
 
-    if(ui->stockEdit->text().isEmpty()){
-        query += "AND `stock`.`title_stock` != \"\" ";
-    }
-    else {
-        query += "AND `stock`.`title_stock` = '"+ ui->stockEdit->text() +"' ";
-    }
+    MyClient* ing_req = new MyClient;
+    connect(ing_req,SIGNAL(ClientReady(MyClient*)),this,SLOT(ingredientsRequest(MyClient*)));
+    ing_req->setRequest(request);
+}
 
-    if(ui->countEdit->text().isEmpty()){
-        query += "AND `ingredients-stock`.`amount_ingredient` != \"\" ";
-    }
-    else {
-        query += "AND `ingredients-stock`.`amount_ingredient` = "+ ui->countEdit->text() +" ";
-    }
+void CForm2::ingredientsRequest(MyClient *client)
+{
+    QJsonDocument doc = QJsonDocument::fromJson(client->answer.toUtf8());
+    QJsonObject obj = doc.object();
+    QJsonArray ingr_arr = obj["result"].toArray();
 
-    QSqlQuery *qry = new QSqlQuery;
-    qry->prepare(query);
-    qry->exec();
-    model->setQuery(*qry);
+    QStandardItemModel* model = new QStandardItemModel;
+    model->setHorizontalHeaderLabels(QStringList() << "ингредиент" << "склад" << "количество" << "измерение");
+    for(int i=0; i<ingr_arr.size();i++){
+        QStandardItem* col1 = new QStandardItem(ingr_arr[i].toObject().value("title").toString());
+        QStandardItem* col2 = new QStandardItem(ingr_arr[i].toObject().value("stock").toString());
+        QStandardItem* col3 = new QStandardItem(ingr_arr[i].toObject().value("amount").toString());
+        QStandardItem* col4 = new QStandardItem(ingr_arr[i].toObject().value("unit").toString());
+        model->appendRow(QList<QStandardItem*>() << col1 << col2 << col3 << col4);
+    }
     ui->IngredientsTable->setModel(model);
 }

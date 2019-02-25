@@ -56,18 +56,14 @@ void Cook::on_Hide_clicked()
 
 void Cook::on_whatchDish_clicked()
 {
-    ui->widget_2->hide();
-    ui->widget_3->hide();
-    ui->widget_4->hide();
+    Cook::on_Hide_clicked();
     ui->widget->show();
 }
 
 
 void Cook::on_whatchIngredients_clicked()
 {
-    ui->widget->hide();
-    ui->widget_3->hide();
-    ui->widget_4->hide();
+    Cook::on_Hide_clicked();
     ui->widget_2->show();
 }
 
@@ -75,17 +71,13 @@ void Cook::on_whatchIngredients_clicked()
 
 void Cook::on_createMenu_clicked()
 {
-    ui->widget->hide();
-    ui->widget_2->hide();
-    ui->widget_4->hide();
+    Cook::on_Hide_clicked();
     ui->widget_3->show();
 }
 
 void Cook::on_prevMenu_clicked()
 {
-    ui->widget->hide();
-    ui->widget_2->hide();
-    ui->widget_3->hide();
+    Cook::on_Hide_clicked();
     ui->widget_4->show();
 }
 

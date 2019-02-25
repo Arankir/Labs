@@ -11,6 +11,8 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -25,13 +27,15 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
+    QLineEdit *NumberInvoice;
     QPushButton *pushButton;
     QScrollArea *IngredientsInStock;
     QWidget *scrollAreaWidgetContents_2;
     QScrollArea *AllIngredients;
     QWidget *scrollAreaWidgetContents;
+    QLabel *label_4;
+    QDateEdit *DateInvoice;
+    QComboBox *Stocks;
 
     void setupUi(QWidget *Wform2)
     {
@@ -47,12 +51,9 @@ public:
         label_3 = new QLabel(Wform2);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(10, 70, 61, 16));
-        lineEdit = new QLineEdit(Wform2);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(50, 10, 113, 20));
-        lineEdit_2 = new QLineEdit(Wform2);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(90, 40, 113, 20));
+        NumberInvoice = new QLineEdit(Wform2);
+        NumberInvoice->setObjectName(QString::fromUtf8("NumberInvoice"));
+        NumberInvoice->setGeometry(QRect(90, 40, 113, 20));
         pushButton = new QPushButton(Wform2);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(10, 460, 75, 23));
@@ -72,6 +73,16 @@ public:
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 259, 349));
         AllIngredients->setWidget(scrollAreaWidgetContents);
+        label_4 = new QLabel(Wform2);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(210, 40, 31, 16));
+        DateInvoice = new QDateEdit(Wform2);
+        DateInvoice->setObjectName(QString::fromUtf8("DateInvoice"));
+        DateInvoice->setGeometry(QRect(240, 40, 110, 22));
+        DateInvoice->setCalendarPopup(true);
+        Stocks = new QComboBox(Wform2);
+        Stocks->setObjectName(QString::fromUtf8("Stocks"));
+        Stocks->setGeometry(QRect(50, 10, 151, 22));
 
         retranslateUi(Wform2);
 
@@ -85,6 +96,7 @@ public:
         label_2->setText(QApplication::translate("Wform2", "\342\204\226 \320\235\320\260\320\272\320\273\320\260\320\264\320\275\320\276\320\271:", nullptr));
         label_3->setText(QApplication::translate("Wform2", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202\321\213:", nullptr));
         pushButton->setText(QApplication::translate("Wform2", "\320\237\321\200\320\276\320\262\320\265\321\201\321\202\320\270", nullptr));
+        label_4->setText(QApplication::translate("Wform2", "\320\224\320\260\321\202\320\260:", nullptr));
     } // retranslateUi
 
 };

@@ -116,7 +116,4 @@ void Wform2::on_pushButton_clicked()
    // findChild<First *>("first")
 }
 
-void Wform2::LiEdChange(QString &text)
-{
 
-}

@@ -7,7 +7,7 @@
 #include <QSqlTableModel>
 #include <QtSql>
 #include <QSqlDatabase>
-
+#include <myclient.h>
 namespace Ui {
 class CForm2;
 }
@@ -23,6 +23,7 @@ public:
 
 private slots:
     void on_Search_clicked();
+    void ingredientsRequest(MyClient* client);
 
 private:
     Ui::CForm2 *ui;

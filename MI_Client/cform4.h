@@ -10,6 +10,7 @@
 #include <QDate>
 #include <QLayout>
 #include <QLabel>
+#include <myclient.h>
 namespace Ui {
 class CForm4;
 }
@@ -26,9 +27,8 @@ public:
 
 private slots:
     void on_search_clicked();
-
     void on_calendar_selectionChanged();
-
+    void menuRequest(MyClient* client);
 private:
     Ui::CForm4 *ui;
     QSqlDatabase* db;
