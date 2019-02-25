@@ -125,6 +125,9 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="displayFormat">
+     <string>yyyy.MM.dd</string>
+    </property>
     <property name="calendarPopup">
      <bool>true</bool>
     </property>

@@ -91,6 +91,7 @@ void Wform2::on_pushButton_clicked()
     QSqlQuery *qry = new QSqlQuery;
     QSqlQuery *qry_stock = new QSqlQuery;
     QSqlQuery *qry_ing = new QSqlQuery;
+    QSqlQuery *qry_inst = new QSqlQuery;
     qry->prepare("SELECT * FROM `invoice` WHERE (`id_invoice`=\""+ui->NumberInvoice->text()+"\")");
     qry->exec();
     if ((qry->size()==0)||(ui->NumberInvoice->text().isEmpty())){
@@ -106,6 +107,16 @@ void Wform2::on_pushButton_clicked()
             qry->prepare("INSERT INTO `invoice-stock`(`id_invoice`,`id_ingredient`,`amount_ingredient`,`id_stock`) VALUES ('"+ui->NumberInvoice->text()+"','"+qry_ing->record().value(0).toString()+"','"+findChild<QLineEdit*>(ingredients[i]->text().rightJustified(ingredients[i]->text().indexOf(" ("), '.', true))->text()+"','"+qry_stock->record().value(0).toString()+"')");
             qry->exec();
             qDebug() <<"INSERT INTO `invoice-stock`(`id_invoice`,`id_ingredient`,`amount_ingredient`,`id_stock`) VALUES ('"+ui->NumberInvoice->text()+"','"+qry_ing->record().value(0).toString()+"','"+findChild<QLineEdit*>(ingredients[i]->text().rightJustified(ingredients[i]->text().indexOf(" ("), '.', true))->text()+"','"+qry_stock->record().value(0).toString()+"')";
+            qry_inst->prepare("SELECT * FROM `ingredients-stock` WHERE (`id_stock`=\""+qry_stock->record().value(0).toString()+"\") AND (`id_ingredient`=\""+qry_ing->record().value(0).toString()+"\")");
+            qry_inst->exec();
+            qry_inst->next();
+            int amount=qry_inst->record().value(2).toInt();
+            if (amount){
+                amount+=findChild<QLineEdit*>(ingredients[i]->text().rightJustified(ingredients[i]->text().indexOf(" ("), '.', true))->text().toInt();
+                qry_inst->prepare("UPDATE `ingredients-stock` SET `amount_ingredient`=\""+QString::number(amount)+"\" WHERE (`id_stock`=\""+qry_stock->record().value(0).toString()+"\") AND (`id_ingredient`=\""+qry_ing->record().value(0).toString()+"\")");
+            } else
+            qry_inst->prepare("INSERT INTO `ingredients-stock`(`id_stock`, `id_ingredient`, `amount_ingredient`) VALUES ('"+qry_stock->record().value(0).toString()+"','"+qry_ing->record().value(0).toString()+"','"+findChild<QLineEdit*>(ingredients[i]->text().rightJustified(ingredients[i]->text().indexOf(" ("), '.', true))->text()+"')");
+            qry_inst->exec();
         }
         QMessageBox mes;
         mes.setWindowTitle("Поздравляю!");
