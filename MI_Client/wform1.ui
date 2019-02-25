@@ -27,26 +27,26 @@
    <property name="geometry">
     <rect>
      <x>500</x>
-     <y>210</y>
+     <y>160</y>
      <width>47</width>
      <height>13</height>
     </rect>
    </property>
    <property name="text">
-    <string>Склад</string>
+    <string>Склад:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>500</x>
-     <y>240</y>
+     <y>210</y>
      <width>47</width>
      <height>13</height>
     </rect>
    </property>
    <property name="text">
-    <string>Продукт</string>
+    <string>Продукт:</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="RBInc">
@@ -94,8 +94,8 @@
   <widget class="QPushButton" name="ApplyStockChangeFilter">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>330</y>
+     <x>530</x>
+     <y>320</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -104,31 +104,11 @@
     <string>Фильтр</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="LineStock">
-   <property name="geometry">
-    <rect>
-     <x>540</x>
-     <y>210</y>
-     <width>81</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="LineIngredient">
-   <property name="geometry">
-    <rect>
-     <x>552</x>
-     <y>240</y>
-     <width>71</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>500</x>
-     <y>60</y>
+     <y>10</y>
      <width>120</width>
      <height>141</height>
     </rect>
@@ -145,15 +125,8 @@
       <height>22</height>
      </rect>
     </property>
-    <property name="dateTime">
-     <datetime>
-      <hour>0</hour>
-      <minute>0</minute>
-      <second>0</second>
-      <year>2019</year>
-      <month>2</month>
-      <day>18</day>
-     </datetime>
+    <property name="displayFormat">
+     <string>yyyy.MM.dd</string>
     </property>
     <property name="calendarPopup">
      <bool>true</bool>
@@ -170,6 +143,9 @@
     </property>
     <property name="text">
      <string>Любая дата</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QRadioButton" name="RBBDate">
@@ -211,6 +187,26 @@
      <string>После даты</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QComboBox" name="Stocks">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>180</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="Ingredients">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>230</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>

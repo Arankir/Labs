@@ -38,7 +38,7 @@ void cForm3::setDB(QSqlDatabase *db)
 void cForm3::chbChange(int state)
 {
     QCheckBox* chb = (QCheckBox*) sender();
-    QGridLayout* layout = new QGridLayout;
+    QFormLayout* layout = new QFormLayout;
     QWidget* widget = new QWidget;
     QString count = ui->CountEdit->text();
 

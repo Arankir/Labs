@@ -72,7 +72,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Добавить ингредиенты</string>
+    <string>Провести накладную</string>
    </property>
   </widget>
   <widget class="Line" name="line_4">
@@ -166,6 +166,18 @@
     </rect>
    </property>
   </widget>
+  <zorder>line</zorder>
+  <zorder>widget</zorder>
+  <zorder>whatchStockChanges</zorder>
+  <zorder>line_2</zorder>
+  <zorder>AddIngredients</zorder>
+  <zorder>line_4</zorder>
+  <zorder>watchStock</zorder>
+  <zorder>LogOut</zorder>
+  <zorder>line_3</zorder>
+  <zorder>widget_3</zorder>
+  <zorder>widget_2</zorder>
+  <zorder>Hide</zorder>
  </widget>
  <resources/>
  <connections/>

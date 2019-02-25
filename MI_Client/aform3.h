@@ -9,7 +9,7 @@
 #include <QSqlDatabase>
 #include <QMessageBox>
 #include <QLabel>
-#include <QLayout>
+#include <QFormLayout>
 namespace Ui {
 class AForm3;
 }

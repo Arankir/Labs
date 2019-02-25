@@ -7,6 +7,7 @@
 #include <QSqlTableModel>
 #include <QtSql>
 #include <QSqlDatabase>
+#include <QString>
 
 namespace Ui {
 class Wform1;
@@ -24,10 +25,26 @@ public:
 private slots:
     void on_ApplyStockChangeFilter_clicked();
 
+    void on_RBAllDate_clicked();
+
+    void on_RBBDate_clicked();
+
+    void on_RBInDate_clicked();
+
+    void on_RBADate_clicked();
+
+    void on_RBAll_clicked();
+
+    void on_RBInc_clicked();
+
+    void on_RBDec_clicked();
+
 private:
     Ui::Wform1 *ui;
     QSqlDatabase* db;
     QSqlQueryModel* model;
+    int Date=1;
+    int Ingr=1;
 };
 
 #endif // WFORM1_H

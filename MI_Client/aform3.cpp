@@ -68,7 +68,7 @@ void AForm3::on_Add_clicked()
         pair.first = ui->IngrBox->currentText();
         pair.second = ui->CountEdit->text().toInt();
         ingredients.push_back(pair);
-        QGridLayout* layout = new QGridLayout;
+        QFormLayout* layout = new QFormLayout;
         for(int i=0; i<ingredients.size();i++){
             QLabel* lb = new QLabel;
             lb->setText(ingredients[i].first + " " + QString::number(ingredients[i].second));

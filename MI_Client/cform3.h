@@ -10,7 +10,7 @@
 #include <QPair>
 #include <QLabel>
 #include <QCheckBox>
-#include <QLayout>
+#include <QFormLayout>
 #include <QMessageBox>
 #include <myclient.h>
 namespace Ui {
