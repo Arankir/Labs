@@ -82,6 +82,7 @@ public:
         CountBox = new QCheckBox(cForm3);
         CountBox->setObjectName(QString::fromUtf8("CountBox"));
         CountBox->setGeometry(QRect(140, 400, 171, 31));
+        CountBox->setAutoExclusive(false);
         Cancel = new QPushButton(cForm3);
         Cancel->setObjectName(QString::fromUtf8("Cancel"));
         Cancel->setGeometry(QRect(340, 350, 75, 23));

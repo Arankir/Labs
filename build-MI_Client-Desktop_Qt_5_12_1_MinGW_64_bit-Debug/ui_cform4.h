@@ -75,7 +75,7 @@ public:
         selectDateText->setGeometry(QRect(30, 210, 91, 21));
         date = new QLabel(CForm4);
         date->setObjectName(QString::fromUtf8("date"));
-        date->setGeometry(QRect(220, 230, 81, 21));
+        date->setGeometry(QRect(120, 210, 81, 21));
 
         retranslateUi(CForm4);
 

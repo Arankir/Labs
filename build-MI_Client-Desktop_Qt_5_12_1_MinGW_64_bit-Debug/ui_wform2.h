@@ -97,6 +97,7 @@ public:
         label_3->setText(QApplication::translate("Wform2", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202\321\213:", nullptr));
         pushButton->setText(QApplication::translate("Wform2", "\320\237\321\200\320\276\320\262\320\265\321\201\321\202\320\270", nullptr));
         label_4->setText(QApplication::translate("Wform2", "\320\224\320\260\321\202\320\260:", nullptr));
+        DateInvoice->setDisplayFormat(QApplication::translate("Wform2", "yyyy.MM.dd", nullptr));
     } // retranslateUi
 
 };

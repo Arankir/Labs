@@ -84,6 +84,18 @@ public:
         widget_2 = new QWidget(Warehousekeeper);
         widget_2->setObjectName(QString::fromUtf8("widget_2"));
         widget_2->setGeometry(QRect(170, 50, 641, 511));
+        line->raise();
+        widget->raise();
+        whatchStockChanges->raise();
+        line_2->raise();
+        AddIngredients->raise();
+        line_4->raise();
+        watchStock->raise();
+        LogOut->raise();
+        line_3->raise();
+        widget_3->raise();
+        widget_2->raise();
+        Hide->raise();
 
         retranslateUi(Warehousekeeper);
 
@@ -94,7 +106,7 @@ public:
     {
         Warehousekeeper->setWindowTitle(QApplication::translate("Warehousekeeper", "Form", nullptr));
         whatchStockChanges->setText(QApplication::translate("Warehousekeeper", "\320\230\320\267\320\274\320\265\320\275\320\265\320\275\320\270\321\217 \320\275\320\260 \321\201\320\272\320\273\320\260\320\264\320\260\321\205", nullptr));
-        AddIngredients->setText(QApplication::translate("Warehousekeeper", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\270\320\275\320\263\321\200\320\265\320\264\320\270\320\265\320\275\321\202\321\213", nullptr));
+        AddIngredients->setText(QApplication::translate("Warehousekeeper", "\320\237\321\200\320\276\320\262\320\265\321\201\321\202\320\270 \320\275\320\260\320\272\320\273\320\260\320\264\320\275\321\203\321\216", nullptr));
         watchStock->setText(QApplication::translate("Warehousekeeper", "\320\237\320\276\321\201\320\274\320\276\321\202\321\200\320\265\321\202\321\214 \321\201\320\272\320\273\320\260\320\264\321\213", nullptr));
         LogOut->setText(QApplication::translate("Warehousekeeper", "\320\237\320\265\321\200\320\265\320\267\320\260\320\271\321\202\320\270", nullptr));
         Hide->setText(QApplication::translate("Warehousekeeper", "\320\245", nullptr));

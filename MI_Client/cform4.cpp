@@ -70,7 +70,7 @@ void CForm4::menuRequest(MyClient *client)
     QJsonDocument doc = QJsonDocument::fromJson(client->answer.toUtf8());
     QJsonObject obj = doc.object();
     QJsonArray menu_arr = obj["result"].toArray();
-    QGridLayout* layout = new QGridLayout;
+    QFormLayout* layout = new QFormLayout;
     for(int i=0;i<menu_arr.size();i++){
         QLabel* lb = new QLabel;
         lb->setText(menu_arr[i].toObject().value("title").toString()+" "+menu_arr[i].toObject().value("amount").toString() + " порций");

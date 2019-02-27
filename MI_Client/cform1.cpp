@@ -112,11 +112,6 @@ void CForm1::dishRequest(MyClient *dishReq)
         connect(chb,SIGNAL(stateChanged(int)),this,SLOT(chbChange(int)));
     }
 
-    for (int i=0; i<100;i++){
-        QCheckBox *chb = new QCheckBox(this);
-        chb->setText(QString::number(i));
-        layout->addWidget(chb);
-    }
     widget->setLayout(layout);
     ui->allDish->setWidget(widget);
 

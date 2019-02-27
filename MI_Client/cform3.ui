@@ -146,6 +146,9 @@
    <property name="text">
     <string>на количество отдыхающих</string>
    </property>
+   <property name="autoExclusive">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="Cancel">
    <property name="geometry">

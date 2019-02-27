@@ -11,11 +11,11 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTableView>
@@ -33,14 +33,14 @@ public:
     QRadioButton *RBDec;
     QRadioButton *RBAll;
     QPushButton *ApplyStockChangeFilter;
-    QLineEdit *LineStock;
-    QLineEdit *LineIngredient;
     QGroupBox *groupBox;
     QDateEdit *DateChange;
     QRadioButton *RBAllDate;
     QRadioButton *RBBDate;
     QRadioButton *RBInDate;
     QRadioButton *RBADate;
+    QComboBox *Stocks;
+    QComboBox *Ingredients;
 
     void setupUi(QWidget *Wform1)
     {
@@ -52,10 +52,10 @@ public:
         StockChangeTable->setGeometry(QRect(0, 20, 491, 461));
         label_2 = new QLabel(Wform1);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(500, 210, 47, 13));
+        label_2->setGeometry(QRect(500, 160, 47, 13));
         label_3 = new QLabel(Wform1);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(500, 240, 47, 13));
+        label_3->setGeometry(QRect(500, 210, 47, 13));
         RBInc = new QRadioButton(Wform1);
         RBInc->setObjectName(QString::fromUtf8("RBInc"));
         RBInc->setGeometry(QRect(500, 280, 121, 17));
@@ -68,24 +68,18 @@ public:
         RBAll->setChecked(true);
         ApplyStockChangeFilter = new QPushButton(Wform1);
         ApplyStockChangeFilter->setObjectName(QString::fromUtf8("ApplyStockChangeFilter"));
-        ApplyStockChangeFilter->setGeometry(QRect(520, 330, 75, 23));
-        LineStock = new QLineEdit(Wform1);
-        LineStock->setObjectName(QString::fromUtf8("LineStock"));
-        LineStock->setGeometry(QRect(540, 210, 81, 20));
-        LineIngredient = new QLineEdit(Wform1);
-        LineIngredient->setObjectName(QString::fromUtf8("LineIngredient"));
-        LineIngredient->setGeometry(QRect(552, 240, 71, 20));
+        ApplyStockChangeFilter->setGeometry(QRect(530, 320, 75, 23));
         groupBox = new QGroupBox(Wform1);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(500, 60, 120, 141));
+        groupBox->setGeometry(QRect(500, 10, 120, 141));
         DateChange = new QDateEdit(groupBox);
         DateChange->setObjectName(QString::fromUtf8("DateChange"));
         DateChange->setGeometry(QRect(10, 20, 91, 22));
-        DateChange->setDateTime(QDateTime(QDate(2019, 2, 18), QTime(0, 0, 0)));
         DateChange->setCalendarPopup(true);
         RBAllDate = new QRadioButton(groupBox);
         RBAllDate->setObjectName(QString::fromUtf8("RBAllDate"));
         RBAllDate->setGeometry(QRect(10, 50, 91, 17));
+        RBAllDate->setChecked(true);
         RBBDate = new QRadioButton(groupBox);
         RBBDate->setObjectName(QString::fromUtf8("RBBDate"));
         RBBDate->setGeometry(QRect(10, 70, 82, 17));
@@ -95,6 +89,12 @@ public:
         RBADate = new QRadioButton(groupBox);
         RBADate->setObjectName(QString::fromUtf8("RBADate"));
         RBADate->setGeometry(QRect(10, 110, 82, 17));
+        Stocks = new QComboBox(Wform1);
+        Stocks->setObjectName(QString::fromUtf8("Stocks"));
+        Stocks->setGeometry(QRect(500, 180, 121, 22));
+        Ingredients = new QComboBox(Wform1);
+        Ingredients->setObjectName(QString::fromUtf8("Ingredients"));
+        Ingredients->setGeometry(QRect(500, 230, 121, 22));
 
         retranslateUi(Wform1);
 
@@ -104,13 +104,14 @@ public:
     void retranslateUi(QWidget *Wform1)
     {
         Wform1->setWindowTitle(QApplication::translate("Wform1", "Form", nullptr));
-        label_2->setText(QApplication::translate("Wform1", "\320\241\320\272\320\273\320\260\320\264", nullptr));
-        label_3->setText(QApplication::translate("Wform1", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202", nullptr));
+        label_2->setText(QApplication::translate("Wform1", "\320\241\320\272\320\273\320\260\320\264:", nullptr));
+        label_3->setText(QApplication::translate("Wform1", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202:", nullptr));
         RBInc->setText(QApplication::translate("Wform1", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202 \320\264\320\276\320\261\320\260\320\262\320\270\320\273\321\201\321\217", nullptr));
         RBDec->setText(QApplication::translate("Wform1", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202 \320\277\320\276\321\202\321\200\320\260\321\202\320\270\320\273\321\201\321\217", nullptr));
         RBAll->setText(QApplication::translate("Wform1", "\320\222\321\201\320\265 \320\270\320\267\320\274\320\265\320\275\320\265\320\275\320\270\321\217", nullptr));
         ApplyStockChangeFilter->setText(QApplication::translate("Wform1", "\320\244\320\270\320\273\321\214\321\202\321\200", nullptr));
         groupBox->setTitle(QApplication::translate("Wform1", "\320\224\320\260\321\202\320\260", nullptr));
+        DateChange->setDisplayFormat(QApplication::translate("Wform1", "yyyy.MM.dd", nullptr));
         RBAllDate->setText(QApplication::translate("Wform1", "\320\233\321\216\320\261\320\260\321\217 \320\264\320\260\321\202\320\260", nullptr));
         RBBDate->setText(QApplication::translate("Wform1", "\320\224\320\276 \320\264\320\260\321\202\321\213", nullptr));
         RBInDate->setText(QApplication::translate("Wform1", "\320\242\320\276\321\207\320\275\320\260\321\217 \320\264\320\260\321\202\320\260", nullptr));
