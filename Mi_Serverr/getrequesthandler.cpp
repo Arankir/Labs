@@ -94,3 +94,44 @@ QString GetRequestHandler::menuHandler(){
     doc.setObject(menu);
     return QString(doc.toJson());
 }
+
+QString GetRequestHandler::authHandler()
+{
+    QJsonArray user_arr;
+    QSqlQuery* query = new QSqlQuery(*DB_);
+    if(query->exec("SELECT `auth`.`login`, `auth`.`password`, `role`.`role` FROM `auth` INNER JOIN `role` ON `auth`.`id_role`=`role`.`id_role`"))
+        while (query->next()) {
+            QJsonObject user_obj;
+            user_obj["login"]=query->value(0).toString();
+            user_obj["password"]=query->value(1).toString();
+            user_obj["role"]=query->value(2).toString();
+            user_arr.append(user_obj);
+        }
+    QJsonObject users;
+    users["Users"]=user_arr;
+    QJsonDocument doc;
+    doc.setObject(users);
+    return QString(doc.toJson());
+}
+
+QString GetRequestHandler::invoiceHandler()
+{
+    QJsonArray inv_arr;
+    QSqlQuery *query = new QSqlQuery(*DB_);
+    if(query->exec("SELECT `invoice-stock`.`id_invoice`, `invoice`.`date_invoice`, `stock`.`title_stock`, `ingredients`.`title_ingredient`, `ingredients-stock`.`amount_ingredient`, `ingredients`.`unit` FROM `invoice` INNER JOIN (`stock` INNER JOIN ((`ingredients` INNER JOIN `ingredients-stock` ON `ingredients`.`id_ingredient` = `ingredients-stock`.`id_ingredient`) INNER JOIN `invoice-stock` ON `ingredients`.`id_ingredient` = `invoice-stock`.`id_ingredient`) ON (`stock`.`id_stock` = `invoice-stock`.`id_stock`) AND (`stock`.`id_stock` = `ingredients-stock`.`id_stock`)) ON `invoice`.`id_invoice` = `invoice-stock`.`id_invoice`"))
+        while (query->next()) {
+            QJsonObject inv_obj;
+            inv_obj["id"]=query->value(0).toString();
+            inv_obj["date"]=query->value(1).toString();
+            inv_obj["title-stock"]=query->value(2).toString();
+            inv_obj["title-ingredient"]=query->value(3).toString();
+            inv_obj["amount"]=query->value(4).toString();
+            inv_obj["unit"]=query->value(5).toString();
+            inv_arr.append(inv_obj);
+        }
+    QJsonObject invoice;
+    invoice["Invoice"]=inv_arr;
+    QJsonDocument doc;
+    doc.setObject(invoice);
+    return QString(doc.toJson());
+}

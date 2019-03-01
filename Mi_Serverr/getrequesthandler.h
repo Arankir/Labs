@@ -17,6 +17,8 @@ public:
     QString dishHandle();
     QString StockIngHandler();
     QString menuHandler();
+    QString authHandler();
+    QString invoiceHandler();
 private:
     QSqlDatabase* DB_;
     Request* Request_;
