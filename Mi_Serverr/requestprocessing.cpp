@@ -36,6 +36,10 @@ void RequestProcessing::GetRequest(){
         response=handler.StockIngHandler();
     if(Request_->GetPath()=="/menu.json")
         response=handler.menuHandler();
+    if(Request_->GetPath()=="/auth.json")
+        response=handler.authHandler();
+    if(Request_->GetPath()=="/invoice.json")
+        response=handler.invoiceHandler();
     if(response.isEmpty()){
         Socket_->write("HTTP/1.1 404 \r\n\r\nBad request");
     }

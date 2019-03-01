@@ -9,19 +9,26 @@ Request::Request(const QString &request)
     this->Type_=StartLine[0];
     this->Url_=StartLine[1];
     headers.pop_front();
+    if (Type_ == "POST"){
+        QString Post_ = headers.back();
+        headers.pop_back();
+    }
+    else {
+        QUrl url(Url_);
+        this->Path_=url.path();
+        QString cgistr = url.query();
+        QStringList cgi = url.query().split('&');
+        for (const auto& param : cgi){
+            QStringList parametrs = param.split('=');
+            if(parametrs.size()==2){
+                this->Cgi_[parametrs[0]]=parametrs[1];
+            }
+        }
+    }
+
     this->Body_ = headers.back();
     headers.pop_back();
 
-    QUrl url(Url_);
-    this->Path_=url.path();
-    QString cgistr = url.query();
-    QStringList cgi = url.query().split('&');
-    for (const auto& param : cgi){
-        QStringList parametrs = param.split('=');
-        if(parametrs.size()==2){
-            this->Cgi_[parametrs[0]]=parametrs[1];
-        }
-    }
 }
 
 QString Request::GetCgi(const QString &name) const
