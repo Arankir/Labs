@@ -12,6 +12,9 @@
 #include <QLabel>
 #include <QVector>
 #include <myclient.h>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 namespace Ui {
 class CForm1;
 }
@@ -27,6 +30,7 @@ public:
 private:
     Ui::CForm1 *ui;
     QSqlDatabase *db;
+    QNetworkAccessManager *manager;
     QVector <QPair <QPair <QString,int>,QString>> ingredients;
     bool add =1;
 private slots:

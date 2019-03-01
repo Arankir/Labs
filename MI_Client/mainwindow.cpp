@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    manager = new QNetworkAccessManager();
+    connect(manager,&QNetworkAccessManager::finished,this,&MainWindow::OnResult);
 
 
 }
@@ -82,4 +83,21 @@ void MainWindow::Login(MyClient *client)
         QMessageBox::warning(this,"Ошибка","Введен неверный логин или пароль");
     }
 
+}
+
+void MainWindow::getData(){
+QUrl url("127.0.0.1:5555/auth.json");
+QNetworkRequest request;
+request.setUrl(url);
+manager->get(request);
+}
+
+void MainWindow::OnResult(QNetworkReply *reply){
+if(reply->error()){
+    qDebug() <<"Error";
+    qDebug() << reply->errorString();
+    } else {
+    //QJsonObject *q;
+    //emit onReady();
+    }
 }

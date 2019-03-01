@@ -6,7 +6,7 @@ Server::Server(QObject* parent): QTcpServer (parent),ThreadPool(new QThreadPool(
     DB_.setDatabaseName("sanatorii");
     DB_.setHostName("127.0.0.1");
     DB_.setUserName("root");
-    DB_.setPassword("1423");
+    DB_.setPassword("12345");
     if(DB_.open()){
         qDebug() << "Db open";
     }

@@ -7,8 +7,6 @@ CForm1::CForm1(QWidget *parent) :
 {
     ui->setupUi(this);
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-
-
     QJsonObject dish_req_obj;
     dish_req_obj["type"]="select";
     dish_req_obj["request"]="all_dish";
