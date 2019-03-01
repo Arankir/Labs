@@ -97,7 +97,8 @@ if(reply->error()){
     qDebug() <<"Error";
     qDebug() << reply->errorString();
     } else {
-    //QJsonObject *q;
+    QJsonObject q;
+    qDebug() <<q.value("Login");
     //emit onReady();
     }
 }
