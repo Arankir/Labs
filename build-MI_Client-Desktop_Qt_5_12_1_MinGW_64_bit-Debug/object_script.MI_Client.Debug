@@ -13,7 +13,7 @@ debug/aform1.o
 debug/aform2.o
 debug/aform3.o
 debug/aform4.o
-debug/myclient.o
+debug/network.o
 debug/moc_mainwindow.o
 debug/moc_cook.o
 debug/moc_cform1.o
@@ -28,4 +28,4 @@ debug/moc_aform1.o
 debug/moc_aform2.o
 debug/moc_aform3.o
 debug/moc_aform4.o
-debug/moc_myclient.o
+debug/moc_network.o

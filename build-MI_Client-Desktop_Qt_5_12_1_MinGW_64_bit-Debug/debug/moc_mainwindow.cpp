@@ -35,13 +35,13 @@ QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 18), // "on_Connect_clicked"
 QT_MOC_LITERAL(2, 30, 0), // ""
 QT_MOC_LITERAL(3, 31, 7), // "logShow"
-QT_MOC_LITERAL(4, 39, 5), // "Login"
-QT_MOC_LITERAL(5, 45, 9), // "MyClient*"
-QT_MOC_LITERAL(6, 55, 6) // "client"
+QT_MOC_LITERAL(4, 39, 8), // "OnResult"
+QT_MOC_LITERAL(5, 48, 8), // "Network*"
+QT_MOC_LITERAL(6, 57, 4) // "auth"
 
     },
     "MainWindow\0on_Connect_clicked\0\0logShow\0"
-    "Login\0MyClient*\0client"
+    "OnResult\0Network*\0auth"
 };
 #undef QT_MOC_LITERAL
 
@@ -79,7 +79,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->on_Connect_clicked(); break;
         case 1: _t->logShow(); break;
-        case 2: _t->Login((*reinterpret_cast< MyClient*(*)>(_a[1]))); break;
+        case 2: _t->OnResult((*reinterpret_cast< Network*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -89,7 +89,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< MyClient* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Network* >(); break;
             }
             break;
         }
