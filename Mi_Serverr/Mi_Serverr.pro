@@ -20,7 +20,8 @@ SOURCES += \
     server.cpp \
     requestprocessing.cpp \
     request.cpp \
-    getrequesthandler.cpp
+    getrequesthandler.cpp \
+    postrequesthandler.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -31,4 +32,5 @@ HEADERS += \
     server.h \
     requestprocessing.h \
     request.h \
-    getrequesthandler.h
+    getrequesthandler.h \
+    postrequesthandler.h

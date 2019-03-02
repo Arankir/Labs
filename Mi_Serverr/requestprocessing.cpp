@@ -25,6 +25,9 @@ void RequestProcessing::Responce(){
     if(Request_->GetType()=="GET"){
         GetRequest();
     }
+    if(Request_->GetType()=="POST"){
+        PostRequest();
+    }
 }
 
 void RequestProcessing::GetRequest(){
@@ -48,6 +51,26 @@ void RequestProcessing::GetRequest(){
         Socket_->write(response.toLocal8Bit());
     }
 
+}
+
+void RequestProcessing::PostRequest(){
+    PostRequestHandler handler(DB_,Request_);
+    QString response;
+    if(Request_->GetPath()=="/register.json")
+        response=handler.registrHandler(Request_->GetPost());
+    if(Request_->GetPath()=="/ingredient.json")
+        response=handler.newIngredientHandler(Request_->GetPost());
+    if(Request_->GetPath()=="/stock.json")
+        response=handler.newStockHandler(Request_->GetPost());
+    if(Request_->GetPath()=="/dish.json")
+        response=handler.newDishHandler(Request_->GetPost());
+    if(response.isEmpty()){
+        Socket_->write("HTTP/1.1 404 \r\n\r\nBad request");
+    }
+    else {
+        response ="HTTP/1.1 200 OK \r\nContent-Type: application/json\r\n\r\n" + response;
+        Socket_->write(response.toLocal8Bit());
+    }
 }
 
 RequestProcessing::~RequestProcessing(){
