@@ -14,12 +14,14 @@ public:
     const QString& GetUrl() const;
     const QString& GetPath() const;
     const QString& GetBody() const;
+    const QString& GetPost() const;
     QString GetCgi (const QString& name) const;
 private:
     QString Type_;
     QString Url_;
     QString Path_;
     QString Body_;
+    QString Post_;
     QMap<QString,QString> Cgi_;
 };
 

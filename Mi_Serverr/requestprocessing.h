@@ -14,6 +14,7 @@
 #include <QSql>
 #include <request.h>
 #include <getrequesthandler.h>
+#include <postrequesthandler.h>
 class RequestProcessing : public QRunnable
 {
 public:
