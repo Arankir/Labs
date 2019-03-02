@@ -21,13 +21,13 @@ CForm1::CForm1(QWidget *parent) :
     ing_req_doc.setObject(ing_req_obj);
     QString ing_req = QString(ing_req_doc.toJson()).toLocal8Bit();
 
-    MyClient* dish = new MyClient;
-    connect(dish,SIGNAL(ClientReady(MyClient*)),this,SLOT(dishRequest(MyClient*)));
-    dish->setRequest(dish_req);
+    //MyClient* dish = new MyClient;
+    //connect(dish,SIGNAL(ClientReady(MyClient*)),this,SLOT(dishRequest(MyClient*)));
+    //dish->setRequest(dish_req);
 
-    MyClient* ingr = new MyClient;
-    connect(ingr,SIGNAL(ClientReady(MyClient*)),this,SLOT(ingrRequest(MyClient*)));
-    ingr->setRequest(ing_req);
+    //MyClient* ingr = new MyClient;
+    //connect(ingr,SIGNAL(ClientReady(MyClient*)),this,SLOT(ingrRequest(MyClient*)));
+    //ingr->setRequest(ing_req);
 
 
 }
@@ -58,9 +58,9 @@ void CForm1::chbChange(int state){
         wIngr_doc.setObject(wIngr_obj);
         QString wIngr_req = QString(wIngr_doc.toJson()).toLocal8Bit();
 
-        MyClient* wIngredients = new MyClient;
-        connect(wIngredients,SIGNAL(ClientReady(MyClient*)),this,SLOT(countRequest(MyClient*)));
-        wIngredients->setRequest(wIngr_req);
+        //MyClient* wIngredients = new MyClient;
+        //connect(wIngredients,SIGNAL(ClientReady(MyClient*)),this,SLOT(countRequest(MyClient*)));
+        //wIngredients->setRequest(wIngr_req);
 
 
     }
@@ -94,80 +94,80 @@ void CForm1::chbChange(int state){
     }
 }
 
-void CForm1::dishRequest(MyClient *dishReq)
-{
-    QWidget* widget = new QWidget;
-    QFormLayout *layout = new QFormLayout;
+//void CForm1::dishRequest(MyClient *dishReq)
+//{
+//    QWidget* widget = new QWidget;
+//    QFormLayout *layout = new QFormLayout;
 
-    QJsonDocument doc = QJsonDocument::fromJson(dishReq->answer.toUtf8());
-    QJsonObject obj = doc.object();
-    QJsonArray dish_arr = obj["result"].toArray();
-    for(int i=0; i<dish_arr.size();i++){
-        qDebug() << dish_arr[i].toObject().value("title").toString();
-        QCheckBox *chb = new QCheckBox(this);
-        chb->setText(dish_arr[i].toObject().value("title").toString());
-        layout->addWidget(chb);
-        connect(chb,SIGNAL(stateChanged(int)),this,SLOT(chbChange(int)));
-    }
+//    QJsonDocument doc = QJsonDocument::fromJson(dishReq->answer.toUtf8());
+//    QJsonObject obj = doc.object();
+//    QJsonArray dish_arr = obj["result"].toArray();
+//    for(int i=0; i<dish_arr.size();i++){
+//        qDebug() << dish_arr[i].toObject().value("title").toString();
+//        QCheckBox *chb = new QCheckBox(this);
+//        chb->setText(dish_arr[i].toObject().value("title").toString());
+//        layout->addWidget(chb);
+//        connect(chb,SIGNAL(stateChanged(int)),this,SLOT(chbChange(int)));
+//    }
 
-    widget->setLayout(layout);
-    ui->allDish->setWidget(widget);
-
-
-}
-
-void CForm1::ingrRequest(MyClient *ingrReq)
-{
-    QJsonDocument doc = QJsonDocument::fromJson(ingrReq->answer.toUtf8());
-    QJsonObject obj = doc.object();
-    QJsonArray ingr_arr = obj["result"].toArray();
-    for (int i=0;i<ingr_arr.size();i++) {
-        QPair <QPair <QString, int>, QString> p;
-        QPair <QString,int> pair;
-        qDebug() << ingr_arr[i].toObject().value("title").toString();
-        pair.first = ingr_arr[i].toObject().value("title").toString();
-        pair.second=0;
-        p.first=pair;
-        p.second = ingr_arr[i].toObject().value("unit").toString();
-        ingredients.push_back(p);
-    }
+//    widget->setLayout(layout);
+//    ui->allDish->setWidget(widget);
 
 
-}
+//}
 
-void CForm1::countRequest(MyClient *countReq)
-{
+//void CForm1::ingrRequest(MyClient *ingrReq)
+//{
+//    QJsonDocument doc = QJsonDocument::fromJson(ingrReq->answer.toUtf8());
+//    QJsonObject obj = doc.object();
+//    QJsonArray ingr_arr = obj["result"].toArray();
+//    for (int i=0;i<ingr_arr.size();i++) {
+//        QPair <QPair <QString, int>, QString> p;
+//        QPair <QString,int> pair;
+//        qDebug() << ingr_arr[i].toObject().value("title").toString();
+//        pair.first = ingr_arr[i].toObject().value("title").toString();
+//        pair.second=0;
+//        p.first=pair;
+//        p.second = ingr_arr[i].toObject().value("unit").toString();
+//        ingredients.push_back(p);
+//    }
 
-    QJsonDocument doc = QJsonDocument::fromJson(countReq->answer.toUtf8());
-    QJsonObject obj = doc.object();
-    QJsonArray ingr_arr = obj["result"].toArray();
 
-    for (int i=0;i<ingr_arr.size();i++) {
-        for (int j=0;j<ingredients.size();j++) {
-            if(ingredients[j].first.first == ingr_arr[i].toObject().value("title").toString()){
-                if (this->add == 1){
-                    qDebug() << ingr_arr[i].toObject().value("amount").toInt();
-                    ingredients[j].first.second+=ingr_arr[i].toObject().value("amount").toInt();
-                }
-                else {
-                    ingredients[j].first.second-=ingr_arr[i].toObject().value("amount").toInt();
-                }
-            }
-        }
-    }
+//}
 
-    QFormLayout* layout = new QFormLayout;
-    for(int i=0; i<ingredients.size();i++){
-        if(ingredients[i].first.second > 0){
-            QLabel* lb = new QLabel;
-            //lb->setText("<span style=\"color: red\">text</span>"); тест для разноцветного текста
-            lb->setText(ingredients[i].first.first + " " +QString::number(ingredients[i].first.second) + " " + ingredients[i].second);
-            layout->addWidget(lb);
-        }
-    }
+//void CForm1::countRequest(MyClient *countReq)
+//{
 
-    QWidget* widget = new QWidget;
-    widget->setLayout(layout);
-    ui->ingredientsCount->setWidget(widget);
+//    QJsonDocument doc = QJsonDocument::fromJson(countReq->answer.toUtf8());
+//    QJsonObject obj = doc.object();
+//    QJsonArray ingr_arr = obj["result"].toArray();
 
-}
+//    for (int i=0;i<ingr_arr.size();i++) {
+//        for (int j=0;j<ingredients.size();j++) {
+//            if(ingredients[j].first.first == ingr_arr[i].toObject().value("title").toString()){
+//                if (this->add == 1){
+//                    qDebug() << ingr_arr[i].toObject().value("amount").toInt();
+//                    ingredients[j].first.second+=ingr_arr[i].toObject().value("amount").toInt();
+//                }
+//                else {
+//                    ingredients[j].first.second-=ingr_arr[i].toObject().value("amount").toInt();
+//                }
+//            }
+//        }
+//    }
+
+//    QFormLayout* layout = new QFormLayout;
+//    for(int i=0; i<ingredients.size();i++){
+//        if(ingredients[i].first.second > 0){
+//            QLabel* lb = new QLabel;
+//            //lb->setText("<span style=\"color: red\">text</span>"); тест для разноцветного текста
+//            lb->setText(ingredients[i].first.first + " " +QString::number(ingredients[i].first.second) + " " + ingredients[i].second);
+//            layout->addWidget(lb);
+//        }
+//    }
+
+//    QWidget* widget = new QWidget;
+//    widget->setLayout(layout);
+//    ui->ingredientsCount->setWidget(widget);
+
+//}

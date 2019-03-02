@@ -24,9 +24,9 @@ CForm2::CForm2(QWidget *parent) :
     ing_doc.setObject(ing_req_obj);
     QString request = QString(ing_doc.toJson()).toLocal8Bit();
 
-    MyClient* ing_req = new MyClient;
-    connect(ing_req,SIGNAL(ClientReady(MyClient*)),this,SLOT(ingredientsRequest(MyClient*)));
-    ing_req->setRequest(request);
+    //MyClient* ing_req = new MyClient;
+    //connect(ing_req,SIGNAL(ClientReady(MyClient*)),this,SLOT(ingredientsRequest(MyClient*)));
+    //ing_req->setRequest(request);
 
 }
 
@@ -58,25 +58,25 @@ void CForm2::on_Search_clicked()
     ing_doc.setObject(ing_req_obj);
     QString request = QString(ing_doc.toJson()).toLocal8Bit();
 
-    MyClient* ing_req = new MyClient;
-    connect(ing_req,SIGNAL(ClientReady(MyClient*)),this,SLOT(ingredientsRequest(MyClient*)));
-    ing_req->setRequest(request);
+    //MyClient* ing_req = new MyClient;
+    //connect(ing_req,SIGNAL(ClientReady(MyClient*)),this,SLOT(ingredientsRequest(MyClient*)));
+    //ing_req->setRequest(request);
 }
 
-void CForm2::ingredientsRequest(MyClient *client)
-{
-    QJsonDocument doc = QJsonDocument::fromJson(client->answer.toUtf8());
-    QJsonObject obj = doc.object();
-    QJsonArray ingr_arr = obj["result"].toArray();
+//void CForm2::ingredientsRequest(MyClient *client)
+//{
+//    QJsonDocument doc = QJsonDocument::fromJson(client->answer.toUtf8());
+//    QJsonObject obj = doc.object();
+//    QJsonArray ingr_arr = obj["result"].toArray();
 
-    QStandardItemModel* model = new QStandardItemModel;
-    model->setHorizontalHeaderLabels(QStringList() << "ингредиент" << "склад" << "количество" << "измерение");
-    for(int i=0; i<ingr_arr.size();i++){
-        QStandardItem* col1 = new QStandardItem(ingr_arr[i].toObject().value("title").toString());
-        QStandardItem* col2 = new QStandardItem(ingr_arr[i].toObject().value("stock").toString());
-        QStandardItem* col3 = new QStandardItem(ingr_arr[i].toObject().value("amount").toString());
-        QStandardItem* col4 = new QStandardItem(ingr_arr[i].toObject().value("unit").toString());
-        model->appendRow(QList<QStandardItem*>() << col1 << col2 << col3 << col4);
-    }
-    ui->IngredientsTable->setModel(model);
-}
+//    QStandardItemModel* model = new QStandardItemModel;
+//    model->setHorizontalHeaderLabels(QStringList() << "ингредиент" << "склад" << "количество" << "измерение");
+//    for(int i=0; i<ingr_arr.size();i++){
+//        QStandardItem* col1 = new QStandardItem(ingr_arr[i].toObject().value("title").toString());
+//        QStandardItem* col2 = new QStandardItem(ingr_arr[i].toObject().value("stock").toString());
+//        QStandardItem* col3 = new QStandardItem(ingr_arr[i].toObject().value("amount").toString());
+//        QStandardItem* col4 = new QStandardItem(ingr_arr[i].toObject().value("unit").toString());
+//        model->appendRow(QList<QStandardItem*>() << col1 << col2 << col3 << col4);
+//    }
+//    ui->IngredientsTable->setModel(model);
+//}

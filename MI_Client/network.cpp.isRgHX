@@ -1,0 +1,22 @@
+#include "network.h"
+
+Network::Network(QUrl *url){
+    connect(manager,&QNetworkAccessManager::finished,this,&Network::OnResult);
+    QNetworkRequest request;
+    request.setUrl(*url);
+    manager->get(request);
+}
+
+void Network::OnResult(QNetworkReply *reply){
+    if(reply->error()){
+        answer="Error:"+reply->errorString();
+        qDebug() << answer;
+        } else {
+        answer=reply->readAll();
+        }
+}
+
+Network::~Network(){
+
+}
+

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>249</width>
-    <height>163</height>
+    <height>171</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,36 +17,21 @@
    <widget class="QLineEdit" name="LoginEdit">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>10</y>
+      <x>70</x>
+      <y>20</y>
       <width>113</width>
       <height>20</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLabel" name="LoginLable">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>51</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Логин</string>
+    <property name="placeholderText">
+     <string>Введите логин</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Connect">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>80</y>
+      <x>90</x>
+      <y>100</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -58,41 +43,16 @@
    <widget class="QLineEdit" name="PaswordEdit">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>40</y>
+      <x>70</x>
+      <y>60</y>
       <width>113</width>
       <height>20</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLabel" name="PaswordLable">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>40</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Пароль</string>
+    <property name="placeholderText">
+     <string>Введите пароль</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>249</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -105,6 +65,11 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>LoginEdit</tabstop>
+  <tabstop>PaswordEdit</tabstop>
+  <tabstop>Connect</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

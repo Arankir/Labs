@@ -11,7 +11,7 @@
 #include <QFormLayout>
 #include <QLabel>
 #include <QVector>
-#include <myclient.h>
+#include <network.h>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -35,9 +35,9 @@ private:
     bool add =1;
 private slots:
     void chbChange(int state);
-    void dishRequest(MyClient* dishReq);
-    void ingrRequest(MyClient* ingrReq);
-    void countRequest(MyClient* countReq);
+    //void dishRequest(MyClient* dishReq);
+    //void ingrRequest(MyClient* ingrReq);
+    //void countRequest(MyClient* countReq);
 };
 
 #endif // CFORM1_H

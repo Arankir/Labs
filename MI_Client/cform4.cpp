@@ -52,9 +52,9 @@ void CForm4::on_search_clicked()
     doc.setObject(obj);
     QString request = QString(doc.toJson()).toLocal8Bit();
 
-    MyClient* menu_req = new MyClient;
-    connect(menu_req,SIGNAL(ClientReady(MyClient*)),this,SLOT(menuRequest(MyClient*)));
-    menu_req->setRequest(request);
+    //MyClient* menu_req = new MyClient;
+    //connect(menu_req,SIGNAL(ClientReady(MyClient*)),this,SLOT(menuRequest(MyClient*)));
+    //menu_req->setRequest(request);
 
 
 }
@@ -64,19 +64,19 @@ void CForm4::on_calendar_selectionChanged()
     ui->date->setText(ui->calendar->selectedDate().toString("yyyy-MM-dd"));
 }
 
-void CForm4::menuRequest(MyClient *client)
-{
+//void CForm4::menuRequest(MyClient *client)
+//{
 
-    QJsonDocument doc = QJsonDocument::fromJson(client->answer.toUtf8());
-    QJsonObject obj = doc.object();
-    QJsonArray menu_arr = obj["result"].toArray();
-    QFormLayout* layout = new QFormLayout;
-    for(int i=0;i<menu_arr.size();i++){
-        QLabel* lb = new QLabel;
-        lb->setText(menu_arr[i].toObject().value("title").toString()+" "+menu_arr[i].toObject().value("amount").toString() + " порций");
-        layout->addWidget(lb);
-    }
-    QWidget* widget= new QWidget;
-    widget->setLayout(layout);
-    ui->menu->setWidget(widget);
-}
+//    QJsonDocument doc = QJsonDocument::fromJson(client->answer.toUtf8());
+//    QJsonObject obj = doc.object();
+//    QJsonArray menu_arr = obj["result"].toArray();
+//    QFormLayout* layout = new QFormLayout;
+//    for(int i=0;i<menu_arr.size();i++){
+//        QLabel* lb = new QLabel;
+//        lb->setText(menu_arr[i].toObject().value("title").toString()+" "+menu_arr[i].toObject().value("amount").toString() + " порций");
+//        layout->addWidget(lb);
+//    }
+//    QWidget* widget= new QWidget;
+//    widget->setLayout(layout);
+//    ui->menu->setWidget(widget);
+//}

@@ -40,7 +40,7 @@ SOURCES += \
     aform2.cpp \
     aform3.cpp \
     aform4.cpp \
-    myclient.cpp
+    network.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -57,7 +57,7 @@ HEADERS += \
     aform2.h \
     aform3.h \
     aform4.h \
-    myclient.h
+    network.h
 
 FORMS += \
         mainwindow.ui \
