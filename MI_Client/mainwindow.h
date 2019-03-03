@@ -2,15 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-//#include <QTcpSocket>
 #include <QMessageBox>
 #include <cook.h>
 #include <warehousekeeper.h>
 #include <admin.h>
 #include <network.h>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
 
 namespace Ui {
 class MainWindow;

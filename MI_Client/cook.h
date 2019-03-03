@@ -3,12 +3,17 @@
 
 #include <QWidget>
 #include <QDebug>
-#include <QSqlDatabase>
 #include <QLayout>
-#include <cform1.h>
-#include <cform2.h>
-#include <cform3.h>
-#include <cform4.h>
+#include <QCheckBox>
+#include <QRadioButton>
+#include <QFormLayout>
+#include <QLabel>
+#include <QVector>
+#include <QPair>
+#include <QMessageBox>
+#include <QDate>
+#include <network.h>
+#include <QStringRef>
 
 namespace Ui {
 class Cook;
@@ -21,32 +26,34 @@ class Cook : public QWidget
 public:
     explicit Cook(QWidget *parent = nullptr);
     ~Cook();
-    void setDB(QSqlDatabase *db);
 
 signals:
     void loginOpen();
+    void stateChanged(int state, Network *cook);
+
+private:
+   // QList <QRadioButton*> dishs;
 
 private slots:
     void on_whatchDish_clicked();
-
     void on_whatchIngredients_clicked();
-
     void on_Hide_clicked();
-
     void on_createMenu_clicked();
-
     void on_prevMenu_clicked();
-
     void on_LogOut_clicked();
 
+    void OnResultCook1(Network *);
+    void OnResultCook2(Network *);
+    void OnResultCook3(Network *);
+    void OnResultCook4(Network *);
+    void rbCook1Change();
 
 private:
-    Ui::Cook* ui;
-    QSqlDatabase* db;
-    CForm1* cform1;
-    CForm2* cform2;
-    cForm3* cform3;
-    CForm4* cform4;
+    Ui::Cook *ui;
+    QJsonDocument cook1;
+    QJsonDocument cook2;
+    QJsonDocument cook3;
+    QJsonDocument cook4;
 };
 
 #endif // COOK_H

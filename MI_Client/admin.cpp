@@ -14,7 +14,7 @@ Admin::Admin(QWidget *parent) :
 
     cook= new Cook();
     cookL->addWidget(cook);
-    cook->setDB(db);
+    //cook->setDB(db);
     connect(cook,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
 
 
@@ -51,6 +51,26 @@ Admin::Admin(QWidget *parent) :
     ui->AddStockWid->setLayout(layout4);
 
     Admin::on_hide_clicked();
+
+//    QJsonObject dish;
+//    dish["title"] = "СуперСуп";
+
+//    QJsonArray arr_ing;
+//    QJsonObject ing;
+//    ing["title"]="Морковь";
+//    ing["amount"]="5";
+//    arr_ing.append(ing);
+//    QJsonObject ing2;
+//    ing2["title"]="Свекла";
+//    ing2["amount"]="5";
+//    arr_ing.append(ing2);
+
+//    dish["ingredients"]=arr_ing;
+//    QJsonDocument doc;
+//    doc.setObject(dish);
+
+//    QByteArray reqData;
+//    reqData = QString(doc.toJson()).toLocal8Bit();
 }
 
 Admin::~Admin()

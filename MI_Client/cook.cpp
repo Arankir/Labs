@@ -6,83 +6,172 @@ Cook::Cook(QWidget *parent) :
     ui(new Ui::Cook)
 {
     ui->setupUi(this);
-    QVBoxLayout *layout1 = new QVBoxLayout;
-    cform1 = new CForm1;
-    cform1->setDB(db);
-    layout1->addWidget(cform1);
-    ui->widget->setLayout(layout1);
-
-    QVBoxLayout *layout2 = new QVBoxLayout;
-    cform2 = new CForm2;
-    cform2->setDB(db);
-    layout2->addWidget(cform2);
-    ui->widget_2->setLayout(layout2);
-
-    QVBoxLayout *layout3 = new QVBoxLayout;
-    cform3 = new cForm3;
-    cform3->setDB(db);
-    layout3->addWidget(cform3);
-    ui->widget_3->setLayout(layout3);
-
-    QVBoxLayout *layout4 = new QVBoxLayout;
-    cform4 = new CForm4;
-    cform4->setDB(db);
-    layout4->addWidget(cform4);
-    ui->widget_4->setLayout(layout4);
-
+    ui->GBC1->move(170,50);
+    ui->GBC2->move(170,50);
+    ui->GBC3->move(170,50);
+    ui->GBC4->move(170,50);
     Cook::on_Hide_clicked();
 }
-
-
 
 Cook::~Cook()
 {
     delete ui;
 }
 
-
-
-void Cook::setDB(QSqlDatabase *db){
-    this->db = db;
-}
-
 void Cook::on_Hide_clicked()
 {
-    ui->widget->hide();
-    ui->widget_2->hide();
-    ui->widget_3->hide();
-    ui->widget_4->hide();
+    ui->GBC1->setVisible(false);
+    ui->GBC2->setVisible(false);
+    ui->GBC3->setVisible(false);
+    ui->GBC4->setVisible(false);
 }
 
 void Cook::on_whatchDish_clicked()
 {
+    if(cook1.isEmpty()){
+        Network *cooks1 = new Network;
+        connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
+        cooks1->SetUrl("http://127.0.0.1:5555/dish.json");
+    }
     Cook::on_Hide_clicked();
-    ui->widget->show();
+    ui->GBC1->setVisible(true);
 }
-
 
 void Cook::on_whatchIngredients_clicked()
 {
+    if(cook2.isEmpty()){
+        Network *cook2 = new Network;
+        connect(cook2,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook2(Network *)));
+        cook2->SetUrl("http://127.0.0.1:5555/stock_ingredints.json");
+    }
     Cook::on_Hide_clicked();
-    ui->widget_2->show();
+    ui->GBC2->setVisible(true);
 }
-
-
 
 void Cook::on_createMenu_clicked()
 {
+    if(cook3.isEmpty()){
+        Network *cook3 = new Network;
+        connect(cook3,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook3(Network *)));
+        cook3->SetUrl("http://127.0.0.1:5555/guests.json");
+    }
     Cook::on_Hide_clicked();
-    ui->widget_3->show();
+    ui->GBC3->setVisible(true);
 }
 
 void Cook::on_prevMenu_clicked()
 {
+    if(cook4.isEmpty()){
+        Network *cook4 = new Network;
+        connect(cook4,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook4(Network *)));
+        cook4->SetUrl("http://127.0.0.1:5555/menu.json");
+    }
     Cook::on_Hide_clicked();
-    ui->widget_4->show();
+    ui->GBC4->setVisible(true);
 }
 
 void Cook::on_LogOut_clicked()
 {
     emit loginOpen();
     this->hide();
+}
+
+void Cook::OnResultCook1(Network *cook){
+    qDebug() << cook->GetAnswer();
+    qDebug() << cook->GetError();
+    if(cook->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << cook->GetError();
+        } else {
+        cook1=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
+        QJsonArray JsonA=cook1.object().value("Dishs").toArray();
+        QWidget* widget = new QWidget;
+        QFormLayout *layout = new QFormLayout;
+        for(int i=0;i<JsonA.size();i++){
+            QRadioButton *rb = new QRadioButton(this);
+            rb->setObjectName("rb"+JsonA[i].toObject().value("dish").toString());
+            rb->setText(JsonA[i].toObject().value("dish").toString());
+            layout->addWidget(rb);
+            connect(rb,SIGNAL(pressed()),this,SLOT(rbCook1Change()));
+        }
+        widget->setLayout(layout);
+        ui->C1SA1->setWidget(widget);
+        }
+}
+
+void Cook::OnResultCook2(Network *cook){
+qDebug() << cook->GetAnswer();
+qDebug() << cook->GetError();
+if(cook->GetAnswer()==""){
+    qDebug() <<"Error";
+    qDebug() << cook->GetError();
+    } else {
+    cook2=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
+    QJsonArray JsonA=cook2.object().value("Dishs").toArray();
+
+    }
+}
+
+void Cook::OnResultCook3(Network *cook){
+qDebug() << cook->GetAnswer();
+qDebug() << cook->GetError();
+if(cook->GetAnswer()==""){
+    qDebug() <<"Error";
+    qDebug() << cook->GetError();
+    } else {
+    cook3=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
+    QJsonArray JsonA=cook3.object().value("Dishs").toArray();
+    QWidget* widget = new QWidget;
+    QFormLayout *layout = new QFormLayout;
+    for(int i=0;i<JsonA.size();i++){
+        QCheckBox *chb = new QCheckBox(this);
+        chb->setText(JsonA[i].toObject().value("dish").toString());
+        layout->addWidget(chb);
+        connect(chb,SIGNAL(stateChanged(Network *cook)),this,SLOT(chbChange(Network *cook)));
+    }
+    widget->setLayout(layout);
+    ui->AllDish->setWidget(widget);
+    }
+}
+
+void Cook::OnResultCook4(Network *cook){
+qDebug() << cook->GetAnswer();
+qDebug() << cook->GetError();
+if(cook->GetAnswer()==""){
+    qDebug() <<"Error";
+    qDebug() << cook->GetError();
+    } else {
+    cook4=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
+    QJsonArray JsonA=cook4.object().value("Dishs").toArray();
+
+    }
+}
+
+void Cook::rbCook1Change(){
+    QRadioButton* rb = (QRadioButton*) sender();
+    QWidget* widget2 = new QWidget;
+    QFormLayout* layout = new QFormLayout;
+    QJsonObject JO = cook1.object();
+    QJsonArray JAI=JO.value("Dishs").toArray();
+    QJsonArray JAU=JO.value("Ingredients").toArray();
+    for (int j=0;j<JAI.size();j++) {
+        if(JAI[j].toObject().value("dish")==rb->text()){
+            for(int k=0;k<JAI[j].toObject().value("ingredients").toArray().size();k++){
+                QLabel* lb1 = new QLabel;
+                QString s;
+                s=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()+" "+JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString();
+                for (int i=0;i<JAU.size();i++) {
+                    if(JAU[i].toObject().value("title")==JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title")){
+                        s+=JAU[i].toObject().value("unit").toString();
+                        break;
+                     }
+                }
+                lb1->setText(s);
+                layout->addWidget(lb1);
+            }
+            break;
+        }
+    }
+    widget2->setLayout(layout);
+    ui->C1SA2->setWidget(widget2);
 }

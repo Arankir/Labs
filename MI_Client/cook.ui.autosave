@@ -481,8 +481,8 @@
   <widget class="QGroupBox" name="GBC2">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>70</y>
+     <x>550</x>
+     <y>80</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -490,21 +490,11 @@
    <property name="title">
     <string>Просмотр ингредиентов</string>
    </property>
-   <widget class="QLineEdit" name="IngredientEdit">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>50</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>90</y>
+      <x>410</x>
+      <y>100</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -516,8 +506,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>50</y>
+      <x>410</x>
+      <y>70</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -529,8 +519,8 @@
    <widget class="QPushButton" name="Search">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>180</y>
+      <x>480</x>
+      <y>160</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -539,46 +529,33 @@
      <string>Поиск</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>130</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>количество</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="countEdit">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>130</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTableView" name="IngredientsTable">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>30</y>
-      <width>321</width>
+      <width>381</width>
       <height>481</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="stockEdit">
+   <widget class="QComboBox" name="C2CB1">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>90</y>
-      <width>113</width>
-      <height>20</height>
+      <x>490</x>
+      <y>70</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="C2CB2">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>100</y>
+      <width>141</width>
+      <height>22</height>
      </rect>
     </property>
    </widget>

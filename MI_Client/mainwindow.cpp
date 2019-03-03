@@ -19,7 +19,7 @@ void MainWindow::on_Connect_clicked()
 {
     Network *auth = new Network;
     connect(auth,SIGNAL(onReady(Network *)),this,SLOT(OnResult(Network *)));
-    auth->SetUrl("http://127.0.0.1:5555/auth.json");
+    auth->SetUrl("http://127.0.0.1:5555/auth.json"); // /?Data=456456&Data2=123123
 }
 
 void MainWindow::logShow()

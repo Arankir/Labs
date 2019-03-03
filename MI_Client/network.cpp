@@ -14,6 +14,8 @@ void Network::SetUrl(QString str){
     manager->get(request);
 }
 
+
+
 void Network::OnResult(QNetworkReply *reply){
     if(reply->error()){
         error=reply->errorString();
