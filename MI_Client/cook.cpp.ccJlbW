@@ -203,4 +203,3 @@ void Cook::on_search_clicked()
     widget->setLayout(layout);
     ui->C4SA1->setWidget(widget);
 }
-

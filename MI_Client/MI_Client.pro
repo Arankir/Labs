@@ -30,7 +30,6 @@ SOURCES += \
     cook.cpp \
     cform2.cpp \
     cform3.cpp \
-    cform4.cpp \
     warehousekeeper.cpp \
     wform1.cpp \
     wform2.cpp \
@@ -46,7 +45,6 @@ HEADERS += \
     cook.h \
     cform2.h \
     cform3.h \
-    cform4.h \
     warehousekeeper.h \
     wform1.h \
     wform2.h \
@@ -62,7 +60,6 @@ FORMS += \
     cook.ui \
     cform2.ui \
     cform3.ui \
-    cform4.ui \
     warehousekeeper.ui \
     wform1.ui \
     wform2.ui \

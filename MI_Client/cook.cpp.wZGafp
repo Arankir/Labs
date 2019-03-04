@@ -190,17 +190,15 @@ void Cook::on_search_clicked()
     QWidget* widget = new QWidget;
     QFormLayout *layout = new QFormLayout;
     for(int i=0;i<JsonA.size();i++){
-        if((JsonA[i].toObject().value("type").toString()==type)&&(JsonA[i].toObject().value("date").toString()==ui->C4Calendar->selectedDate().toString("yyyy-MM-dd"))){
+        if((JsonA[i].toObject().value("type").String==type)&&(JsonA[i].toObject().value("date").toString()==ui->C4Calendar->selectedDate().toString("yyyy-MM-dd"))){
             for(int j=0;j<JsonA[i].toObject().value("dishs").toArray().size();j++){
                 QLabel *lb = new QLabel;
                 lb->setText(JsonA[i].toObject().value("dishs").toArray().at(j).toString());
                 layout->addWidget(lb);
             }
-        ui->C4LAmount->setText("Количество: "+JsonA[i].toObject().value("amount").toString());
-        break;
         }
+        ui->C4LAmount->setText(JsonA[i].toObject().value("amount").toString());
     }
     widget->setLayout(layout);
-    ui->C4SA1->setWidget(widget);
+    ui->C1SA1->setWidget(widget);
 }
-

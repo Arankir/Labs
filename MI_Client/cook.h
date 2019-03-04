@@ -48,6 +48,8 @@ private slots:
     void OnResultCook4(Network *);
     void rbCook1Change();
 
+    void on_search_clicked();
+
 private:
     Ui::Cook *ui;
     QJsonDocument cook1;

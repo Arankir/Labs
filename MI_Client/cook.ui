@@ -13,58 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="whatchDish">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>151</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Посмотреть блюда</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="whatchIngredients">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>80</y>
-     <width>151</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Посмотреть ингридиенты</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="createMenu">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>300</y>
-     <width>151</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Создать меню</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="prevMenu">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>330</y>
-     <width>151</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Посмотреть прошлые меню</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="LogOut">
    <property name="geometry">
     <rect>
@@ -100,8 +48,8 @@
   <widget class="QGroupBox" name="GBC1">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>500</y>
+     <x>170</x>
+     <y>510</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -159,8 +107,8 @@
   <widget class="QGroupBox" name="GBC3">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>280</y>
+     <x>310</x>
+     <y>200</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -348,8 +296,8 @@
   <widget class="QGroupBox" name="GBC4">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>330</y>
+     <x>200</x>
+     <y>480</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -357,13 +305,13 @@
    <property name="title">
     <string>Просмотр прошлых меню</string>
    </property>
-   <widget class="QScrollArea" name="menu">
+   <widget class="QScrollArea" name="C4SA1">
     <property name="geometry">
      <rect>
       <x>380</x>
       <y>40</y>
       <width>201</width>
-      <height>451</height>
+      <height>391</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -375,12 +323,12 @@
        <x>0</x>
        <y>0</y>
        <width>199</width>
-       <height>449</height>
+       <height>389</height>
       </rect>
      </property>
     </widget>
    </widget>
-   <widget class="QRadioButton" name="breakfast_2">
+   <widget class="QRadioButton" name="C4RB1">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -392,8 +340,11 @@
     <property name="text">
      <string>завтрак</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QCalendarWidget" name="calendar">
+   <widget class="QCalendarWidget" name="C4Calendar">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -412,33 +363,7 @@
      <enum>QCalendarWidget::SingleSelection</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="selectDateText">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>230</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Выбранная дата:</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="other_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>350</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>другое</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="dinner_2">
+   <widget class="QRadioButton" name="C4RB4">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -448,14 +373,27 @@
      </rect>
     </property>
     <property name="text">
-     <string>ужин</string>
+     <string>другое</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="lunch_2">
+   <widget class="QRadioButton" name="C4RB3">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>290</y>
+      <y>300</y>
+      <width>82</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ужин</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="C4RB2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>280</y>
       <width>82</width>
       <height>17</height>
      </rect>
@@ -468,7 +406,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>380</y>
+      <y>350</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -477,12 +415,25 @@
      <string>Поиск</string>
     </property>
    </widget>
+   <widget class="QLabel" name="C4LAmount">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>440</y>
+      <width>171</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Количество:</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="GBC2">
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>70</y>
+     <y>80</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -490,21 +441,11 @@
    <property name="title">
     <string>Просмотр ингредиентов</string>
    </property>
-   <widget class="QLineEdit" name="IngredientEdit">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>50</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>90</y>
+      <x>410</x>
+      <y>100</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -516,8 +457,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>50</y>
+      <x>410</x>
+      <y>70</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -529,8 +470,8 @@
    <widget class="QPushButton" name="Search">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>180</y>
+      <x>480</x>
+      <y>160</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -539,60 +480,84 @@
      <string>Поиск</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>130</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>количество</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="countEdit">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>130</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTableView" name="IngredientsTable">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>30</y>
-      <width>321</width>
+      <width>381</width>
       <height>481</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="stockEdit">
+   <widget class="QComboBox" name="C2CB1">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>90</y>
-      <width>113</width>
-      <height>20</height>
+      <x>490</x>
+      <y>70</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="C2CB2">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>100</y>
+      <width>141</width>
+      <height>22</height>
      </rect>
     </property>
    </widget>
   </widget>
-  <zorder>whatchDish</zorder>
-  <zorder>whatchIngredients</zorder>
-  <zorder>createMenu</zorder>
-  <zorder>prevMenu</zorder>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>151</width>
+     <height>581</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="whatchDish">
+      <property name="text">
+       <string>Посмотреть блюда</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="whatchIngredients">
+      <property name="text">
+       <string>Посмотреть ингридиенты</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="createMenu">
+      <property name="text">
+       <string>Создать меню</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="prevMenu">
+      <property name="text">
+       <string>Посмотреть прошлые меню</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <zorder>LogOut</zorder>
   <zorder>GBC1</zorder>
   <zorder>GBC3</zorder>
   <zorder>GBC4</zorder>
   <zorder>GBC2</zorder>
   <zorder>Hide</zorder>
+  <zorder>verticalLayoutWidget</zorder>
  </widget>
  <resources/>
  <connections/>
