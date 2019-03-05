@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.8.1, 2019-03-04T20:23:55. -->
+<!-- Written by QtCreator 4.8.1, 2019-03-05T17:36:31. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -119,7 +119,9 @@
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
-    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
+     <value type="QString">Path=D:\Qt\Tools\mingw730_64\bin;D:\Qt\5.12.1\mingw73_64\bin;D:\Qt\Tools\mingw730_64\bin;C:\Program Files (x86)\Embarcadero\Studio\20.0\bin;C:\Users\Public\Documents\Embarcadero\Studio\20.0\Bpl;C:\Program Files (x86)\Embarcadero\Studio\20.0\bin64;C:\Users\Public\Documents\Embarcadero\Studio\20.0\Bpl\Win64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Borland\Delphi7\Bin;C:\Program Files (x86)\Borland\Delphi7\Projects\Bpl\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\HP\Common\HPDestPlgIn\; D:\xampp\mysql\bin; D:\Qt\5.12.1\mingw73_64\bin; D:\Qt\Tools\mingw730_64\bin; C:\Users\Arankir\Desktop\build-MI_Client-Desktop_Qt_5_12_1_MinGW_64_bit-Debug\debug; D:\xampp\mysql\lib; D:\xampp\mysql\bin;C:\Program Files (x86)\HP\Common\HPDestPlgIn\; C:\MySQL\MySQL Server 8.0\bin; D:\Qt\5.12.1\mingw73_64\bin; D:\Qt\Tools\mingw730_64\bin;C:\Users\Arankir\Desktop\debserv\debug;C:\MySQL\MySQL Server 8.0\lib;C:\MySQL\MySQL Server 8.0\bin;</value>
+    </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Отладка</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Отладка</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>

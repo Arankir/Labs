@@ -24,6 +24,7 @@ void Cook::on_Hide_clicked()
     ui->GBC2->setVisible(false);
     ui->GBC3->setVisible(false);
     ui->GBC4->setVisible(false);
+    ui->Hide->setVisible(false);
 }
 
 void Cook::on_whatchDish_clicked()
@@ -35,6 +36,7 @@ void Cook::on_whatchDish_clicked()
     }
     Cook::on_Hide_clicked();
     ui->GBC1->setVisible(true);
+    ui->Hide->setVisible(true);
 }
 
 void Cook::on_whatchIngredients_clicked()
@@ -42,10 +44,18 @@ void Cook::on_whatchIngredients_clicked()
     if(cook2.isEmpty()){
         Network *cook2 = new Network;
         connect(cook2,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook2(Network *)));
-        cook2->SetUrl("http://127.0.0.1:5555/stock_ingredints.json");
+        cook2->SetUrl("http://127.0.0.1:5555/stock_ingredients.json");
+        QStandardItemModel *C2T1M = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Склад");
+        hh.append("Ингредиент");
+        hh.append("Кол-во");
+        C2T1M->setHorizontalHeaderLabels(hh);
+        ui->C2T1->setModel(C2T1M);
     }
     Cook::on_Hide_clicked();
     ui->GBC2->setVisible(true);
+    ui->Hide->setVisible(true);
 }
 
 void Cook::on_createMenu_clicked()
@@ -57,6 +67,7 @@ void Cook::on_createMenu_clicked()
     }
     Cook::on_Hide_clicked();
     ui->GBC3->setVisible(true);
+    ui->Hide->setVisible(true);
 }
 
 void Cook::on_prevMenu_clicked()
@@ -68,6 +79,7 @@ void Cook::on_prevMenu_clicked()
     }
     Cook::on_Hide_clicked();
     ui->GBC4->setVisible(true);
+    ui->Hide->setVisible(true);
 }
 
 void Cook::on_LogOut_clicked()
@@ -107,8 +119,37 @@ if(cook->GetAnswer()==""){
     qDebug() << cook->GetError();
     } else {
     cook2=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
-    QJsonArray JsonA=cook2.object().value("Dishs").toArray();
-
+    QJsonArray JsonA=cook2.object().value("ingredient_stock").toArray();
+    QStandardItemModel *C2T1M = new QStandardItemModel;
+    QStringList hh;
+    hh.append("Склад");
+    hh.append("Ингредиент");
+    hh.append("Кол-во");
+    C2T1M->setHorizontalHeaderLabels(hh);
+    for(int i=0;i<JsonA.size();i++){
+        QStandardItem *Item1;
+        Item1 = new QStandardItem(QString(JsonA[i].toObject().value("stock_title").toString()));
+        C2T1M->setItem(i,0,Item1);
+        QStandardItem *Item2;
+        Item2 = new QStandardItem(QString(JsonA[i].toObject().value("ingredient_title").toString()));
+        C2T1M->setItem(i,1,Item2);
+        QStandardItem *Item3;
+        Item3 = new QStandardItem(QString(JsonA[i].toObject().value("amount").toString()+" "+JsonA[i].toObject().value("unit").toString()));
+        C2T1M->setItem(i,2,Item3);
+    }
+    JsonA=cook2.object().value("Ingredients").toArray();
+    ui->C2CB1->addItem("");
+    for(int i=0;i<JsonA.size();i++){
+        ui->C2CB1->addItem(JsonA[i].toString());
+    }
+    JsonA=cook2.object().value("Stocks").toArray();
+    ui->C2CB2->addItem("");
+    for(int i=0;i<JsonA.size();i++){
+        ui->C2CB2->addItem(JsonA[i].toString());
+    }
+    ui->C2T1->setModel(C2T1M);
+    ui->C2T1->resizeRowsToContents();
+    ui->C2T1->resizeColumnsToContents();
     }
 }
 
@@ -174,7 +215,38 @@ void Cook::rbCook1Change(){
     ui->C1SA2->setWidget(widget2);
 }
 
-void Cook::on_search_clicked()
+void Cook::on_C2BSearch_clicked()
+{
+    QStandardItemModel *C2T1M = new QStandardItemModel;
+    QStringList hh;
+    QJsonArray JsonA=cook2.object().value("ingredient_stock").toArray();
+    hh.append("Склад");
+    hh.append("Ингредиент");
+    hh.append("Кол-во");
+    C2T1M->setHorizontalHeaderLabels(hh);
+    QString Ing=ui->C2CB1->currentText();
+    QString Stock=ui->C2CB2->currentText();
+    int k=0;
+    for(int i=0;i<JsonA.size();i++){
+        if((Ing!="" ? JsonA[i].toObject().value("ingredient_title").toString()==Ing : JsonA[i].toObject().value("ingredient_title").toString()!="")&&(Stock!="" ? JsonA[i].toObject().value("stock_title").toString()==Stock : JsonA[i].toObject().value("stock_title").toString()!="")){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("stock_title").toString()));
+            C2T1M->setItem(k,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("ingredient_title").toString()));
+            C2T1M->setItem(k,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("amount").toString()+" "+JsonA[i].toObject().value("unit").toString()));
+            C2T1M->setItem(k,2,Item3);
+            k++;
+        }
+    }
+    //внести склады и ингредиенты
+    ui->C2T1->setModel(C2T1M);
+    ui->C2T1->resizeRowsToContents();
+}
+
+void Cook::on_C4BSearch_clicked()
 {
     QString type;
     if(ui->C4RB1->isChecked())
@@ -189,6 +261,7 @@ void Cook::on_search_clicked()
     QJsonArray JsonA=cook4.object().value("Menu").toArray();
     QWidget* widget = new QWidget;
     QFormLayout *layout = new QFormLayout;
+    QString amo="0";
     for(int i=0;i<JsonA.size();i++){
         if((JsonA[i].toObject().value("type").toString()==type)&&(JsonA[i].toObject().value("date").toString()==ui->C4Calendar->selectedDate().toString("yyyy-MM-dd"))){
             for(int j=0;j<JsonA[i].toObject().value("dishs").toArray().size();j++){
@@ -196,11 +269,11 @@ void Cook::on_search_clicked()
                 lb->setText(JsonA[i].toObject().value("dishs").toArray().at(j).toString());
                 layout->addWidget(lb);
             }
-        ui->C4LAmount->setText("Количество: "+JsonA[i].toObject().value("amount").toString());
+        amo=JsonA[i].toObject().value("amount").toString();
         break;
         }
     }
+    ui->C4LAmount->setText("Количество: "+amo);
     widget->setLayout(layout);
     ui->C4SA1->setWidget(widget);
 }
-

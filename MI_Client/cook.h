@@ -14,6 +14,8 @@
 #include <QDate>
 #include <network.h>
 #include <QStringRef>
+#include "QStandardItemModel"
+#include "QStandardItem"
 
 namespace Ui {
 class Cook;
@@ -48,7 +50,9 @@ private slots:
     void OnResultCook4(Network *);
     void rbCook1Change();
 
-    void on_search_clicked();
+    void on_C2BSearch_clicked();
+
+    void on_C4BSearch_clicked();
 
 private:
     Ui::Cook *ui;

@@ -26,7 +26,7 @@
     <enum>QTabWidget::Triangular</enum>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="Admin">
     <attribute name="title">
@@ -48,95 +48,17 @@
     <widget class="QWidget" name="RegWid" native="true">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>60</y>
        <width>641</width>
        <height>511</height>
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="Reg">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>70</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Зарегистрировать</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="AddIng">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>110</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Добавить ингредиент</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="AddDish">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>150</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Добавить блюдо</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="AddStock">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>190</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Добавить склад</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="ChangeReq">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>230</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Изменить требования</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Bd">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>270</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Управление БД</string>
-     </property>
-    </widget>
     <widget class="QWidget" name="AddDishWid" native="true">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>60</y>
        <width>641</width>
        <height>511</height>
@@ -146,7 +68,7 @@
     <widget class="QWidget" name="AddIngWid" native="true">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>60</y>
        <width>641</width>
        <height>511</height>
@@ -156,7 +78,7 @@
     <widget class="QWidget" name="AddStockWid" native="true">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>60</y>
        <width>641</width>
        <height>511</height>
@@ -166,7 +88,7 @@
     <widget class="QWidget" name="ChangeReqWid" native="true">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>60</y>
        <width>641</width>
        <height>511</height>
@@ -176,7 +98,7 @@
     <widget class="QWidget" name="BdWid" native="true">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>60</y>
        <width>641</width>
        <height>511</height>
@@ -186,7 +108,7 @@
     <widget class="QPushButton" name="hide">
      <property name="geometry">
       <rect>
-       <x>790</x>
+       <x>760</x>
        <y>80</y>
        <width>31</width>
        <height>23</height>
@@ -199,7 +121,7 @@
     <widget class="Line" name="line_3">
      <property name="geometry">
       <rect>
-       <x>210</x>
+       <x>180</x>
        <y>60</y>
        <width>20</width>
        <height>511</height>
@@ -212,7 +134,7 @@
     <widget class="Line" name="line">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>46</y>
        <width>641</width>
        <height>31</height>
@@ -225,7 +147,7 @@
     <widget class="Line" name="line_2">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>190</x>
        <y>560</y>
        <width>641</width>
        <height>21</height>
@@ -238,7 +160,7 @@
     <widget class="Line" name="line_4">
      <property name="geometry">
       <rect>
-       <x>850</x>
+       <x>820</x>
        <y>60</y>
        <width>21</width>
        <height>511</height>
@@ -248,6 +170,60 @@
       <enum>Qt::Vertical</enum>
      </property>
     </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>161</width>
+       <height>601</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="Reg">
+        <property name="text">
+         <string>Зарегистрировать</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="AddIng">
+        <property name="text">
+         <string>Добавить ингредиент</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="AddDish">
+        <property name="text">
+         <string>Добавить блюдо</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="AddStock">
+        <property name="text">
+         <string>Добавить склад</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="ChangeReq">
+        <property name="text">
+         <string>Изменить требования</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Bd">
+        <property name="text">
+         <string>Управление БД</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
     <zorder>BdWid</zorder>
     <zorder>ChangeReqWid</zorder>
     <zorder>AddStockWid</zorder>
@@ -255,17 +231,12 @@
     <zorder>AddIngWid</zorder>
     <zorder>RegWid</zorder>
     <zorder>LogOut</zorder>
-    <zorder>Reg</zorder>
-    <zorder>AddIng</zorder>
-    <zorder>AddDish</zorder>
-    <zorder>AddStock</zorder>
-    <zorder>ChangeReq</zorder>
-    <zorder>Bd</zorder>
     <zorder>hide</zorder>
     <zorder>line_3</zorder>
     <zorder>line</zorder>
     <zorder>line_2</zorder>
     <zorder>line_4</zorder>
+    <zorder>verticalLayoutWidget</zorder>
    </widget>
    <widget class="QWidget" name="Cook">
     <attribute name="title">
