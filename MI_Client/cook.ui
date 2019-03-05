@@ -296,8 +296,8 @@
   <widget class="QGroupBox" name="GBC4">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>480</y>
+     <x>210</x>
+     <y>490</y>
      <width>641</width>
      <height>511</height>
     </rect>
