@@ -360,21 +360,24 @@ if(cook->GetAnswer()==""){
             am=cook3.object().value("count").toInt();
         } else
             am=ui->C3LEGuests->text().toInt();
-        QJsonObject post;
-        post["date"]=ui->C3Date->text();
-        post["type"]=Typemenu;
-        post["amount"]=am;
-        QJsonArray dishs;
-        for (int i=0;i<Ldishs.size();i++) {
-            dishs.append(Ldishs[i]->text());
-        }
-        post["dishs"]=dishs;
-        QJsonDocument doc;
-        doc.setObject(post);
-        qDebug() << doc;
-        Network *net = new Network;
-        connect(net,SIGNAL(onReady(Network *)),this,SLOT(OnResultAddMenu(Network *)));
-        net->Post("http://"+IP+":5555/addmenu.json",QString(doc.toJson()).toLocal8Bit());
+        if(am>0){
+            QJsonObject post;
+            post["date"]=ui->C3Date->text();
+            post["type"]=Typemenu;
+            post["amount"]=am;
+            QJsonArray dishs;
+            for (int i=0;i<Ldishs.size();i++) {
+                dishs.append(Ldishs[i]->text());
+            }
+            post["dishs"]=dishs;
+            QJsonDocument doc;
+            doc.setObject(post);
+            qDebug() << doc;
+            Network *net = new Network;
+            connect(net,SIGNAL(onReady(Network *)),this,SLOT(OnResultAddMenu(Network *)));
+            net->Post("http://"+IP+":5555/addmenu.json", doc);
+        } else
+        QMessageBox::warning(this,"Ошибка!","Количество людей должно быть положительным числом!");
     } else {
     QMessageBox::warning(this,"Ошибка!","Такое меню уже есть!");
     }
@@ -382,9 +385,15 @@ if(cook->GetAnswer()==""){
 }
 
 void Cook::OnResultAddMenu(Network *a){
-if(a->GetAnswer()!=""){
-    QMessageBox::information(this,"Успешно!","Новое меню добавлено!");
-    qDebug() << a->GetAnswer();
-    }
+qDebug() << a->GetAnswer();
 qDebug() << a->GetError();
+if(a->GetAnswer()=="YES"){
+    QMessageBox::information(this,"Успешно!","Новое меню добавлено!");
+    } else {
+    if(a->GetAnswer()=="NO"){
+        QMessageBox::warning(this,"Ошибка!","Не удалось добавить меню!");
+        } else {
+            QMessageBox::warning(this,"Ошибка!","Не удалось добавить меню! ("+a->GetAnswer()+")");
+        }
+    }
 }

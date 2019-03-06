@@ -17,7 +17,7 @@ public:
     Network(QWidget *parent=nullptr);
     ~Network();
     void Get(QString str);
-    void Post(QString req,QByteArray ba);
+    void Post(QString req, QJsonDocument doc);
     QString GetAnswer();
     QString GetError();
 

@@ -2,7 +2,7 @@
 
 Network::Network(QWidget *parent):QMainWindow(parent){
     manager = new QNetworkAccessManager();
-    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    //QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QString answer="";
     QString error="";
 }
@@ -15,12 +15,13 @@ void Network::Get(QString str){
     manager->get(request);
 }
 
-void Network::Post(QString req, QByteArray ba){
+void Network::Post(QString req, QJsonDocument doc){
+    QByteArray ba = QString(doc.toJson()).toLocal8Bit();
     QUrl url(req);
     connect(manager,&QNetworkAccessManager::finished,this,&Network::OnResultPost);
     QNetworkRequest request;
     request.setUrl(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("text/html; charset=utf-8"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     manager->post(request,ba);
 }
 
