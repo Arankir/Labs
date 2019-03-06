@@ -18,7 +18,7 @@ class Warehousekeeper : public QWidget
     Q_OBJECT
 
 public:
-    explicit Warehousekeeper(QWidget *parent = nullptr);
+    explicit Warehousekeeper(QString ips, QWidget *parent = nullptr);
     ~Warehousekeeper();
     void setDB(QSqlDatabase *db);
 
@@ -42,6 +42,7 @@ private:
     CForm2* wform1;
     Wform1* wform2;
     Wform2* wform3;
+    QString IP;
 };
 
 #endif // WAREHOUSEKEEPER_H

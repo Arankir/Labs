@@ -21,7 +21,7 @@ void MainWindow::on_Connect_clicked()
 {
     Network *auth = new Network;
     connect(auth,SIGNAL(onReady(Network *)),this,SLOT(OnResult(Network *)));
-    auth->SetUrl("http://"+ui->IPEdit->text()+":5555/auth.json"); // /?Data=456456&Data2=123123
+    auth->Get("http://"+ui->IPEdit->text()+":5555/auth.json"); // /?Data=456456&Data2=123123
     time->setInterval(5000);
     time->start();
 }
@@ -47,24 +47,28 @@ if(auth->GetAnswer()==""){
         if(JsonA[i].toObject().value("login")==ui->LoginEdit->text())
             if(JsonA[i].toObject().value("password")==ui->PaswordEdit->text()){
                 if(JsonA[i].toObject().value("role")=="Админ"){
-                    admin = new Admin();
+                    time->stop();
+                    admin = new Admin(ui->IPEdit->text());
                     connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
                     admin->show();
                     this->hide();
                 } else {
                     if(JsonA[i].toObject().value("role")=="Портье"){
-                        //portie = new Portie();
+                        time->stop();
+                        //portie = new Portie(ui->IPEdit->text());
                         //connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
                         //admin->show();
                         this->hide();
                     } else {
                         if(JsonA[i].toObject().value("role")=="Повар"){
-                            cook = new Cook();
+                            time->stop();
+                            cook = new Cook(ui->IPEdit->text());
                             connect(cook,SIGNAL(loginOpen()),this,SLOT(logShow()));
                             cook->show();
                         } else {
                             if(JsonA[i].toObject().value("role")=="Складовщик"){
-                                whk = new Warehousekeeper();
+                                time->stop();
+                                whk = new Warehousekeeper(ui->IPEdit->text());
                                 connect(whk,SIGNAL(loginOpen()),this,SLOT(logShow()));
                                 whk->show();
                             } else {
@@ -81,8 +85,8 @@ if(auth->GetAnswer()==""){
 }
 
 void MainWindow::timertimeout(){
-    QMessageBox::warning(this,"Ошибка!","Время ожидания ответа от сервера истекло");
     time->stop();
+    QMessageBox::warning(this,"Ошибка!","Время ожидания ответа от сервера истекло");
 }
 
 QLineEdit *MainWindow::IP()

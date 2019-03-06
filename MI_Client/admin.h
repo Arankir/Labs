@@ -19,7 +19,7 @@ class Admin : public QWidget
     Q_OBJECT
 
 public:
-    explicit Admin(QWidget *parent = nullptr);
+    explicit Admin(QString ip, QWidget *parent = nullptr);
     ~Admin();
     void setDB(QSqlDatabase *db);
 
@@ -44,6 +44,7 @@ private:
     QSqlDatabase* db;
     Cook* cook;
     Warehousekeeper* whk;
+    QString IP;
 
     AForm1* aform1;
     AForm2* aform2;

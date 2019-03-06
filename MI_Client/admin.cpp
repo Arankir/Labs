@@ -1,24 +1,24 @@
 #include "admin.h"
 #include "ui_admin.h"
 
-Admin::Admin(QWidget *parent) :
+Admin::Admin(QString ips, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Admin)
 {
-
+    IP=ips;
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
     QGridLayout* cookL = new QGridLayout;
     QGridLayout* WhkL = new QGridLayout;
 
 
-    cook= new Cook();
+    cook= new Cook(IP);
     cookL->addWidget(cook);
     //cook->setDB(db);
     connect(cook,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
 
 
-    whk = new Warehousekeeper();
+    whk = new Warehousekeeper(IP);
     WhkL->addWidget(whk);
     whk->setDB(db);
     connect(whk,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));

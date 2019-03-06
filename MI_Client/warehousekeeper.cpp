@@ -1,10 +1,11 @@
 #include "warehousekeeper.h"
 #include "ui_warehousekeeper.h"
 
-Warehousekeeper::Warehousekeeper(QWidget *parent) :
+Warehousekeeper::Warehousekeeper(QString ips, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Warehousekeeper)
 {
+    IP=ips;
     ui->setupUi(this);
     QVBoxLayout *layout1 = new QVBoxLayout;
     wform1 = new CForm2;

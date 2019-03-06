@@ -1,11 +1,13 @@
 #include "cook.h"
 #include "ui_cook.h"
 
-Cook::Cook(QWidget *parent) :
+Cook::Cook(QString ips, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Cook)
 {
+    IP=ips;
     ui->setupUi(this);
+    ui->C3Date->setDate(QDate::currentDate());
     ui->GBC1->move(170,50);
     ui->GBC2->move(170,50);
     ui->GBC3->move(170,50);
@@ -32,7 +34,7 @@ void Cook::on_whatchDish_clicked()
     if(cook1.isEmpty()){
         Network *cooks1 = new Network;
         connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
-        cooks1->SetUrl("http://"+ ui->IPEdit->text()+":5555/dish.json");
+        cooks1->Get("http://"+IP+":5555/dish.json");
     }
     Cook::on_Hide_clicked();
     ui->GBC1->setVisible(true);
@@ -44,7 +46,7 @@ void Cook::on_whatchIngredients_clicked()
     if(cook2.isEmpty()){
         Network *cook2 = new Network;
         connect(cook2,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook2(Network *)));
-        cook2->SetUrl("http://127.0.0.1:5555/stock_ingredients.json");
+        cook2->Get("http://"+IP+":5555/stock_ingredients.json");
         QStandardItemModel *C2T1M = new QStandardItemModel;
         QStringList hh;
         hh.append("Склад");
@@ -60,10 +62,13 @@ void Cook::on_whatchIngredients_clicked()
 
 void Cook::on_createMenu_clicked()
 {
-    if(cook3.isEmpty()){
+    if((cook3.isEmpty())||(cook1.isEmpty())){
         Network *cook3 = new Network;
         connect(cook3,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook3(Network *)));
-        cook3->SetUrl("http://127.0.0.1:5555/guests.json");
+        cook3->Get("http://"+IP+":5555/countguests.json?date="+ui->C3Date->text());
+        Network *cooks1 = new Network;
+        connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
+        cooks1->Get("http://"+IP+":5555/dish.json");
     }
     Cook::on_Hide_clicked();
     ui->GBC3->setVisible(true);
@@ -75,7 +80,7 @@ void Cook::on_prevMenu_clicked()
     if(cook4.isEmpty()){
         Network *cook4 = new Network;
         connect(cook4,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook4(Network *)));
-        cook4->SetUrl("http://127.0.0.1:5555/menu.json");
+        cook4->Get("http://"+IP+":5555/menu.json");
     }
     Cook::on_Hide_clicked();
     ui->GBC4->setVisible(true);
@@ -90,30 +95,37 @@ void Cook::on_LogOut_clicked()
 
 void Cook::OnResultCook1(Network *cook){
     qDebug() << cook->GetAnswer();
-    qDebug() << cook->GetError();
     if(cook->GetAnswer()==""){
         qDebug() <<"Error";
         qDebug() << cook->GetError();
         } else {
         cook1=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
         QJsonArray JsonA=cook1.object().value("Dishs").toArray();
-        QWidget* widget = new QWidget;
-        QFormLayout *layout = new QFormLayout;
+        QWidget* widget1 = new QWidget;
+        QWidget* widget2 = new QWidget;
+        QFormLayout *layout1 = new QFormLayout;
+        QFormLayout *layout2 = new QFormLayout;
         for(int i=0;i<JsonA.size();i++){
-            QRadioButton *rb = new QRadioButton(this);
-            rb->setObjectName("rb"+JsonA[i].toObject().value("dish").toString());
-            rb->setText(JsonA[i].toObject().value("dish").toString());
-            layout->addWidget(rb);
-            connect(rb,SIGNAL(pressed()),this,SLOT(rbCook1Change()));
+            QRadioButton *rb1 = new QRadioButton(this);
+            rb1->setObjectName("C1rb"+JsonA[i].toObject().value("dish").toString());
+            rb1->setText(JsonA[i].toObject().value("dish").toString());
+            layout1->addWidget(rb1);
+            connect(rb1,SIGNAL(pressed()),this,SLOT(rbCook1Change()));
+            QCheckBox *rb2 = new QCheckBox(this);
+            rb2->setObjectName("C3rb"+JsonA[i].toObject().value("dish").toString());
+            rb2->setText(JsonA[i].toObject().value("dish").toString());
+            layout2->addWidget(rb2);
+            connect(rb2,SIGNAL(stateChanged(int)),this,SLOT(chbCook3Change(int)));
         }
-        widget->setLayout(layout);
-        ui->C1SA1->setWidget(widget);
+        widget1->setLayout(layout1);
+        ui->C1SA1->setWidget(widget1);
+        widget2->setLayout(layout2);
+        ui->C3SA1->setWidget(widget2);
         }
 }
 
 void Cook::OnResultCook2(Network *cook){
 qDebug() << cook->GetAnswer();
-qDebug() << cook->GetError();
 if(cook->GetAnswer()==""){
     qDebug() <<"Error";
     qDebug() << cook->GetError();
@@ -155,29 +167,17 @@ if(cook->GetAnswer()==""){
 
 void Cook::OnResultCook3(Network *cook){
 qDebug() << cook->GetAnswer();
-qDebug() << cook->GetError();
 if(cook->GetAnswer()==""){
     qDebug() <<"Error";
     qDebug() << cook->GetError();
     } else {
     cook3=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
-    QJsonArray JsonA=cook3.object().value("Dishs").toArray();
-    QWidget* widget = new QWidget;
-    QFormLayout *layout = new QFormLayout;
-    for(int i=0;i<JsonA.size();i++){
-        QCheckBox *chb = new QCheckBox(this);
-        chb->setText(JsonA[i].toObject().value("dish").toString());
-        layout->addWidget(chb);
-        connect(chb,SIGNAL(stateChanged(Network *cook)),this,SLOT(chbChange(Network *cook)));
-    }
-    widget->setLayout(layout);
-    ui->AllDish->setWidget(widget);
+    ui->C3CBGuests->setText("на количество отдыхающих ("+cook3.object().value("count").toString()+" чел)");
     }
 }
 
 void Cook::OnResultCook4(Network *cook){
 qDebug() << cook->GetAnswer();
-qDebug() << cook->GetError();
 if(cook->GetAnswer()==""){
     qDebug() <<"Error";
     qDebug() << cook->GetError();
@@ -215,6 +215,28 @@ void Cook::rbCook1Change(){
     ui->C1SA2->setWidget(widget2);
 }
 
+void Cook::chbCook3Change(int stat){
+QCheckBox* chb = (QCheckBox*) sender();
+if(stat == 2){
+    Ldishs.push_back(chb);
+    } else {
+    for(int i=0; i<Ldishs.size();i++){
+        if (Ldishs[i] == chb){
+            Ldishs.takeAt(i);
+        }
+    }
+}
+QWidget* widget = new QWidget;
+QFormLayout* layout = new QFormLayout;
+for(int i=0; i<Ldishs.size();i++){
+    QLabel* lb = new QLabel;
+    lb->setText(Ldishs[i]->text());
+    layout->addWidget(lb);
+    }
+widget->setLayout(layout);
+ui->C3SA2->setWidget(widget);
+}
+
 void Cook::on_C2BSearch_clicked()
 {
     QStandardItemModel *C2T1M = new QStandardItemModel;
@@ -241,7 +263,6 @@ void Cook::on_C2BSearch_clicked()
             k++;
         }
     }
-    //внести склады и ингредиенты
     ui->C2T1->setModel(C2T1M);
     ui->C2T1->resizeRowsToContents();
 }
@@ -276,4 +297,94 @@ void Cook::on_C4BSearch_clicked()
     ui->C4LAmount->setText("Количество: "+amo);
     widget->setLayout(layout);
     ui->C4SA1->setWidget(widget);
+}
+
+void Cook::on_C3Date_userDateChanged(const QDate &date)
+{
+    Network *cook3 = new Network;
+    connect(cook3,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook3(Network *)));
+    cook3->Get("http://"+IP+":5555/countguests.json?date="+ui->C3Date->text());
+}
+
+void Cook::on_breakfast_clicked()
+{
+    Typemenu="Завтрак";
+}
+
+void Cook::on_lunch_clicked()
+{
+    Typemenu="Обед";
+}
+
+void Cook::on_dinner_clicked()
+{
+    Typemenu="Ужин";
+}
+
+void Cook::on_other_clicked()
+{
+    Typemenu="Другое";
+}
+
+void Cook::on_C3BCancel_clicked()
+{
+for (int i=Ldishs.size();i>0;i--) {
+    Ldishs.first()->setChecked(false);
+    }
+}
+
+void Cook::on_C3BApply_clicked()
+{
+Network *cooks4 = new Network;
+connect(cooks4,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook3Menu(Network *)));
+cooks4->Get("http://"+IP+":5555/menu.json");
+}
+
+void Cook::OnResultCook3Menu(Network *cook){
+QJsonDocument co;
+qDebug() << cook->GetAnswer();
+if(cook->GetAnswer()==""){
+    qDebug() <<"Error";
+    qDebug() << cook->GetError();
+    } else {
+    co=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
+    bool accept=true;
+    for (int i=0;i<co.object().value("Menu").toArray().size();i++) {
+        if(co.object().value("Menu").toArray().at(i).toObject().value("date").toString()==ui->C3Date->text())
+            if(co.object().value("Menu").toArray().at(i).toObject().value("type").toString()==Typemenu)
+                accept=false;
+    }
+    if(accept){
+        int am;
+        if(ui->C3CBGuests->isChecked()){
+            am=cook3.object().value("count").toInt();
+        } else
+            am=ui->C3LEGuests->text().toInt();
+        QJsonObject post;
+        post["date"]=ui->C3Date->text();
+        post["type"]=Typemenu;
+        post["amount"]=am;
+        QJsonArray dishs;
+        for (int i=0;i<Ldishs.size();i++) {
+            dishs.append(Ldishs[i]->text());
+        }
+        post["dishs"]=dishs;
+        QJsonDocument doc;
+        doc.setObject(post);
+        qDebug() << doc;
+        Network *net = new Network;
+        connect(net,SIGNAL(onReady(Network *)),this,SLOT(OnResultAddMenu(Network *)));
+        net->Post("http://"+IP+":5555/addmenu.json",QString(doc.toJson()).toLocal8Bit());
+    } else {
+    QMessageBox::warning(this,"Ошибка!","Такое меню уже есть!");
+    }
+    }
+}
+
+void Cook::OnResultAddMenu(Network *a){
+if(a->GetAnswer()!=""){
+    QMessageBox::information(this,"Успешно!","Новое меню добавлено!");
+    qDebug() << a->GetAnswer();
+    }
+qDebug() << a->GetError();
 }

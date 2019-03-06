@@ -8,6 +8,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QTextCodec>
 
 class Network : public QMainWindow
 {
@@ -15,7 +16,8 @@ class Network : public QMainWindow
 public:
     Network(QWidget *parent=nullptr);
     ~Network();
-    void SetUrl(QString str);
+    void Get(QString str);
+    void Post(QString req,QByteArray ba);
     QString GetAnswer();
     QString GetError();
 
@@ -28,7 +30,8 @@ private:
     QString error;
 
 public slots:
-    void OnResult(QNetworkReply *reply);
+    void OnResultGet(QNetworkReply *reply);
+    void OnResultPost(QNetworkReply *reply);
 };
 
 #endif // MYCLIENT_H
