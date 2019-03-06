@@ -32,7 +32,7 @@ void Cook::on_whatchDish_clicked()
     if(cook1.isEmpty()){
         Network *cooks1 = new Network;
         connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
-        cooks1->SetUrl("http://127.0.0.1:5555/dish.json");
+        cooks1->SetUrl("http://"+ ui->IPEdit->text()+":5555/dish.json");
     }
     Cook::on_Hide_clicked();
     ui->GBC1->setVisible(true);

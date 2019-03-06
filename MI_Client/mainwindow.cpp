@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     manager = new QNetworkAccessManager();
+    connect(time,SIGNAL(timeout()),this,SLOT(timertimeout()));
+
 }
 
 MainWindow::~MainWindow()
@@ -19,7 +21,9 @@ void MainWindow::on_Connect_clicked()
 {
     Network *auth = new Network;
     connect(auth,SIGNAL(onReady(Network *)),this,SLOT(OnResult(Network *)));
-    auth->SetUrl("http://127.0.0.1:5555/auth.json"); // /?Data=456456&Data2=123123
+    auth->SetUrl("http://"+ui->IPEdit->text()+":5555/auth.json"); // /?Data=456456&Data2=123123
+    time->setInterval(5000);
+    time->start();
 }
 
 void MainWindow::logShow()
@@ -39,7 +43,7 @@ if(auth->GetAnswer()==""){
     QJsonDocument JsonD = QJsonDocument::fromJson(auth->GetAnswer().toUtf8());
     QJsonObject JsonO = JsonD.object();
     QJsonArray JsonA=JsonO.value("Users").toArray();
-    for(int i=0;i<JsonA.size();i++){
+    for(int i=0;i<JsonA.size();i++) {
         if(JsonA[i].toObject().value("login")==ui->LoginEdit->text())
             if(JsonA[i].toObject().value("password")==ui->PaswordEdit->text()){
                 if(JsonA[i].toObject().value("role")=="Админ"){
@@ -64,12 +68,30 @@ if(auth->GetAnswer()==""){
                                 connect(whk,SIGNAL(loginOpen()),this,SLOT(logShow()));
                                 whk->show();
                             } else {
-                                QMessageBox::warning(this,"Ошибка","Неопознанные права доступа!");
+                                QMessageBox::warning(this,"Ошибка!","Неопознанные права доступа!");
                             }
                         }
                     }
                 }
+            } else {
+                QMessageBox::warning(this,"Ошибка!","Неверный логин или пароль!");
             }
     }
     }
+}
+
+void MainWindow::timertimeout(){
+    QMessageBox::warning(this,"Ошибка!","Время ожидания ответа от сервера истекло");
+    time->stop();
+}
+
+QLineEdit *MainWindow::IP()
+{
+    return ui->IPEdit;
+}
+
+void Cook::reseveip()
+{
+    //QString text = MainWindow->IP()->toPlainText();
+    // do something with the text
 }

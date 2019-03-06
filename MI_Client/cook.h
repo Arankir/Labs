@@ -37,6 +37,7 @@ private:
    // QList <QRadioButton*> dishs;
 
 private slots:
+    void reseveip();
     void on_whatchDish_clicked();
     void on_whatchIngredients_clicked();
     void on_Hide_clicked();
