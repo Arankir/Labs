@@ -74,6 +74,8 @@ private slots:
 
     void OnResultAddMenu(Network *);
 
+    void on_C1LE_textChanged(const QString &arg1);
+
 private:
     Ui::Cook *ui;
     QJsonDocument cook1;
@@ -83,6 +85,8 @@ private:
     QString IP;
     QString Typemenu="Завтрак";
     QList <QCheckBox*> Ldishs;
+    QVector <QPair <QString,int>> Vingredient_stocks;
+    QVector <QPair <QString,int>> VError;
     QTcpSocket* Socket;
 };
 

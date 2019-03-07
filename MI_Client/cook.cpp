@@ -198,13 +198,22 @@ void Cook::rbCook1Change(){
             for(int k=0;k<JAI[j].toObject().value("ingredients").toArray().size();k++){
                 QLabel* lb1 = new QLabel;
                 QString s;
-                s=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()+" "+JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString();
+                int ar=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt();
+                s=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()+" - необходимо: "+QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt());
                 for (int i=0;i<JAU.size();i++) {
                     if(JAU[i].toObject().value("title")==JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title")){
-                        s+=JAU[i].toObject().value("unit").toString();
+                        s+=" "+JAU[i].toObject().value("unit").toString()+" / на складе: "+JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString();
+                        ar-=JAU[i].toObject().value("total_amount").toString().toInt();
                         break;
                      }
                 }
+                QPalette lbp;
+                if(ar>0){
+                    lbp.setColor(QPalette::WindowText,Qt::red);
+                } else {
+                    lbp.setColor(QPalette::WindowText,Qt::black);
+                }
+                lb1->setPalette(lbp);
                 lb1->setText(s);
                 layout->addWidget(lb1);
             }
@@ -217,20 +226,56 @@ void Cook::rbCook1Change(){
 
 void Cook::chbCook3Change(int stat){
 QCheckBox* chb = (QCheckBox*) sender();
+int i=0;
+while(cook1.object().value("Dishs").toArray().at(i).toObject().value("dish").toString()!=chb->text())
+    i++;
 if(stat == 2){
     Ldishs.push_back(chb);
+    for (int k=0;k<cook1.object().value("Dishs").toArray().at(i).toObject().value("ingredients").toArray().size();k++) {
+        bool adding=true;
+        for (int l=0;l<Vingredient_stocks.size();l++) {
+            if(Vingredient_stocks[l].first==cook1.object().value("Dishs").toArray().at(i).toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()){
+                Vingredient_stocks[l].second+=cook1.object().value("Dishs").toArray().at(i).toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt();
+                adding=false;
+                break;
+                }
+            }
+        if(adding){
+            QPair <QString,int> ing;
+            ing.first=cook1.object().value("Dishs").toArray().at(i).toObject().value("ingredients").toArray().at(k).toObject().value("title").toString();
+            ing.second=cook1.object().value("Dishs").toArray().at(i).toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt();
+            Vingredient_stocks.push_back(ing);
+            }
+        }
     } else {
-    for(int i=0; i<Ldishs.size();i++){
-        if (Ldishs[i] == chb){
-            Ldishs.takeAt(i);
+    for(int j=0; j<Ldishs.size();j++){
+        if (Ldishs[j] == chb){
+            Ldishs.takeAt(j);
+            }
+        }
+    for (int k=0;k<cook1.object().value("Dishs").toArray().at(i).toObject().value("ingredients").toArray().size();k++) {
+        for (int l=0;l<Vingredient_stocks.size();l++) {
+            if(Vingredient_stocks[l].first==cook1.object().value("Dishs").toArray().at(i).toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()){
+                Vingredient_stocks[l].second-=cook1.object().value("Dishs").toArray().at(i).toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt();
+                break;
+                }
+            }
+        }
+for (int i=Vingredient_stocks.size();i>0;i--) {
+    qDebug() << QString::number(Vingredient_stocks[i-1].second);
+    if(Vingredient_stocks[i-1].second<=0){
+        Vingredient_stocks.remove(i-1);
         }
     }
 }
+for (int i=0;i<Vingredient_stocks.size();i++) {
+    qDebug() << Vingredient_stocks[i].first+" "+QString::number(Vingredient_stocks[i].second);
+}
 QWidget* widget = new QWidget;
 QFormLayout* layout = new QFormLayout;
-for(int i=0; i<Ldishs.size();i++){
+for(int j=0; j<Ldishs.size();j++){
     QLabel* lb = new QLabel;
-    lb->setText(Ldishs[i]->text());
+    lb->setText(Ldishs[j]->text());
     layout->addWidget(lb);
     }
 widget->setLayout(layout);
@@ -353,29 +398,69 @@ if(cook->GetAnswer()==""){
         if(co.object().value("Menu").toArray().at(i).toObject().value("date").toString()==ui->C3Date->text())
             if(co.object().value("Menu").toArray().at(i).toObject().value("type").toString()==Typemenu)
                 accept=false;
-    }
+        }
     if(accept){
+        Network *CookAddMenuIngOnStock = new Network;
+        connect(CookAddMenuIngOnStock,SIGNAL(onReady(Network *)),this,SLOT(OnResultMenuIngOnStock(Network *)));
+        CookAddMenuIngOnStock->Get("http://"+IP+":5555/stock_ingredients.json");
         int am;
         if(ui->C3CBGuests->isChecked()){
             am=cook3.object().value("count").toInt();
         } else
             am=ui->C3LEGuests->text().toInt();
         if(am>0){
-            QJsonObject post;
-            post["date"]=ui->C3Date->text();
-            post["type"]=Typemenu;
-            post["amount"]=am;
-            QJsonArray dishs;
-            for (int i=0;i<Ldishs.size();i++) {
-                dishs.append(Ldishs[i]->text());
+            for (int i=0;i<Vingredient_stocks.size();i++) {
+                QPair <QString,int> ing;
+                ing.first=Vingredient_stocks[i].first;
+                ing.second=Vingredient_stocks[i].second*am;
+                VError.push_back(ing);
             }
-            post["dishs"]=dishs;
-            QJsonDocument doc;
-            doc.setObject(post);
-            qDebug() << doc;
-            Network *net = new Network;
-            connect(net,SIGNAL(onReady(Network *)),this,SLOT(OnResultAddMenu(Network *)));
-            net->Post("http://"+IP+":5555/addmenu.json", doc);
+            for (int i=0;i<VError.size();i++) {
+                qDebug() << VError[i].first+" "+QString::number(VError[i].second);
+            }
+            qDebug() << "123";
+            for (int i=0;i<VError.size();i++) {
+                for (int j=0;j<cook1.object().value("Ingredients").toArray().size();j++) {
+                    if(cook1.object().value("Ingredients").toArray().at(j).toObject().value("title").toString()==VError[i].first){
+                        VError[i].second-=cook1.object().value("Ingredients").toArray().at(j).toObject().value("total_amount").toString().toInt();
+                    }
+                }
+            }
+            for (int i=0;i<VError.size();i++) {
+                qDebug() << VError[i].first+" "+QString::number(VError[i].second);
+            }
+            qDebug() << "После";
+            for (int i=VError.size();i>0;i--) {
+                if(VError[i-1].second<=0){
+                    VError.remove(i-1);
+                }
+            }
+            for (int i=0;i<VError.size();i++) {
+                qDebug() << VError[i].first+" "+QString::number(VError[i].second);
+            }
+            if(VError.isEmpty()){
+                QJsonObject post;
+                post["date"]=ui->C3Date->text();
+                post["type"]=Typemenu;
+                post["amount"]=am;
+                QJsonArray dishs;
+                for (int i=0;i<Ldishs.size();i++) {
+                    dishs.append(Ldishs[i]->text());
+                }
+                post["dishs"]=dishs;
+                QJsonDocument doc;
+                doc.setObject(post);
+                qDebug() << doc;
+                Network *net = new Network;
+                connect(net,SIGNAL(onReady(Network *)),this,SLOT(OnResultAddMenu(Network *)));
+                net->Post("http://"+IP+":5555/addmenu.json", doc);
+            } else{
+                QString Er="Недостаточно следующих ингредиентов на складах:";
+                for (int i=0;i<VError.size();i++) {
+                    Er+="\n"+QString::number(VError[i].second)+" "+VError[i].first;
+                }
+                QMessageBox::warning(this,"Ошибка!",Er);
+            }
         } else
         QMessageBox::warning(this,"Ошибка!","Количество людей должно быть положительным числом!");
     } else {
@@ -396,4 +481,52 @@ if(a->GetAnswer()=="YES"){
             QMessageBox::warning(this,"Ошибка!","Не удалось добавить меню! ("+a->GetAnswer()+")");
         }
     }
+Network *cooks1 = new Network;
+connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
+cooks1->Get("http://"+IP+":5555/dish.json");
+}
+
+void Cook::on_C1LE_textChanged(const QString &arg1)
+{
+    QRadioButton* rb = new QRadioButton;
+    for (int i=0;i<cook1.object().value("Dishs").toArray().size();i++) {
+        if(findChild<QRadioButton*>("C1rb"+cook1.object().value("Dishs").toArray().at(i).toObject().value("dish").toString())->isChecked()){
+            rb=findChild<QRadioButton*>("C1rb"+cook1.object().value("Dishs").toArray().at(i).toObject().value("dish").toString());
+            break;
+            }
+    }
+    QWidget* widget2 = new QWidget;
+    QFormLayout* layout = new QFormLayout;
+    QJsonObject JO = cook1.object();
+    QJsonArray JAI=JO.value("Dishs").toArray();
+    QJsonArray JAU=JO.value("Ingredients").toArray();
+    for (int j=0;j<JAI.size();j++) {
+        if(JAI[j].toObject().value("dish").toString()==rb->text()){
+            for(int k=0;k<JAI[j].toObject().value("ingredients").toArray().size();k++){
+                QLabel* lb1 = new QLabel;
+                QString s;
+                int ar=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt();
+                s=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()+" - необходимо: "+QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt());
+                for (int i=0;i<JAU.size();i++) {
+                    if(JAU[i].toObject().value("title")==JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title")){
+                        s+=" "+JAU[i].toObject().value("unit").toString()+" / на складе: "+JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString();
+                        ar-=JAU[i].toObject().value("total_amount").toString().toInt();
+                        break;
+                     }
+                }
+                QPalette lbp;
+                if(ar>0){
+                    lbp.setColor(QPalette::WindowText,Qt::red);
+                } else {
+                    lbp.setColor(QPalette::WindowText,Qt::black);
+                }
+                lb1->setPalette(lbp);
+                lb1->setText(s);
+                layout->addWidget(lb1);
+            }
+            break;
+        }
+    }
+    widget2->setLayout(layout);
+    ui->C1SA2->setWidget(widget2);
 }
