@@ -166,16 +166,16 @@ void Warehousekeeper::OnResultWhk2(Network *whk){
             Item5 = new QStandardItem(QString(JsonA[i].toObject().value("amount").toString()+" "+JsonA[i].toObject().value("unit").toString()));
             W2T1M->setItem(i,4,Item5);
         }
-//        JsonA=whk2.object().value("Ingredients").toArray();
-//        ui->W2CBIngredients->addItem("");
-//        for(int i=0;i<JsonA.size();i++){
-//            ui->W2CBIngredients->addItem(JsonA[i].toString());
-//        }
-//        JsonA=whk2.object().value("Stocks").toArray();
-//        ui->W2CBStocks->addItem("");
-//        for(int i=0;i<JsonA.size();i++){
-//            ui->W2CBStocks->addItem(JsonA[i].toString());
-//        }
+        JsonA=whk2.object().value("Ingredients").toArray();
+        ui->W2CBIngredients->addItem("");
+        for(int i=0;i<JsonA.size();i++){
+            ui->W2CBIngredients->addItem(JsonA[i].toString());
+        }
+        JsonA=whk2.object().value("Stocks").toArray();
+        ui->W2CBStocks->addItem("");
+        for(int i=0;i<JsonA.size();i++){
+            ui->W2CBStocks->addItem(JsonA[i].toString());
+        }
         ui->W2Table->setModel(W2T1M);
         ui->W2Table->resizeRowsToContents();
         ui->W2Table->resizeColumnsToContents();
