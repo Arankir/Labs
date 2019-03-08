@@ -13,7 +13,6 @@
 #include <QMessageBox>
 #include <QDate>
 #include <network.h>
-#include <QStringRef>
 #include "QStandardItemModel"
 #include "QStandardItem"
 
@@ -87,7 +86,6 @@ private:
     QList <QCheckBox*> Ldishs;
     QVector <QPair <QString,int>> Vingredient_stocks;
     QVector <QPair <QString,int>> VError;
-    QTcpSocket* Socket;
 };
 
 #endif // COOK_H

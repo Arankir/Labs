@@ -31,11 +31,9 @@ void Cook::on_Hide_clicked()
 
 void Cook::on_whatchDish_clicked()
 {
-    if(cook1.isEmpty()){
-        Network *cooks1 = new Network;
-        connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
-        cooks1->Get("http://"+IP+":5555/dish.json");
-    }
+    Network *cooks1 = new Network;
+    connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
+    cooks1->Get("http://"+IP+":5555/dish.json");
     Cook::on_Hide_clicked();
     ui->GBC1->setVisible(true);
     ui->Hide->setVisible(true);
@@ -43,18 +41,16 @@ void Cook::on_whatchDish_clicked()
 
 void Cook::on_whatchIngredients_clicked()
 {
-    if(cook2.isEmpty()){
-        Network *cook2 = new Network;
-        connect(cook2,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook2(Network *)));
-        cook2->Get("http://"+IP+":5555/stock_ingredients.json");
-        QStandardItemModel *C2T1M = new QStandardItemModel;
-        QStringList hh;
-        hh.append("Склад");
-        hh.append("Ингредиент");
-        hh.append("Кол-во");
-        C2T1M->setHorizontalHeaderLabels(hh);
-        ui->C2T1->setModel(C2T1M);
-    }
+    Network *cook2 = new Network;
+    connect(cook2,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook2(Network *)));
+    cook2->Get("http://"+IP+":5555/stock_ingredients.json");
+    QStandardItemModel *C2T1M = new QStandardItemModel;
+    QStringList hh;
+    hh.append("Склад");
+    hh.append("Ингредиент");
+    hh.append("Кол-во");
+    C2T1M->setHorizontalHeaderLabels(hh);
+    ui->C2T1->setModel(C2T1M);
     Cook::on_Hide_clicked();
     ui->GBC2->setVisible(true);
     ui->Hide->setVisible(true);
@@ -62,14 +58,12 @@ void Cook::on_whatchIngredients_clicked()
 
 void Cook::on_createMenu_clicked()
 {
-    if((cook3.isEmpty())||(cook1.isEmpty())){
-        Network *cook3 = new Network;
-        connect(cook3,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook3(Network *)));
-        cook3->Get("http://"+IP+":5555/countguests.json?date="+ui->C3Date->text());
-        Network *cooks1 = new Network;
-        connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
-        cooks1->Get("http://"+IP+":5555/dish.json");
-    }
+    Network *cook3 = new Network;
+    connect(cook3,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook3(Network *)));
+    cook3->Get("http://"+IP+":5555/countguests.json?date="+ui->C3Date->text());
+    Network *cooks1 = new Network;
+    connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
+    cooks1->Get("http://"+IP+":5555/dish.json");
     Cook::on_Hide_clicked();
     ui->GBC3->setVisible(true);
     ui->Hide->setVisible(true);
@@ -77,11 +71,9 @@ void Cook::on_createMenu_clicked()
 
 void Cook::on_prevMenu_clicked()
 {
-    if(cook4.isEmpty()){
-        Network *cook4 = new Network;
-        connect(cook4,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook4(Network *)));
-        cook4->Get("http://"+IP+":5555/menu.json");
-    }
+    Network *cook4 = new Network;
+    connect(cook4,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook4(Network *)));
+    cook4->Get("http://"+IP+":5555/menu.json");
     Cook::on_Hide_clicked();
     ui->GBC4->setVisible(true);
     ui->Hide->setVisible(true);

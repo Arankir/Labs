@@ -13,55 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>36</y>
-     <width>641</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QWidget" name="widget" native="true">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>50</y>
-     <width>641</width>
-     <height>511</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>550</y>
-     <width>641</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="Line" name="line_4">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>50</y>
-     <width>21</width>
-     <height>511</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-  </widget>
   <widget class="QPushButton" name="LogOut">
    <property name="geometry">
     <rect>
@@ -94,39 +45,6 @@
     <string>Х</string>
    </property>
   </widget>
-  <widget class="Line" name="line_3">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>50</y>
-     <width>20</width>
-     <height>511</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-  </widget>
-  <widget class="QWidget" name="widget_3" native="true">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>50</y>
-     <width>641</width>
-     <height>511</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QWidget" name="widget_2" native="true">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>50</y>
-     <width>641</width>
-     <height>511</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
@@ -138,21 +56,21 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="watchStock">
+     <widget class="QPushButton" name="WhkButtonShowW1">
       <property name="text">
        <string>Посмотреть склады</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="whatchStockChanges">
+     <widget class="QPushButton" name="WhkButtonShowW2">
       <property name="text">
        <string>Изменения на складах</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="AddIngredients">
+     <widget class="QPushButton" name="WhkButtonShowW3">
       <property name="text">
        <string>Провести накладную</string>
       </property>
@@ -160,11 +78,11 @@
     </item>
    </layout>
   </widget>
-  <widget class="QGroupBox" name="GBC1">
+  <widget class="QGroupBox" name="GBW3">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>30</y>
+     <x>180</x>
+     <y>550</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -172,200 +90,262 @@
    <property name="title">
     <string>Просмотр блюд</string>
    </property>
-   <widget class="QScrollArea" name="C1SA1">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>40</y>
-      <width>261</width>
-      <height>441</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>259</width>
-       <height>439</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QScrollArea" name="C1SA2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>40</y>
-      <width>291</width>
-      <height>441</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>289</width>
-       <height>439</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
   </widget>
-  <widget class="QGroupBox" name="GBC4">
+  <widget class="QGroupBox" name="GBW2">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>10</y>
+     <x>170</x>
+     <y>50</y>
      <width>641</width>
      <height>511</height>
     </rect>
    </property>
    <property name="title">
-    <string>Просмотр прошлых меню</string>
+    <string>Изменения на складах</string>
    </property>
-   <widget class="QScrollArea" name="C4SA1">
+   <widget class="QPushButton" name="W2ButtonApply">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>40</y>
-      <width>201</width>
-      <height>391</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents_5">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>199</width>
-       <height>389</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QRadioButton" name="C4RB1">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>260</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>завтрак</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QCalendarWidget" name="C4Calendar">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>40</y>
-      <width>248</width>
-      <height>183</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <stylestrategy>PreferDefault</stylestrategy>
-      <kerning>true</kerning>
-     </font>
-    </property>
-    <property name="selectionMode">
-     <enum>QCalendarWidget::SingleSelection</enum>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="C4RB4">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>320</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>другое</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="C4RB3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>300</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>ужин</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="C4RB2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>280</y>
-      <width>82</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>обед</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="C4BSearch">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>350</y>
+      <x>520</x>
+      <y>450</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Поиск</string>
+     <string>Фильтр</string>
     </property>
    </widget>
-   <widget class="QLabel" name="C4LAmount">
+   <widget class="QGroupBox" name="W2GBDate">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>440</y>
-      <width>171</width>
+      <x>500</x>
+      <y>100</y>
+      <width>120</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Дата</string>
+    </property>
+    <widget class="QDateEdit" name="W2DEDateChange">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>91</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="displayFormat">
+      <string>yyyy-MM-dd</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="W2RBAllDate">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>91</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Любая дата</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="W2RBBeforeDate">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>До даты</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="W2RBInDate">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Точная дата</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="W2RBAfterDate">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>После даты</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="W2L1">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>300</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Продукт:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="W2CBIngredients">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>320</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="W2L2">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>250</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Склад:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="W2CBStocks">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>270</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTableView" name="W2Table">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>481</width>
+      <height>461</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>50</y>
+      <width>81</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Количество:</string>
+     <string>Накладная №:</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="W2LEInvoice">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>70</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>350</y>
+      <width>121</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Продукты</string>
+    </property>
+    <widget class="QRadioButton" name="W2RBAllChanges">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Все изменения</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="W2RBIncChanges">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Добавились</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="W2RBDecChanges">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Потратились</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
-  <widget class="QGroupBox" name="GBC2">
+  <widget class="QGroupBox" name="GBW1">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>0</y>
+     <x>800</x>
+     <y>90</y>
      <width>641</width>
      <height>511</height>
     </rect>
    </property>
    <property name="title">
-    <string>Просмотр ингредиентов</string>
+    <string>Просмотр складов</string>
    </property>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
@@ -393,7 +373,7 @@
      <string>ингридиент</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="C2BSearch">
+   <widget class="QPushButton" name="W1BSearch">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -406,7 +386,7 @@
      <string>Поиск</string>
     </property>
    </widget>
-   <widget class="QTableView" name="C2T1">
+   <widget class="QTableView" name="W1T1">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -416,7 +396,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="C2CB1">
+   <widget class="QComboBox" name="W1CB1">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -426,7 +406,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="C2CB2">
+   <widget class="QComboBox" name="W1CB2">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -437,19 +417,12 @@
     </property>
    </widget>
   </widget>
-  <zorder>line</zorder>
-  <zorder>widget</zorder>
-  <zorder>line_2</zorder>
-  <zorder>line_4</zorder>
   <zorder>LogOut</zorder>
-  <zorder>line_3</zorder>
-  <zorder>widget_3</zorder>
-  <zorder>widget_2</zorder>
-  <zorder>Hide</zorder>
   <zorder>verticalLayoutWidget</zorder>
-  <zorder>GBC1</zorder>
-  <zorder>GBC4</zorder>
-  <zorder>GBC2</zorder>
+  <zorder>GBW3</zorder>
+  <zorder>GBW2</zorder>
+  <zorder>GBW1</zorder>
+  <zorder>Hide</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -28,7 +28,6 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     cook.cpp \
-    cform3.cpp \
     warehousekeeper.cpp \
     wform1.cpp \
     wform2.cpp \
@@ -38,12 +37,12 @@ SOURCES += \
     aform3.cpp \
     aform4.cpp \
     network.cpp \
-    cform2.cpp
+    cform2.cpp \
+    filterinvoice.cpp
 
 HEADERS += \
         mainwindow.h \
     cook.h \
-    cform3.h \
     warehousekeeper.h \
     wform1.h \
     wform2.h \
@@ -53,12 +52,12 @@ HEADERS += \
     aform3.h \
     aform4.h \
     network.h \
-    cform2.h
+    cform2.h \
+    filterinvoice.h
 
 FORMS += \
         mainwindow.ui \
     cook.ui \
-    cform3.ui \
     warehousekeeper.ui \
     wform1.ui \
     wform2.ui \

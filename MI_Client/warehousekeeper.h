@@ -3,11 +3,13 @@
 
 #include <QWidget>
 #include <QDebug>
-#include <QSqlDatabase>
 #include <QLayout>
-#include <wform1.h>
-#include <wform2.h>
-#include <cform2.h>
+#include <QMessageBox>
+#include <filterinvoice.h>
+
+#include <network.h>
+#include "QStandardItemModel"
+#include "QStandardItem"
 
 namespace Ui {
 class Warehousekeeper;
@@ -17,10 +19,12 @@ class Warehousekeeper : public QWidget
 {
     Q_OBJECT
 
+private:
+    typedef bool (Warehousekeeper::*Date) (int a, QString b);
+
 public:
     explicit Warehousekeeper(QString ips, QWidget *parent = nullptr);
     ~Warehousekeeper();
-    void setDB(QSqlDatabase *db);
 
 signals:
     void loginOpen();
@@ -30,19 +34,47 @@ private slots:
 
     void on_Hide_clicked();
 
-    void on_watchStock_clicked();
+    void on_W1BSearch_clicked();
 
-    void on_whatchStockChanges_clicked();
+    void on_WhkButtonShowW1_clicked();
+    void on_WhkButtonShowW2_clicked();
+    void on_WhkButtonShowW3_clicked();
+    void OnResultWhk1(Network *);
+    void OnResultWhk2(Network *);
+    void OnResultWhk3(Network *);
 
-    void on_AddIngredients_clicked();
+    void on_W2ButtonApply_clicked();
+
+    void on_W2RBAllDate_clicked();
+
+    void on_W2RBBeforeDate_clicked();
+
+    void on_W2RBInDate_clicked();
+
+    void on_W2RBAfterDate_clicked();
+
+    void on_W2RBAllChanges_clicked();
+
+    void on_W2RBIncChanges_clicked();
+
+    void on_W2RBDecChanges_clicked();
 
 private:
     Ui::Warehousekeeper *ui;
-    QSqlDatabase* db;
-    CForm2* wform1;
-    Wform1* wform2;
-    Wform2* wform3;
+    QJsonDocument whk1;
+    QJsonDocument whk2;
+    QJsonDocument whk3;
     QString IP;
+    typedef bool (FilterInvoice::*DateFunc)(QString a, QString b);
+    DateFunc dat=&FilterInvoice::DateAll;
+    typedef bool (FilterInvoice::*IngredientFunc)(int a);
+    IngredientFunc ing=&FilterInvoice::IngredientAll;
+    typedef bool (FilterInvoice::*IngTitleFunc)(QString a, QString b);
+    IngTitleFunc tin=&FilterInvoice::IngredientEmpty;
+    typedef bool (FilterInvoice::*InvoiceFunc)(QString a, QString b);
+    InvoiceFunc inv=&FilterInvoice::InvoiceEmpty;
+    typedef bool (FilterInvoice::*StockFunc)(QString a, QString b);
+    StockFunc sto=&FilterInvoice::StockEmpty;
 };
 
 #endif // WAREHOUSEKEEPER_H

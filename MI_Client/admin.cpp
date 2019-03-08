@@ -20,7 +20,7 @@ Admin::Admin(QString ips, QWidget *parent) :
 
     whk = new Warehousekeeper(IP);
     WhkL->addWidget(whk);
-    whk->setDB(db);
+    //whk->setDB(db);
     connect(whk,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
 
     ui->Cook->setLayout(cookL);
