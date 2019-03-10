@@ -29,7 +29,6 @@ SOURCES += \
         mainwindow.cpp \
     cook.cpp \
     warehousekeeper.cpp \
-    wform2.cpp \
     admin.cpp \
     aform1.cpp \
     aform2.cpp \
@@ -42,7 +41,6 @@ HEADERS += \
         mainwindow.h \
     cook.h \
     warehousekeeper.h \
-    wform2.h \
     admin.h \
     aform1.h \
     aform2.h \
@@ -55,7 +53,6 @@ FORMS += \
         mainwindow.ui \
     cook.ui \
     warehousekeeper.ui \
-    wform2.ui \
     admin.ui \
     aform1.ui \
     aform2.ui \
