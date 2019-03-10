@@ -7,6 +7,7 @@ Warehousekeeper::Warehousekeeper(QString ips, QWidget *parent) :
     IP=ips;
     ui->setupUi(this);
     ui->W2DEDateChange->setDate(QDate::currentDate());
+    ui->W3DEDate->setDate(QDate::currentDate());
     ui->GBW1->move(170,50);
     ui->GBW2->move(170,50);
     ui->GBW3->move(170,50);
@@ -86,7 +87,7 @@ void Warehousekeeper::on_WhkButtonShowW2_clicked(){
 void Warehousekeeper::on_WhkButtonShowW3_clicked(){
     Network *whks3 = new Network;
     connect(whks3,SIGNAL(onReady(Network *)),this,SLOT(OnResultWhk3(Network *)));
-    whks3->Get("http://"+IP+":5555/menu.json");
+    whks3->Get("http://"+IP+":5555/wkinfo.json");
     Warehousekeeper::on_Hide_clicked();
     ui->GBW3->setVisible(true);
     ui->Hide->setVisible(true);
@@ -182,8 +183,35 @@ void Warehousekeeper::OnResultWhk2(Network *whk){
         }
 }
 
-void Warehousekeeper::OnResultWhk3(Network *){
-
+void Warehousekeeper::OnResultWhk3(Network *whk){
+    qDebug() << whk->GetAnswer();
+    if(whk->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << whk->GetError();
+        } else {
+        whk3=QJsonDocument::fromJson(whk->GetAnswer().toUtf8());
+        QJsonArray JAIng=whk3.object().value("Ingredients").toArray();
+        QJsonArray JASto=whk3.object().value("Stocks").toArray();
+        QWidget* widget = new QWidget;
+        QFormLayout *layout = new QFormLayout;
+        for(int i=0;i<JAIng.size();i++){
+            QCheckBox *chb = new QCheckBox(this);
+            chb->setObjectName("W3chb"+JAIng[i].toObject().value("title").toString());
+            chb->setText(JAIng[i].toObject().value("title").toString()+" ("+JAIng[i].toObject().value("unit").toString()+")");
+            layout->addWidget(chb);
+            connect(chb,SIGNAL(stateChanged(int)),this,SLOT(on_W3chbPressed(int)));
+            }
+        widget->setLayout(layout);
+        ui->W3SAAllIngredients->setWidget(widget);
+        LIngredients.clear();
+        QWidget* widget2 = new QWidget;
+        QFormLayout *layout2 = new QFormLayout;
+        widget2->setLayout(layout2);
+        ui->W3SACheckedIngredients->setWidget(widget2);
+        for(int i=0;i<JASto.size();i++){
+            ui->W3CBStocks->addItem(JASto[i].toString());
+            }
+        }
 }
 
 
@@ -275,3 +303,90 @@ void Warehousekeeper::on_W2RBDecChanges_clicked()
     ing =&FilterInvoice::IngredientDec;
 }
 
+void Warehousekeeper::on_W3chbPressed(int state){
+    QCheckBox* chb = (QCheckBox*) sender();
+    QRegExp exp("[1-9]{1}[0-9]{0,10}");
+    if(state == 2){
+        LIngredients.push_back(chb);
+    } else {
+        for(int i=0; i<LIngredients.size();i++){
+            if (LIngredients[i] == chb){
+                LIngredients.takeAt(i);
+            }
+        }
+    }
+    QFormLayout* layout = new QFormLayout;
+    QWidget* widget = new QWidget;
+    for(int i=0; i<LIngredients.size();i++){
+        QLineEdit* LiEd = new QLineEdit();
+        LiEd->setObjectName(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5));
+        LiEd->setValidator(new QRegExpValidator(exp,this));
+        layout->addRow(new QLabel(LIngredients[i]->text()),LiEd);
+        }
+    widget->setLayout(layout);
+    ui->W3SACheckedIngredients->setWidget(widget);
+}
+
+void Warehousekeeper::on_W3BApply_clicked(){
+    //{"date":"2019-02-13","stock":"Подвал","id":"982", "ingredients": [{"title":"Морковь","amount":20},...]}
+    QJsonArray JAInv=whk3.object().value("Invoices").toArray();
+    if(ui->W3LEInvoice->text()!=""){
+        bool accept=true;
+        for (int i=0;i<JAInv.size();i++) {
+            if(JAInv[i].toObject().value("id").toString()==ui->W3LEInvoice->text()){
+                accept=false;
+                break;
+                }
+            }
+        if(accept){
+            qDebug() <<LIngredients[0]->objectName().mid(5,LIngredients[0]->objectName().length()-5);
+            if(LIngredients.size()!=0){
+                for (int i=0;i<LIngredients.size();i++) {
+                    if(findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text()=="")
+                        accept=false;
+                    }
+                if(accept){
+                    QJsonObject post;
+                    post["date"]=ui->W3DEDate->text();
+                    post["stock"]=ui->W3CBStocks->currentText();
+                    post["id"]=ui->W3LEInvoice->text();
+                    QJsonArray ingredients;
+                    for (int i=0;i<LIngredients.size();i++) {
+                        QJsonObject ingredient;
+                        ingredient["title"]=LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5);
+                        ingredient["amount"]=findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text();
+                        ingredients.append(ingredient);
+                    }
+                    post["ingredients"]=ingredients;
+                    QJsonDocument doc;
+                    doc.setObject(post);
+                    qDebug() << doc;
+                    Network *net = new Network;
+                    connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_ResultAddInvoice(Network *)));
+                    net->Post("http://"+IP+":5555/addinvoice.json", doc);
+                } else
+                    QMessageBox::warning(this,"Ошибка!","Поля с количеством ингредиентов не могут быть пустыми!");
+            } else
+                QMessageBox::warning(this,"Ошибка!","Выберите продукты!");
+        } else
+            QMessageBox::warning(this,"Ошибка!","Накладная с таким номером уже существует!");
+    } else
+        QMessageBox::warning(this,"Ошибка!","Введите номер накладной!");
+}
+
+void Warehousekeeper::on_ResultAddInvoice(Network *a){
+    qDebug() << a->GetAnswer();
+    qDebug() << a->GetError();
+    if(a->GetAnswer()=="YES"){
+        Network *whks3 = new Network;
+        connect(whks3,SIGNAL(onReady(Network *)),this,SLOT(OnResultWhk3(Network *)));
+        whks3->Get("http://"+IP+":5555/wkinfo.json");
+        QMessageBox::information(this,"Успешно!","Новая накладная добавлена!");
+        } else {
+        if(a->GetAnswer()=="NO"){
+            QMessageBox::warning(this,"Ошибка!","Не удалось добавить накладную!");
+            } else {
+                QMessageBox::warning(this,"Ошибка!","Не удалось добавить накладную! ("+a->GetAnswer()+")");
+            }
+        }
+}

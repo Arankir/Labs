@@ -29,7 +29,6 @@ SOURCES += \
         mainwindow.cpp \
     cook.cpp \
     warehousekeeper.cpp \
-    wform1.cpp \
     wform2.cpp \
     admin.cpp \
     aform1.cpp \
@@ -37,14 +36,12 @@ SOURCES += \
     aform3.cpp \
     aform4.cpp \
     network.cpp \
-    cform2.cpp \
     filterinvoice.cpp
 
 HEADERS += \
         mainwindow.h \
     cook.h \
     warehousekeeper.h \
-    wform1.h \
     wform2.h \
     admin.h \
     aform1.h \
@@ -52,21 +49,18 @@ HEADERS += \
     aform3.h \
     aform4.h \
     network.h \
-    cform2.h \
     filterinvoice.h
 
 FORMS += \
         mainwindow.ui \
     cook.ui \
     warehousekeeper.ui \
-    wform1.ui \
     wform2.ui \
     admin.ui \
     aform1.ui \
     aform2.ui \
     aform3.ui \
-    aform4.ui \
-    cform2.ui
+    aform4.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -3,8 +3,12 @@
 
 #include <QWidget>
 #include <QDebug>
+#include <QString>
 #include <QLayout>
 #include <QMessageBox>
+#include <QFormLayout>
+#include <QCheckBox>
+#include <QSpacerItem>
 #include <filterinvoice.h>
 
 #include <network.h>
@@ -59,12 +63,19 @@ private slots:
 
     void on_W2RBDecChanges_clicked();
 
+    void on_W3chbPressed(int);
+
+    void on_W3BApply_clicked();
+
+    void on_ResultAddInvoice(Network *);
+
 private:
     Ui::Warehousekeeper *ui;
     QJsonDocument whk1;
     QJsonDocument whk2;
     QJsonDocument whk3;
     QString IP;
+    QList <QCheckBox*> LIngredients;
     typedef bool (FilterInvoice::*DateFunc)(QString a, QString b);
     DateFunc dat=&FilterInvoice::DateAll;
     typedef bool (FilterInvoice::*IngredientFunc)(int a);
