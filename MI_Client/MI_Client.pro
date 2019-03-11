@@ -35,7 +35,8 @@ SOURCES += \
     aform3.cpp \
     aform4.cpp \
     network.cpp \
-    filterinvoice.cpp
+    filterinvoice.cpp \
+    portie.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,7 +48,8 @@ HEADERS += \
     aform3.h \
     aform4.h \
     network.h \
-    filterinvoice.h
+    filterinvoice.h \
+    portie.h
 
 FORMS += \
         mainwindow.ui \
@@ -57,7 +59,8 @@ FORMS += \
     aform1.ui \
     aform2.ui \
     aform3.ui \
-    aform4.ui
+    aform4.ui \
+    portie.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

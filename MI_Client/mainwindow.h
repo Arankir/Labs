@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <cook.h>
 #include <warehousekeeper.h>
+#include <portie.h>
 #include <admin.h>
 #include <network.h>
 #include <time.h>
@@ -19,8 +20,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    Cook* cook;
-    Warehousekeeper* whk;
+    Cook *cook;
+    Warehousekeeper *whk;
+    Portie *portie;
     Admin *admin;
     QLineEdit *IP();
 

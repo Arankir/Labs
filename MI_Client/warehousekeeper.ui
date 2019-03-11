@@ -82,7 +82,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>40</y>
+     <y>550</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -241,8 +241,8 @@
   <widget class="QGroupBox" name="GBW2">
    <property name="geometry">
     <rect>
-     <x>740</x>
-     <y>120</y>
+     <x>200</x>
+     <y>510</y>
      <width>641</width>
      <height>511</height>
     </rect>

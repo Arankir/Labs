@@ -10,21 +10,26 @@ Admin::Admin(QString ips, QWidget *parent) :
     ui->tabWidget->setCurrentIndex(0);
     QGridLayout* cookL = new QGridLayout;
     QGridLayout* WhkL = new QGridLayout;
-
+    QGridLayout* PortieL = new QGridLayout;
 
     cook= new Cook(IP);
     cookL->addWidget(cook);
     //cook->setDB(db);
     connect(cook,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
 
-
     whk = new Warehousekeeper(IP);
     WhkL->addWidget(whk);
     //whk->setDB(db);
     connect(whk,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
 
+    portie = new Portie(IP);
+    PortieL->addWidget(portie);
+    //whk->setDB(db);
+    connect(portie,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
+
     ui->Cook->setLayout(cookL);
     ui->Whk->setLayout(WhkL);
+    ui->Stocker->setLayout(PortieL);
 
     QVBoxLayout *layout1 = new QVBoxLayout;
     aform1 = new AForm1;

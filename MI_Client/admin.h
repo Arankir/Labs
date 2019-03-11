@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include <cook.h>
 #include <warehousekeeper.h>
+#include <portie.h>
 #include <aform1.h>
 #include <aform2.h>
 #include <aform3.h>
@@ -44,6 +45,7 @@ private:
     QSqlDatabase* db;
     Cook* cook;
     Warehousekeeper* whk;
+    Portie* portie;
     QString IP;
 
     AForm1* aform1;

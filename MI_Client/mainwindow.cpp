@@ -55,9 +55,9 @@ if(auth->GetAnswer()==""){
                 } else {
                     if(JsonA[i].toObject().value("role")=="Портье"){
                         time->stop();
-                        //portie = new Portie(ui->IPEdit->text());
-                        //connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
-                        //admin->show();
+                        portie = new Portie(ui->IPEdit->text());
+                        connect(portie,SIGNAL(loginOpen()),this,SLOT(logShow()));
+                        portie->show();
                         this->hide();
                     } else {
                         if(JsonA[i].toObject().value("role")=="Повар"){
