@@ -142,12 +142,12 @@ if(cook->GetAnswer()==""){
         C2T1M->setItem(i,2,Item3);
     }
     JsonA=cook2.object().value("Ingredients").toArray();
-    ui->C2CB1->addItem("");
+    ui->C2CB1->addItem("Не выбрано");
     for(int i=0;i<JsonA.size();i++){
         ui->C2CB1->addItem(JsonA[i].toString());
     }
     JsonA=cook2.object().value("Stocks").toArray();
-    ui->C2CB2->addItem("");
+    ui->C2CB2->addItem("Не выбрано");
     for(int i=0;i<JsonA.size();i++){
         ui->C2CB2->addItem(JsonA[i].toString());
     }
@@ -202,6 +202,7 @@ void Cook::rbCook1Change(){
                 QPalette lbp;
                 if(ar>0){
                     lbp.setColor(QPalette::WindowText,Qt::red);
+                    s+=" (недостаточно ингредиентов)";
                 } else {
                     lbp.setColor(QPalette::WindowText,Qt::black);
                 }
@@ -287,7 +288,7 @@ void Cook::on_C2BSearch_clicked()
     QString Stock=ui->C2CB2->currentText();
     int k=0;
     for(int i=0;i<JsonA.size();i++){
-        if((Ing!="" ? JsonA[i].toObject().value("ingredient_title").toString()==Ing : JsonA[i].toObject().value("ingredient_title").toString()!="")&&(Stock!="" ? JsonA[i].toObject().value("stock_title").toString()==Stock : JsonA[i].toObject().value("stock_title").toString()!="")){
+        if((Ing!="Не выбрано" ? JsonA[i].toObject().value("ingredient_title").toString()==Ing : JsonA[i].toObject().value("ingredient_title").toString()!="")&&(Stock!="Не выбрано" ? JsonA[i].toObject().value("stock_title").toString()==Stock : JsonA[i].toObject().value("stock_title").toString()!="")){
             QStandardItem *Item1;
             Item1 = new QStandardItem(QString(JsonA[i].toObject().value("stock_title").toString()));
             C2T1M->setItem(k,0,Item1);

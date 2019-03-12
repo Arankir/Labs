@@ -32,6 +32,7 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QLineEdit *IPEdit;
+    QLabel *label_4;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -53,7 +54,7 @@ public:
         PaswordEdit->setGeometry(QRect(80, 80, 113, 20));
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(60, 10, 141, 51));
+        label->setGeometry(QRect(60, 0, 141, 51));
         QFont font;
         font.setPointSize(16);
         font.setBold(true);
@@ -61,13 +62,17 @@ public:
         label->setFont(font);
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(27, 50, 47, 13));
+        label_2->setGeometry(QRect(27, 55, 47, 13));
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(20, 80, 47, 13));
+        label_3->setGeometry(QRect(20, 84, 47, 13));
         IPEdit = new QLineEdit(centralWidget);
         IPEdit->setObjectName(QString::fromUtf8("IPEdit"));
         IPEdit->setGeometry(QRect(80, 110, 113, 20));
+        IPEdit->setDragEnabled(false);
+        label_4 = new QLabel(centralWidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(14, 108, 51, 20));
         MainWindow->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -94,6 +99,7 @@ public:
         label_3->setText(QApplication::translate("MainWindow", "\320\237\320\260\321\200\320\276\320\273\321\214:", nullptr));
         IPEdit->setInputMask(QApplication::translate("MainWindow", "000.000.000.000", nullptr));
         IPEdit->setText(QApplication::translate("MainWindow", "127.0.0.1", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "IP-\320\260\320\264\321\200\320\265\321\201:", nullptr));
     } // retranslateUi
 
 };
