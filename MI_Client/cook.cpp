@@ -142,11 +142,13 @@ if(cook->GetAnswer()==""){
         C2T1M->setItem(i,2,Item3);
     }
     JsonA=cook2.object().value("Ingredients").toArray();
+    ui->C2CB1->clear();
     ui->C2CB1->addItem("Не выбрано");
     for(int i=0;i<JsonA.size();i++){
         ui->C2CB1->addItem(JsonA[i].toString());
     }
     JsonA=cook2.object().value("Stocks").toArray();
+    ui->C2CB2->clear();
     ui->C2CB2->addItem("Не выбрано");
     for(int i=0;i<JsonA.size();i++){
         ui->C2CB2->addItem(JsonA[i].toString());
@@ -185,16 +187,19 @@ void Cook::rbCook1Change(){
     QJsonObject JO = cook1.object();
     QJsonArray JAI=JO.value("Dishs").toArray();
     QJsonArray JAU=JO.value("Ingredients").toArray();
+    QLabel *title = new QLabel;
+    title->setText("Ингредиент (ед измерения) необходимо/на складе");
+    layout->addWidget(title);
     for (int j=0;j<JAI.size();j++) {
         if(JAI[j].toObject().value("dish")==rb->text()){
             for(int k=0;k<JAI[j].toObject().value("ingredients").toArray().size();k++){
                 QLabel* lb1 = new QLabel;
                 QString s;
                 int ar=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt();
-                s=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()+" - необходимо: "+QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt());
+                s=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()+" "+QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt());
                 for (int i=0;i<JAU.size();i++) {
                     if(JAU[i].toObject().value("title")==JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title")){
-                        s+=" "+JAU[i].toObject().value("unit").toString()+" / на складе: "+JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString();
+                        s+=" "+JAU[i].toObject().value("unit").toString()+" / "+JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString();
                         ar-=JAU[i].toObject().value("total_amount").toString().toInt();
                         break;
                      }
@@ -409,27 +414,16 @@ if(cook->GetAnswer()==""){
                 VError.push_back(ing);
             }
             for (int i=0;i<VError.size();i++) {
-                qDebug() << VError[i].first+" "+QString::number(VError[i].second);
-            }
-            qDebug() << "123";
-            for (int i=0;i<VError.size();i++) {
                 for (int j=0;j<cook1.object().value("Ingredients").toArray().size();j++) {
                     if(cook1.object().value("Ingredients").toArray().at(j).toObject().value("title").toString()==VError[i].first){
                         VError[i].second-=cook1.object().value("Ingredients").toArray().at(j).toObject().value("total_amount").toString().toInt();
                     }
                 }
             }
-            for (int i=0;i<VError.size();i++) {
-                qDebug() << VError[i].first+" "+QString::number(VError[i].second);
-            }
-            qDebug() << "После";
             for (int i=VError.size();i>0;i--) {
                 if(VError[i-1].second<=0){
                     VError.remove(i-1);
                 }
-            }
-            for (int i=0;i<VError.size();i++) {
-                qDebug() << VError[i].first+" "+QString::number(VError[i].second);
             }
             if(VError.isEmpty()){
                 QJsonObject post;
@@ -467,6 +461,9 @@ qDebug() << a->GetAnswer();
 qDebug() << a->GetError();
 if(a->GetAnswer()=="YES"){
     QMessageBox::information(this,"Успешно!","Новое меню добавлено!");
+    Network *cook4 = new Network;
+    connect(cook4,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook4(Network *)));
+    cook4->Get("http://"+IP+":5555/menu.json");
     } else {
     if(a->GetAnswer()=="NO"){
         QMessageBox::warning(this,"Ошибка!","Не удалось добавить меню!");
@@ -474,9 +471,6 @@ if(a->GetAnswer()=="YES"){
             QMessageBox::warning(this,"Ошибка!","Не удалось добавить меню! ("+a->GetAnswer()+")");
         }
     }
-Network *cooks1 = new Network;
-connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
-cooks1->Get("http://"+IP+":5555/dish.json");
 }
 
 void Cook::on_C1LE_textChanged(const QString &arg1)
