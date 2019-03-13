@@ -171,7 +171,7 @@ void Portie::on_P1ButtonAccept_clicked()
     P1T1M->setHorizontalHeaderLabels(hh);
     int k=0;
     for(int i=0;i<JA.size();i++){
-        if((FI.*FPasport)(JA[i].toObject().value("pasport").toString(),ui->P1LEPasport->text())&&(FI.*FSName)(JA[i].toObject().value("second_name").toString(),ui->P1LESecondName->text())&&(FI.*FFName)(JA[i].toObject().value("first_name").toString(),ui->P1LEFirstName->text())&&(FI.*FPatron)(JA[i].toObject().value("patronymic").toString(),ui->P1LEPatronymic->text())&&(FI.*FTelephone)(JA[i].toObject().value("telephone").toString(),ui->P1LETelephone->text())&&(FI.*FSDate)(JA[i].toObject().value("sattlement_date").toString(),ui->P1DESettlementDate->text())&&(FI.*FEDate)(JA[i].toObject().value("eviction_date").toString(),ui->P1DEEvictionDate->text())){
+        if((FI.*FPasport)(JA[i].toObject().value("pasport").toString(),ui->P1LEPasport->text())&&(FI.*FSName)(JA[i].toObject().value("second_name").toString(),ui->P1LESecondName->text())&&(FI.*FFName)(JA[i].toObject().value("first_name").toString(),ui->P1LEFirstName->text())&&(FI.*FPatron)(JA[i].toObject().value("patronymic").toString(),ui->P1LEPatronymic->text())&&(FI.*FTelephone)(JA[i].toObject().value("telephone").toString(),ui->P1LETelephone->text())&&(FI.*FSDate)(JA[i].toObject().value("settlement_date").toString(),ui->P1DESettlementDate->text())&&(FI.*FEDate)(JA[i].toObject().value("eviction_date").toString(),ui->P1DEEvictionDate->text())){
         QStandardItem *Item0;
         Item0 = new QStandardItem(QString(JA[i].toObject().value("pasport").toString()));
         P1T1M->setItem(k,0,Item0);
