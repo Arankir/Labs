@@ -7,7 +7,8 @@ Portie::Portie(QString ips, QWidget *parent) :
 {
     IP=ips;
     ui->setupUi(this);
-    //ui->C3Date->setDate(QDate::currentDate());
+    ui->P1DESettlementDate->setDate(QDate::currentDate());
+    ui->P1DEEvictionDate->setDate(QDate::currentDate());
     ui->GBP1->move(170,50);
     ui->GBP2->move(170,50);
     ui->GBP3->move(170,50);
@@ -37,6 +38,7 @@ void Portie::on_pushButton_2_clicked()
 {
     QStandardItemModel *P1T1M = new QStandardItemModel;
     QStringList hh;
+    hh.append("Паспорт");
     hh.append("Фамилия");
     hh.append("Имя");
     hh.append("Отчество");
@@ -81,10 +83,10 @@ void Portie::on_Result_networkPortie(Network *porties){
         qDebug() << porties->GetError();
         } else {
         portie=QJsonDocument::fromJson(porties->GetAnswer().toUtf8());
-        QJsonDocument JD=portie;
-        QJsonArray JA=portie.array();
+        QJsonArray JA=portie.object().value("Data").toArray();
         QStandardItemModel *P1T1M = new QStandardItemModel;
         QStringList hh;
+        hh.append("Паспорт");
         hh.append("Фамилия");
         hh.append("Имя");
         hh.append("Отчество");
@@ -92,23 +94,109 @@ void Portie::on_Result_networkPortie(Network *porties){
         hh.append("Дата заезда");
         hh.append("Дата отъезда");
         P1T1M->setHorizontalHeaderLabels(hh);
-        QString Ing=ui->W1CB1->currentText();
-        QString Stock=ui->W1CB2->currentText();
-        int k=0;
-        for(int i=0;i<JsonA.size();i++){
-            if((Ing!="Не выбрано" ? JsonA[i].toObject().value("ingredient_title").toString()==Ing : JsonA[i].toObject().value("ingredient_title").toString()!="")&&(Stock!="Не выбрано" ? JsonA[i].toObject().value("stock_title").toString()==Stock : JsonA[i].toObject().value("stock_title").toString()!="")){
-                QStandardItem *Item1;
-                Item1 = new QStandardItem(QString(JsonA[i].toObject().value("stock_title").toString()));
-                W1T1M->setItem(k,0,Item1);
-                QStandardItem *Item2;
-                Item2 = new QStandardItem(QString(JsonA[i].toObject().value("ingredient_title").toString()));
-                W1T1M->setItem(k,1,Item2);
-                QStandardItem *Item3;
-                Item3 = new QStandardItem(QString(JsonA[i].toObject().value("amount").toString()+" "+JsonA[i].toObject().value("unit").toString()));
-                W1T1M->setItem(k,2,Item3);
-                k++;
-            }
+        for(int i=0;i<JA.size();i++){
+            QStandardItem *Item0;
+            Item0 = new QStandardItem(QString(JA[i].toObject().value("pasport").toString()));
+            P1T1M->setItem(i,0,Item0);
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JA[i].toObject().value("second_name").toString()));
+            P1T1M->setItem(i,1,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JA[i].toObject().value("first_name").toString()));
+            P1T1M->setItem(i,2,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JA[i].toObject().value("patronymic").toString()));
+            P1T1M->setItem(i,3,Item3);
+            QStandardItem *Item4;
+            Item4 = new QStandardItem(QString(JA[i].toObject().value("telephone").toString()));
+            P1T1M->setItem(i,4,Item4);
+            QStandardItem *Item5;
+            Item5 = new QStandardItem(QString(JA[i].toObject().value("settlement_date").toString()));
+            P1T1M->setItem(i,5,Item5);
+            QStandardItem *Item6;
+            Item6 = new QStandardItem(QString(JA[i].toObject().value("eviction_date").toString()));
+            P1T1M->setItem(i,6,Item6);
         }
-        ui->W1T1->setModel(W1T1M);
-        ui->W1T1->resizeRowsToContents();
+        ui->P1TVGuests->setModel(P1T1M);
+        ui->P1TVGuests->resizeRowsToContents();
+        ui->P1TVGuests->resizeColumnsToContents();
+    }
+}
+
+void Portie::on_P1ButtonAccept_clicked()
+{
+
+    TitleFunc FPasport=&FilterInvoice::IngredientEmpty;
+    TitleFunc FSName=&FilterInvoice::IngredientEmpty;
+    TitleFunc FFName=&FilterInvoice::IngredientEmpty;
+    TitleFunc FPatron=&FilterInvoice::IngredientEmpty;
+    TitleFunc FTelephone=&FilterInvoice::IngredientEmpty;
+    DateFunc FSDate=&FilterInvoice::DateAll;
+    DateFunc FEDate=&FilterInvoice::DateAll;
+    FilterInvoice FI;
+    if(ui->P1LEPasport->text()!="")
+        FPasport=&FilterInvoice::IngredientTitle;
+    if(ui->P1LESecondName->text()!="")
+        FSName=&FilterInvoice::IngredientTitle;
+    if(ui->P1LEFirstName->text()!="")
+        FFName=&FilterInvoice::IngredientTitle;
+    if(ui->P1LEPatronymic->text()!="")
+        FPatron=&FilterInvoice::IngredientTitle;
+    if(ui->P1LETelephone->text()!="")
+        FTelephone=&FilterInvoice::IngredientTitle;
+    if(ui->P1RBSettlementDateBefore->isChecked())
+        FSDate=&FilterInvoice::DateBefore; else
+        if(ui->P1RBSettlementDateIn->isChecked())
+            FSDate=&FilterInvoice::DateIn; else
+            if(ui->P1RBSettlementDateAfter->isChecked())
+                FSDate=&FilterInvoice::DateAfter;
+    if(ui->P1RBEvictionDateBefore->isChecked())
+        FEDate=&FilterInvoice::DateBefore; else
+        if(ui->P1RBEvictionDateIn->isChecked())
+            FEDate=&FilterInvoice::DateIn; else
+            if(ui->P1RBEvictionDateAfter->isChecked())
+                FEDate=&FilterInvoice::DateAfter;
+
+
+    QJsonArray JA=portie.object().value("Data").toArray();
+    QStandardItemModel *P1T1M = new QStandardItemModel;
+    QStringList hh;
+    hh.append("Паспорт");
+    hh.append("Фамилия");
+    hh.append("Имя");
+    hh.append("Отчество");
+    hh.append("Телефон");
+    hh.append("Дата заезда");
+    hh.append("Дата отъезда");
+    P1T1M->setHorizontalHeaderLabels(hh);
+    int k=0;
+    for(int i=0;i<JA.size();i++){
+        if((FI.*FPasport)(JA[i].toObject().value("pasport").toString(),ui->P1LEPasport->text())&&(FI.*FSName)(JA[i].toObject().value("second_name").toString(),ui->P1LESecondName->text())&&(FI.*FFName)(JA[i].toObject().value("first_name").toString(),ui->P1LEFirstName->text())&&(FI.*FPatron)(JA[i].toObject().value("patronymic").toString(),ui->P1LEPatronymic->text())&&(FI.*FTelephone)(JA[i].toObject().value("telephone").toString(),ui->P1LETelephone->text())&&(FI.*FSDate)(JA[i].toObject().value("sattlement_date").toString(),ui->P1DESettlementDate->text())&&(FI.*FEDate)(JA[i].toObject().value("eviction_date").toString(),ui->P1DEEvictionDate->text())){
+        QStandardItem *Item0;
+        Item0 = new QStandardItem(QString(JA[i].toObject().value("pasport").toString()));
+        P1T1M->setItem(k,0,Item0);
+        QStandardItem *Item1;
+        Item1 = new QStandardItem(QString(JA[i].toObject().value("second_name").toString()));
+        P1T1M->setItem(k,1,Item1);
+        QStandardItem *Item2;
+        Item2 = new QStandardItem(QString(JA[i].toObject().value("first_name").toString()));
+        P1T1M->setItem(k,2,Item2);
+        QStandardItem *Item3;
+        Item3 = new QStandardItem(QString(JA[i].toObject().value("patronymic").toString()));
+        P1T1M->setItem(k,3,Item3);
+        QStandardItem *Item4;
+        Item4 = new QStandardItem(QString(JA[i].toObject().value("telephone").toString()));
+        P1T1M->setItem(k,4,Item4);
+        QStandardItem *Item5;
+        Item5 = new QStandardItem(QString(JA[i].toObject().value("settlement_date").toString()));
+        P1T1M->setItem(k,5,Item5);
+        QStandardItem *Item6;
+        Item6 = new QStandardItem(QString(JA[i].toObject().value("eviction_date").toString()));
+        P1T1M->setItem(k,6,Item6);
+        k++;
+    }
+    ui->P1TVGuests->setModel(P1T1M);
+    ui->P1TVGuests->resizeRowsToContents();
+    ui->P1TVGuests->resizeColumnsToContents();
+}
 }

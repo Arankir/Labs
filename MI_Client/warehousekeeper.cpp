@@ -125,7 +125,7 @@ void Warehousekeeper::OnResultWhk1(Network *whk){
             ui->W1CB1->addItem(JsonA[i].toString());
         }
         JsonA=whk1.object().value("Stocks").toArray();
-        ui->W1CB1->clear();
+        ui->W1CB2->clear();
         ui->W1CB2->addItem("Не выбрано");
         for(int i=0;i<JsonA.size();i++){
             ui->W1CB2->addItem(JsonA[i].toString());

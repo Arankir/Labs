@@ -189,7 +189,10 @@ void Cook::rbCook1Change(){
     QJsonArray JAI=JO.value("Dishs").toArray();
     QJsonArray JAU=JO.value("Ingredients").toArray();
     QLabel *title = new QLabel;
-    title->setText("Ингредиент (ед измерения) необходимо/на складе");
+    title->setText("Ингредиент необходимо/на складе");
+    QPalette pt;
+    pt.setColor(QPalette::WindowText,Qt::blue);
+    title->setPalette(pt);
     layout->addWidget(title);
     for (int j=0;j<JAI.size();j++) {
         if(JAI[j].toObject().value("dish")==rb->text()){

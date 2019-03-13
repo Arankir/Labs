@@ -6,13 +6,13 @@ FilterInvoice::FilterInvoice()
 }
 
 
-bool FilterInvoice::DateAll(QString Json, QString Form){
+bool FilterInvoice::DateAll(QString, QString){
     return true;
 }
 bool FilterInvoice::DateBefore(QString Json, QString Form){
     QDate DateJson;
     QDate DateForm;
-    if(DateJson.fromString(Json,"yyyy-MM-dd")<=DateForm.fromString(Form,"yyyy-MM-dd"))
+    if(DateJson.fromString(Json,"yyyy-MM-dd")<DateForm.fromString(Form,"yyyy-MM-dd"))
         return true;
     else
         return false;
@@ -20,7 +20,7 @@ bool FilterInvoice::DateBefore(QString Json, QString Form){
 bool FilterInvoice::DateAfter(QString Json, QString Form){
     QDate DateJson;
     QDate DateForm;
-    if(DateJson.fromString(Json,"yyyy-MM-dd")>=DateForm.fromString(Form,"yyyy-MM-dd"))
+    if(DateJson.fromString(Json,"yyyy-MM-dd")>DateForm.fromString(Form,"yyyy-MM-dd"))
         return true;
     else
         return false;
@@ -34,7 +34,7 @@ bool FilterInvoice::DateIn(QString Json, QString Form){
         return false;
 }
 
-bool FilterInvoice::IngredientAll(int a){
+bool FilterInvoice::IngredientAll(int){
 return true;
 }
 bool FilterInvoice::IngredientInc(int a){
@@ -56,7 +56,7 @@ if(a==b)
 else
     return false;
 }
-bool FilterInvoice::InvoiceEmpty(QString a, QString b){
+bool FilterInvoice::InvoiceEmpty(QString, QString){
 return true;
 }
 
@@ -67,7 +67,7 @@ bool FilterInvoice::IngredientTitle(QString a, QString b){
     else
         return false;
 }
-bool FilterInvoice::IngredientEmpty(QString a, QString b){
+bool FilterInvoice::IngredientEmpty(QString, QString){
     return true;
 }
 
@@ -77,6 +77,6 @@ if(a==b)
 else
     return false;
 }
-bool FilterInvoice::StockEmpty(QString a, QString b){
+bool FilterInvoice::StockEmpty(QString, QString){
 return true;
 }

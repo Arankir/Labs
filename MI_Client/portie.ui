@@ -49,8 +49,8 @@
   <widget class="QGroupBox" name="GBP3">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>480</y>
+     <x>740</x>
+     <y>510</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -151,8 +151,8 @@
   <widget class="QGroupBox" name="GBP2">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>550</y>
+     <x>170</x>
+     <y>50</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -322,8 +322,8 @@
   <widget class="QGroupBox" name="GBP1">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>40</y>
+     <x>790</x>
+     <y>110</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -577,8 +577,11 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
+    </property>
    </widget>
-   <widget class="QLineEdit" name="P1LELastName">
+   <widget class="QLineEdit" name="P1LESecondName">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -586,6 +589,9 @@
       <width>113</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="P1LEFirstName">
@@ -597,6 +603,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="P1LEPatronymic">
     <property name="geometry">
@@ -607,6 +616,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="P1LETelephone">
     <property name="geometry">
@@ -616,6 +628,9 @@
       <width>113</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
     </property>
    </widget>
    <widget class="QPushButton" name="P1ButtonAccept">
