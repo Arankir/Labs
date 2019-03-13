@@ -109,6 +109,7 @@ void Cook::OnResultCook1(Network *cook){
             layout2->addWidget(rb2);
             connect(rb2,SIGNAL(stateChanged(int)),this,SLOT(chbCook3Change(int)));
         }
+        Ldishs.clear();
         widget1->setLayout(layout1);
         ui->C1SA1->setWidget(widget1);
         widget2->setLayout(layout2);

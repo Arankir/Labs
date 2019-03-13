@@ -42,7 +42,7 @@ void Warehousekeeper::on_W1BSearch_clicked(){
     QString Stock=ui->W1CB2->currentText();
     int k=0;
     for(int i=0;i<JsonA.size();i++){
-        if((Ing!="" ? JsonA[i].toObject().value("ingredient_title").toString()==Ing : JsonA[i].toObject().value("ingredient_title").toString()!="")&&(Stock!="" ? JsonA[i].toObject().value("stock_title").toString()==Stock : JsonA[i].toObject().value("stock_title").toString()!="")){
+        if((Ing!="Не выбрано" ? JsonA[i].toObject().value("ingredient_title").toString()==Ing : JsonA[i].toObject().value("ingredient_title").toString()!="")&&(Stock!="Не выбрано" ? JsonA[i].toObject().value("stock_title").toString()==Stock : JsonA[i].toObject().value("stock_title").toString()!="")){
             QStandardItem *Item1;
             Item1 = new QStandardItem(QString(JsonA[i].toObject().value("stock_title").toString()));
             W1T1M->setItem(k,0,Item1);
@@ -119,12 +119,14 @@ void Warehousekeeper::OnResultWhk1(Network *whk){
             C2T1M->setItem(i,2,Item3);
         }
         JsonA=whk1.object().value("Ingredients").toArray();
-        ui->W1CB1->addItem("");
+        ui->W1CB1->clear();
+        ui->W1CB1->addItem("Не выбрано");
         for(int i=0;i<JsonA.size();i++){
             ui->W1CB1->addItem(JsonA[i].toString());
         }
         JsonA=whk1.object().value("Stocks").toArray();
-        ui->W1CB2->addItem("");
+        ui->W1CB1->clear();
+        ui->W1CB2->addItem("Не выбрано");
         for(int i=0;i<JsonA.size();i++){
             ui->W1CB2->addItem(JsonA[i].toString());
         }
@@ -168,12 +170,14 @@ void Warehousekeeper::OnResultWhk2(Network *whk){
             W2T1M->setItem(i,4,Item5);
         }
         JsonA=whk2.object().value("Ingredients").toArray();
-        ui->W2CBIngredients->addItem("");
+        ui->W2CBIngredients->clear();
+        ui->W2CBIngredients->addItem("Не выбрано");
         for(int i=0;i<JsonA.size();i++){
             ui->W2CBIngredients->addItem(JsonA[i].toString());
         }
         JsonA=whk2.object().value("Stocks").toArray();
-        ui->W2CBStocks->addItem("");
+        ui->W2CBStocks->clear();
+        ui->W2CBStocks->addItem("Не выбрано");
         for(int i=0;i<JsonA.size();i++){
             ui->W2CBStocks->addItem(JsonA[i].toString());
         }
@@ -226,7 +230,7 @@ void Warehousekeeper::on_W2ButtonApply_clicked(){
     hh.append("Кол-во");
     W2T1M->setHorizontalHeaderLabels(hh);
     FilterInvoice FI;
-    if(ui->W2CBStocks->currentText()!="")
+    if(ui->W2CBStocks->currentText()!="Не выбрано")
         sto=&FilterInvoice::StockTitle;
     else
         sto=&FilterInvoice::StockEmpty;
@@ -234,7 +238,7 @@ void Warehousekeeper::on_W2ButtonApply_clicked(){
         inv=&FilterInvoice::InvoiceTitle;
     else
         inv=&FilterInvoice::InvoiceEmpty;
-    if(ui->W2CBIngredients->currentText()!="")
+    if(ui->W2CBIngredients->currentText()!="Не выбрано")
         tin=&FilterInvoice::IngredientTitle;
     else
         tin=&FilterInvoice::IngredientEmpty;

@@ -82,7 +82,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>550</y>
+     <y>510</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -187,6 +187,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
+    </property>
    </widget>
    <widget class="QLabel" name="W3L4">
     <property name="geometry">
@@ -241,8 +244,8 @@
   <widget class="QGroupBox" name="GBW2">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>60</y>
+     <x>730</x>
+     <y>500</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -425,6 +428,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
+    </property>
    </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
@@ -485,8 +491,8 @@
   <widget class="QGroupBox" name="GBW1">
    <property name="geometry">
     <rect>
-     <x>800</x>
-     <y>90</y>
+     <x>780</x>
+     <y>110</y>
      <width>641</width>
      <height>511</height>
     </rect>

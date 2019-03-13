@@ -112,7 +112,7 @@ public:
 
         GBW3 = new QGroupBox(Warehousekeeper);
         GBW3->setObjectName(QString::fromUtf8("GBW3"));
-        GBW3->setGeometry(QRect(170, 550, 641, 511));
+        GBW3->setGeometry(QRect(170, 510, 641, 511));
         W3DEDate = new QDateEdit(GBW3);
         W3DEDate->setObjectName(QString::fromUtf8("W3DEDate"));
         W3DEDate->setGeometry(QRect(250, 50, 110, 22));
@@ -156,7 +156,7 @@ public:
         W3L1->setGeometry(QRect(20, 20, 47, 13));
         GBW2 = new QGroupBox(Warehousekeeper);
         GBW2->setObjectName(QString::fromUtf8("GBW2"));
-        GBW2->setGeometry(QRect(180, 60, 641, 511));
+        GBW2->setGeometry(QRect(730, 500, 641, 511));
         W2ButtonApply = new QPushButton(GBW2);
         W2ButtonApply->setObjectName(QString::fromUtf8("W2ButtonApply"));
         W2ButtonApply->setGeometry(QRect(520, 450, 75, 23));
@@ -216,7 +216,7 @@ public:
         W2RBDecChanges->setGeometry(QRect(10, 60, 111, 17));
         GBW1 = new QGroupBox(Warehousekeeper);
         GBW1->setObjectName(QString::fromUtf8("GBW1"));
-        GBW1->setGeometry(QRect(800, 90, 641, 511));
+        GBW1->setGeometry(QRect(780, 110, 641, 511));
         label_2 = new QLabel(GBW1);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(410, 100, 71, 16));
@@ -260,6 +260,7 @@ public:
         W3L2->setText(QApplication::translate("Warehousekeeper", "\342\204\226 \320\235\320\260\320\272\320\273\320\260\320\264\320\275\320\276\320\271:", nullptr));
         W3BApply->setText(QApplication::translate("Warehousekeeper", "\320\237\321\200\320\276\320\262\320\265\321\201\321\202\320\270", nullptr));
         W3L3->setText(QApplication::translate("Warehousekeeper", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202\321\213:", nullptr));
+        W3LEInvoice->setPlaceholderText(QApplication::translate("Warehousekeeper", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         W3L4->setText(QApplication::translate("Warehousekeeper", "\320\224\320\260\321\202\320\260:", nullptr));
         W3L1->setText(QApplication::translate("Warehousekeeper", "\320\241\320\272\320\273\320\260\320\264:", nullptr));
         GBW2->setTitle(QApplication::translate("Warehousekeeper", "\320\230\320\267\320\274\320\265\320\275\320\265\320\275\320\270\321\217 \320\275\320\260 \321\201\320\272\320\273\320\260\320\264\320\260\321\205", nullptr));
@@ -273,6 +274,7 @@ public:
         W2L1->setText(QApplication::translate("Warehousekeeper", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202:", nullptr));
         W2L2->setText(QApplication::translate("Warehousekeeper", "\320\241\320\272\320\273\320\260\320\264:", nullptr));
         label_3->setText(QApplication::translate("Warehousekeeper", "\320\235\320\260\320\272\320\273\320\260\320\264\320\275\320\260\321\217 \342\204\226:", nullptr));
+        W2LEInvoice->setPlaceholderText(QApplication::translate("Warehousekeeper", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         groupBox->setTitle(QApplication::translate("Warehousekeeper", "\320\237\321\200\320\276\320\264\321\203\320\272\321\202\321\213", nullptr));
         W2RBAllChanges->setText(QApplication::translate("Warehousekeeper", "\320\222\321\201\320\265 \320\270\320\267\320\274\320\265\320\275\320\265\320\275\320\270\321\217", nullptr));
         W2RBIncChanges->setText(QApplication::translate("Warehousekeeper", "\320\224\320\276\320\261\320\260\320\262\320\270\320\273\320\270\321\201\321\214", nullptr));

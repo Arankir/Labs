@@ -24,6 +24,11 @@ void MainWindow::on_Connect_clicked()
     auth->Get("http://"+ui->IPEdit->text()+":5555/auth.json"); // /?Data=456456&Data2=123123
     time->setInterval(5000);
     time->start();
+
+    admin = new Admin(ui->IPEdit->text());
+    connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
+    admin->show();
+    this->hide();
 }
 
 void MainWindow::logShow()
