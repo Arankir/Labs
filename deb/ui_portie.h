@@ -82,7 +82,7 @@ public:
     QRadioButton *P1RBEvictionDateIn;
     QRadioButton *P1RBEvictionDateAfter;
     QLineEdit *P1LEPasport;
-    QLineEdit *P1LELastName;
+    QLineEdit *P1LESecondName;
     QLineEdit *P1LEFirstName;
     QLineEdit *P1LEPatronymic;
     QLineEdit *P1LETelephone;
@@ -116,7 +116,7 @@ public:
 
         GBP3 = new QGroupBox(Portie);
         GBP3->setObjectName(QString::fromUtf8("GBP3"));
-        GBP3->setGeometry(QRect(640, 480, 641, 511));
+        GBP3->setGeometry(QRect(740, 510, 641, 511));
         tableView_2 = new QTableView(GBP3);
         tableView_2->setObjectName(QString::fromUtf8("tableView_2"));
         tableView_2->setGeometry(QRect(10, 20, 561, 391));
@@ -143,7 +143,7 @@ public:
         LogOut->setGeometry(QRect(750, 10, 71, 23));
         GBP2 = new QGroupBox(Portie);
         GBP2->setObjectName(QString::fromUtf8("GBP2"));
-        GBP2->setGeometry(QRect(190, 550, 641, 511));
+        GBP2->setGeometry(QRect(170, 50, 641, 511));
         formLayoutWidget = new QWidget(GBP2);
         formLayoutWidget->setObjectName(QString::fromUtf8("formLayoutWidget"));
         formLayoutWidget->setGeometry(QRect(40, 60, 271, 387));
@@ -228,7 +228,7 @@ public:
         Hide->setLayoutDirection(Qt::LeftToRight);
         GBP1 = new QGroupBox(Portie);
         GBP1->setObjectName(QString::fromUtf8("GBP1"));
-        GBP1->setGeometry(QRect(170, 40, 641, 511));
+        GBP1->setGeometry(QRect(790, 110, 641, 511));
         P1TVGuests = new QTableView(GBP1);
         P1TVGuests->setObjectName(QString::fromUtf8("P1TVGuests"));
         P1TVGuests->setGeometry(QRect(10, 20, 441, 481));
@@ -288,9 +288,9 @@ public:
         P1LEPasport = new QLineEdit(GBP1);
         P1LEPasport->setObjectName(QString::fromUtf8("P1LEPasport"));
         P1LEPasport->setGeometry(QRect(510, 40, 113, 20));
-        P1LELastName = new QLineEdit(GBP1);
-        P1LELastName->setObjectName(QString::fromUtf8("P1LELastName"));
-        P1LELastName->setGeometry(QRect(510, 70, 113, 20));
+        P1LESecondName = new QLineEdit(GBP1);
+        P1LESecondName->setObjectName(QString::fromUtf8("P1LESecondName"));
+        P1LESecondName->setGeometry(QRect(510, 70, 113, 20));
         P1LEFirstName = new QLineEdit(GBP1);
         P1LEFirstName->setObjectName(QString::fromUtf8("P1LEFirstName"));
         P1LEFirstName->setGeometry(QRect(510, 100, 113, 20));
@@ -353,6 +353,11 @@ public:
         P1RBEvictionDateBefore->setText(QApplication::translate("Portie", "\320\224\320\276 \320\264\320\260\321\202\321\213", nullptr));
         P1RBEvictionDateIn->setText(QApplication::translate("Portie", "\320\242\320\276\321\207\320\275\320\260\321\217 \320\264\320\260\321\202\320\260", nullptr));
         P1RBEvictionDateAfter->setText(QApplication::translate("Portie", "\320\237\320\276\321\201\320\273\320\265 \320\264\320\260\321\202\321\213", nullptr));
+        P1LEPasport->setPlaceholderText(QApplication::translate("Portie", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+        P1LESecondName->setPlaceholderText(QApplication::translate("Portie", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+        P1LEFirstName->setPlaceholderText(QApplication::translate("Portie", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+        P1LEPatronymic->setPlaceholderText(QApplication::translate("Portie", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
+        P1LETelephone->setPlaceholderText(QApplication::translate("Portie", "\320\235\320\265 \320\262\321\213\320\261\321\200\320\260\320\275\320\276", nullptr));
         P1ButtonAccept->setText(QApplication::translate("Portie", "\320\237\320\276\320\270\321\201\320\272", nullptr));
     } // retranslateUi
 

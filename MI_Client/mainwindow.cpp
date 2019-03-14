@@ -25,10 +25,10 @@ void MainWindow::on_Connect_clicked()
     time->setInterval(5000);
     time->start();
 
-//    admin = new Admin(ui->IPEdit->text());
-//    connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
-//    admin->show();
-//    this->hide();
+    admin = new Admin(ui->IPEdit->text());
+    connect(admin,SIGNAL(loginOpen()),this,SLOT(logShow()));
+    admin->show();
+    this->hide();
 }
 
 void MainWindow::logShow()

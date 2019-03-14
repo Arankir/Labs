@@ -48,8 +48,8 @@
   <widget class="QGroupBox" name="GBC1">
    <property name="geometry">
     <rect>
-     <x>750</x>
-     <y>480</y>
+     <x>170</x>
+     <y>50</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -78,13 +78,26 @@
        <height>429</height>
       </rect>
      </property>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>170</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QScrollArea" name="C1SA2">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>40</y>
+      <x>260</x>
+      <y>460</y>
       <width>351</width>
       <height>431</height>
      </rect>
@@ -171,12 +184,35 @@
      <string>-&gt;</string>
     </property>
    </widget>
+   <widget class="QTableView" name="C1TVIngredients">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>40</y>
+      <width>331</width>
+      <height>431</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>480</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="GBC3">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>50</y>
+     <x>770</x>
+     <y>110</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -635,7 +671,7 @@
     <item>
      <widget class="QPushButton" name="whatchIngredients">
       <property name="text">
-       <string>Посмотреть ингридиенты</string>
+       <string>Посмотреть ингредиенты</string>
       </property>
      </widget>
     </item>
@@ -649,7 +685,7 @@
     <item>
      <widget class="QPushButton" name="prevMenu">
       <property name="text">
-       <string>Посмотреть прошлые меню</string>
+       <string>Прошлые меню</string>
       </property>
      </widget>
     </item>

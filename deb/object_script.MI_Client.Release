@@ -10,6 +10,7 @@ release/aform4.o
 release/network.o
 release/filterinvoice.o
 release/portie.o
+release/qrc_icons.o
 release/moc_mainwindow.o
 release/moc_cook.o
 release/moc_warehousekeeper.o

@@ -188,6 +188,65 @@ void Cook::rbCook1Change(){
     QJsonObject JO = cook1.object();
     QJsonArray JAI=JO.value("Dishs").toArray();
     QJsonArray JAU=JO.value("Ingredients").toArray();
+
+    QStandardItemModel *C1T1M = new QStandardItemModel;
+    QStringList hh;
+    QJsonArray JsonA=cook2.object().value("ingredient_stock").toArray();
+    hh.append("Ингредиент");
+    hh.append("Требуется");
+    hh.append("На складе");
+    C1T1M->setHorizontalHeaderLabels(hh);
+    int l=0;
+
+    for (int j=0;j<JAI.size();j++) {
+        if(JAI[j].toObject().value("dish")==rb->text()){
+            for(int k=0;k<JAI[j].toObject().value("ingredients").toArray().size();k++){
+                QStandardItem *Item1;
+                QStandardItem *Item2;
+                QStandardItem *Item3;
+                int i2=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt();
+                Item1 = new QStandardItem(QString(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()));
+                for (int i=0;i<JAU.size();i++) {
+                    if(JAU[i].toObject().value("title")==JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title")){
+                        Item2 = new QStandardItem(QString(QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt())+" "+JAU[i].toObject().value("unit").toString()));
+                        Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()));
+
+                        i2-=JAU[i].toObject().value("total_amount").toString().toInt();
+                        if(i2>0){
+                            QBrush bru;
+                            bru.setColor(Qt::red);
+                            Item1->setForeground(bru);
+                            Item2->setForeground(bru);
+                            Item3->setForeground(bru);
+                            Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()));
+                        } else {
+                            Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()+" (недостаточно ингредиентов)"));
+                        }
+                        break;
+                     }
+                }
+//                QPalette lbp;
+//                if(ar>0){
+//                    lbp.setColor(QPalette::WindowText,Qt::red);
+//                    s+=" (недостаточно ингредиентов)";
+//                } else {
+//                    lbp.setColor(QPalette::WindowText,Qt::black);
+//                }
+//                lb1->setPalette(lbp);
+//                lb1->setText(s);
+//                layout->addWidget(lb1);
+//                C1T1M->setItem(l,0,Item1);
+//                C1T1M->setItem(l,1,Item2);
+//                C1T1M->setItem(l,2,Item3);
+            }
+            break;
+        }
+    }
+
+    ui->C1TVIngredients->setModel(C1T1M);
+    ui->C1TVIngredients->resizeRowsToContents();
+
+
     QLabel *title = new QLabel;
     title->setText("Ингредиент необходимо/на складе");
     QPalette pt;
@@ -520,4 +579,18 @@ void Cook::on_C1LE_textChanged(const QString &arg1)
     }
     widget2->setLayout(layout);
     ui->C1SA2->setWidget(widget2);
+}
+
+void Cook::on_pushButton_clicked()
+{
+    QStandardItem it;
+    QLabel *lb = new QLabel;
+    lb->setText("");
+    lb->setStyleSheet("background-image: url(:/icons/warning.jpg);");\
+    lb->setToolTip("Хуй соси губой тряси");
+    QFormLayout *lay = new QFormLayout;
+    QWidget *wid = new QWidget;
+    lay->addWidget(lb);
+    wid->setLayout(lay);
+    ui->GBC1->setsetWidget(wid);
 }

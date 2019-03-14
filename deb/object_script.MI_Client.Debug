@@ -10,6 +10,7 @@ debug/aform4.o
 debug/network.o
 debug/filterinvoice.o
 debug/portie.o
+debug/qrc_icons.o
 debug/moc_mainwindow.o
 debug/moc_cook.o
 debug/moc_warehousekeeper.o
