@@ -183,12 +183,9 @@ if(cook->GetAnswer()==""){
 
 void Cook::rbCook1Change(){
     QRadioButton* rb = (QRadioButton*) sender();
-    QWidget* widget2 = new QWidget;
-    QFormLayout* layout = new QFormLayout;
     QJsonObject JO = cook1.object();
     QJsonArray JAI=JO.value("Dishs").toArray();
     QJsonArray JAU=JO.value("Ingredients").toArray();
-
     QStandardItemModel *C1T1M = new QStandardItemModel;
     QStringList hh;
     QJsonArray JsonA=cook2.object().value("ingredient_stock").toArray();
@@ -197,7 +194,6 @@ void Cook::rbCook1Change(){
     hh.append("На складе");
     C1T1M->setHorizontalHeaderLabels(hh);
     int l=0;
-
     for (int j=0;j<JAI.size();j++) {
         if(JAI[j].toObject().value("dish")==rb->text()){
             for(int k=0;k<JAI[j].toObject().value("ingredients").toArray().size();k++){
@@ -206,83 +202,35 @@ void Cook::rbCook1Change(){
                 QStandardItem *Item3;
                 int i2=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt();
                 Item1 = new QStandardItem(QString(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()));
-                for (int i=0;i<JAU.size();i++) {
+                for (int i=0;i<JAU.size();i++){
                     if(JAU[i].toObject().value("title")==JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title")){
                         Item2 = new QStandardItem(QString(QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt())+" "+JAU[i].toObject().value("unit").toString()));
                         Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()));
-
                         i2-=JAU[i].toObject().value("total_amount").toString().toInt();
                         if(i2>0){
+                            Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()+" (недостаточно ингредиентов)"));
                             QBrush bru;
                             bru.setColor(Qt::red);
                             Item1->setForeground(bru);
                             Item2->setForeground(bru);
                             Item3->setForeground(bru);
+                            } else {
                             Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()));
-                        } else {
-                            Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()+" (недостаточно ингредиентов)"));
+                            }
+                        C1T1M->setItem(l,0,Item1);
+                        C1T1M->setItem(l,1,Item2);
+                        C1T1M->setItem(l,2,Item3);
+                        break;
                         }
-                        break;
-                     }
+                    }
+                l++;
                 }
-//                QPalette lbp;
-//                if(ar>0){
-//                    lbp.setColor(QPalette::WindowText,Qt::red);
-//                    s+=" (недостаточно ингредиентов)";
-//                } else {
-//                    lbp.setColor(QPalette::WindowText,Qt::black);
-//                }
-//                lb1->setPalette(lbp);
-//                lb1->setText(s);
-//                layout->addWidget(lb1);
-//                C1T1M->setItem(l,0,Item1);
-//                C1T1M->setItem(l,1,Item2);
-//                C1T1M->setItem(l,2,Item3);
-            }
             break;
+            }
         }
-    }
-
     ui->C1TVIngredients->setModel(C1T1M);
+    ui->C1TVIngredients->resizeColumnsToContents();
     ui->C1TVIngredients->resizeRowsToContents();
-
-
-    QLabel *title = new QLabel;
-    title->setText("Ингредиент необходимо/на складе");
-    QPalette pt;
-    pt.setColor(QPalette::WindowText,Qt::blue);
-    title->setPalette(pt);
-    layout->addWidget(title);
-    for (int j=0;j<JAI.size();j++) {
-        if(JAI[j].toObject().value("dish")==rb->text()){
-            for(int k=0;k<JAI[j].toObject().value("ingredients").toArray().size();k++){
-                QLabel* lb1 = new QLabel;
-                QString s;
-                int ar=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt();
-                s=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()+" "+QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt());
-                for (int i=0;i<JAU.size();i++) {
-                    if(JAU[i].toObject().value("title")==JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title")){
-                        s+=" "+JAU[i].toObject().value("unit").toString()+" / "+JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString();
-                        ar-=JAU[i].toObject().value("total_amount").toString().toInt();
-                        break;
-                     }
-                }
-                QPalette lbp;
-                if(ar>0){
-                    lbp.setColor(QPalette::WindowText,Qt::red);
-                    s+=" (недостаточно ингредиентов)";
-                } else {
-                    lbp.setColor(QPalette::WindowText,Qt::black);
-                }
-                lb1->setPalette(lbp);
-                lb1->setText(s);
-                layout->addWidget(lb1);
-            }
-            break;
-        }
-    }
-    widget2->setLayout(layout);
-    ui->C1SA2->setWidget(widget2);
 }
 
 void Cook::chbCook3Change(int stat){
@@ -343,8 +291,7 @@ widget->setLayout(layout);
 ui->C3SA2->setWidget(widget);
 }
 
-void Cook::on_C2BSearch_clicked()
-{
+void Cook::on_C2BSearch_clicked(){
     QStandardItemModel *C2T1M = new QStandardItemModel;
     QStringList hh;
     QJsonArray JsonA=cook2.object().value("ingredient_stock").toArray();
@@ -373,8 +320,7 @@ void Cook::on_C2BSearch_clicked()
     ui->C2T1->resizeRowsToContents();
 }
 
-void Cook::on_C4BSearch_clicked()
-{
+void Cook::on_C4BSearch_clicked(){
     QString type;
     if(ui->C4RB1->isChecked())
         type="Завтрак";
@@ -384,7 +330,6 @@ void Cook::on_C4BSearch_clicked()
         type="Ужин";
     if(ui->C4RB4->isChecked())
         type="Другое";
-
     QJsonArray JsonA=cook4.object().value("Menu").toArray();
     QWidget* widget = new QWidget;
     QFormLayout *layout = new QFormLayout;
@@ -405,30 +350,25 @@ void Cook::on_C4BSearch_clicked()
     ui->C4SA1->setWidget(widget);
 }
 
-void Cook::on_C3Date_userDateChanged(const QDate &date)
-{
+void Cook::on_C3Date_userDateChanged(const QDate &){
     Network *cook3 = new Network;
     connect(cook3,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook3(Network *)));
     cook3->Get("http://"+IP+":5555/countguests.json?date="+ui->C3Date->text());
 }
 
-void Cook::on_breakfast_clicked()
-{
+void Cook::on_breakfast_clicked(){
     Typemenu="Завтрак";
 }
 
-void Cook::on_lunch_clicked()
-{
+void Cook::on_lunch_clicked(){
     Typemenu="Обед";
 }
 
-void Cook::on_dinner_clicked()
-{
+void Cook::on_dinner_clicked(){
     Typemenu="Ужин";
 }
 
-void Cook::on_other_clicked()
-{
+void Cook::on_other_clicked(){
     Typemenu="Другое";
 }
 
@@ -439,8 +379,7 @@ for (int i=Ldishs.size();i>0;i--) {
     }
 }
 
-void Cook::on_C3BApply_clicked()
-{
+void Cook::on_C3BApply_clicked(){
 Network *cooks4 = new Network;
 connect(cooks4,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook3Menu(Network *)));
 cooks4->Get("http://"+IP+":5555/menu.json");
@@ -545,52 +484,68 @@ void Cook::on_C1LE_textChanged(const QString &arg1)
             break;
             }
     }
-    QWidget* widget2 = new QWidget;
-    QFormLayout* layout = new QFormLayout;
     QJsonObject JO = cook1.object();
     QJsonArray JAI=JO.value("Dishs").toArray();
     QJsonArray JAU=JO.value("Ingredients").toArray();
+    QStandardItemModel *C1T1M = new QStandardItemModel;
+    QStringList hh;
+    QJsonArray JsonA=cook2.object().value("ingredient_stock").toArray();
+    hh.append("Ингредиент");
+    hh.append("Требуется");
+    hh.append("На складе");
+    C1T1M->setHorizontalHeaderLabels(hh);
+    int l=0;
     for (int j=0;j<JAI.size();j++) {
-        if(JAI[j].toObject().value("dish").toString()==rb->text()){
+        if(JAI[j].toObject().value("dish")==rb->text()){
             for(int k=0;k<JAI[j].toObject().value("ingredients").toArray().size();k++){
-                QLabel* lb1 = new QLabel;
-                QString s;
-                int ar=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt();
-                s=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()+" - необходимо: "+QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt());
-                for (int i=0;i<JAU.size();i++) {
+                QStandardItem *Item1;
+                QStandardItem *Item2;
+                QStandardItem *Item3;
+                int i2=JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt();
+                Item1 = new QStandardItem(QString(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title").toString()));
+                for (int i=0;i<JAU.size();i++){
                     if(JAU[i].toObject().value("title")==JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("title")){
-                        s+=" "+JAU[i].toObject().value("unit").toString()+" / на складе: "+JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString();
-                        ar-=JAU[i].toObject().value("total_amount").toString().toInt();
+                        Item2 = new QStandardItem(QString(QString::number(JAI[j].toObject().value("ingredients").toArray().at(k).toObject().value("amount").toString().toInt() * ui->C1LE->text().toInt())+" "+JAU[i].toObject().value("unit").toString()));
+                        Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()));
+                        i2-=JAU[i].toObject().value("total_amount").toString().toInt();
+                        if(i2>0){
+                            Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()+" (недостаточно ингредиентов)"));
+                            QBrush bru;
+                            bru.setColor(Qt::red);
+                            Item1->setForeground(bru);
+                            Item2->setForeground(bru);
+                            Item3->setForeground(bru);
+                            } else {
+                            Item3 = new QStandardItem(QString(JAU[i].toObject().value("total_amount").toString()+" "+JAU[i].toObject().value("unit").toString()));
+                            }
+                        C1T1M->setItem(l,0,Item1);
+                        C1T1M->setItem(l,1,Item2);
+                        C1T1M->setItem(l,2,Item3);
                         break;
-                     }
+                        }
+                    }
+                l++;
                 }
-                QPalette lbp;
-                if(ar>0){
-                    lbp.setColor(QPalette::WindowText,Qt::red);
-                } else {
-                    lbp.setColor(QPalette::WindowText,Qt::black);
-                }
-                lb1->setPalette(lbp);
-                lb1->setText(s);
-                layout->addWidget(lb1);
-            }
             break;
+            }
         }
-    }
-    widget2->setLayout(layout);
-    ui->C1SA2->setWidget(widget2);
+    ui->C1TVIngredients->setModel(C1T1M);
+    ui->C1TVIngredients->resizeColumnsToContents();
+    ui->C1TVIngredients->resizeRowsToContents();
 }
 
 void Cook::on_pushButton_clicked()
 {
     QStandardItem it;
-    QLabel *lb = new QLabel;
-    lb->setText("");
+    QLabel *lb = new QLabel(this);
+    lb->move(20,20);
+    lb->show();
+    lb->setText("567");
     lb->setStyleSheet("background-image: url(:/icons/warning.jpg);");\
     lb->setToolTip("Хуй соси губой тряси");
     QFormLayout *lay = new QFormLayout;
     QWidget *wid = new QWidget;
     lay->addWidget(lb);
     wid->setLayout(lay);
-    ui->GBC1->setsetWidget(wid);
+   // ui->GBC1->setsetWidget(wid);
 }

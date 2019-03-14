@@ -62,7 +62,7 @@
      <rect>
       <x>30</x>
       <y>40</y>
-      <width>211</width>
+      <width>151</width>
       <height>431</height>
      </rect>
     </property>
@@ -74,43 +74,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>209</width>
-       <height>429</height>
-      </rect>
-     </property>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>170</y>
-        <width>47</width>
-        <height>13</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QScrollArea" name="C1SA2">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>460</y>
-      <width>351</width>
-      <height>431</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>349</width>
+       <width>149</width>
        <height>429</height>
       </rect>
      </property>
@@ -161,7 +125,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>190</x>
       <y>20</y>
       <width>81</width>
       <height>16</height>
@@ -174,7 +138,7 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>180</x>
       <y>260</y>
       <width>47</width>
       <height>13</height>
@@ -187,24 +151,11 @@
    <widget class="QTableView" name="C1TVIngredients">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>190</x>
       <y>40</y>
-      <width>331</width>
+      <width>411</width>
       <height>431</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>480</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
     </property>
    </widget>
   </widget>
