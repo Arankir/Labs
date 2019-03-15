@@ -312,13 +312,12 @@ void Warehousekeeper::on_W3chbPressed(int state){
     QRegExp exp("[1-9]{1}[0-9]{0,10}");
     if(state == 2){
         LIngredients.push_back(chb);
-    } else {
+        } else {
         for(int i=0; i<LIngredients.size();i++){
-            if (LIngredients[i] == chb){
+            if (LIngredients[i] == chb)
                 LIngredients.takeAt(i);
             }
         }
-    }
     QFormLayout* layout = new QFormLayout;
     QWidget* widget = new QWidget;
     for(int i=0; i<LIngredients.size();i++){
@@ -343,7 +342,6 @@ void Warehousekeeper::on_W3BApply_clicked(){
                 }
             }
         if(accept){
-            qDebug() <<LIngredients[0]->objectName().mid(5,LIngredients[0]->objectName().length()-5);
             if(LIngredients.size()!=0){
                 for (int i=0;i<LIngredients.size();i++) {
                     if(findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text()=="")
@@ -358,7 +356,7 @@ void Warehousekeeper::on_W3BApply_clicked(){
                     for (int i=0;i<LIngredients.size();i++) {
                         QJsonObject ingredient;
                         ingredient["title"]=LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5);
-                        ingredient["amount"]=findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text();
+                        ingredient["amount"]=findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text().toInt();
                         ingredients.append(ingredient);
                     }
                     post["ingredients"]=ingredients;

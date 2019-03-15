@@ -46,21 +46,21 @@ public:
     QGroupBox *GBP2;
     QWidget *formLayoutWidget;
     QFormLayout *formLayout;
-    QLabel *label_7;
-    QLineEdit *lineEdit_7;
-    QLabel *label_8;
-    QLineEdit *lineEdit_8;
-    QLabel *label_9;
-    QLineEdit *lineEdit_9;
-    QLabel *label_10;
-    QLineEdit *lineEdit_10;
-    QLabel *label_6;
-    QLineEdit *lineEdit_6;
-    QCalendarWidget *calendarWidget;
-    QCalendarWidget *calendarWidget_2;
-    QLabel *label_11;
-    QLabel *label_12;
-    QPushButton *pushButton_5;
+    QLabel *P2LSecondName;
+    QLineEdit *P2LESecondName;
+    QLabel *P2LFirstName;
+    QLineEdit *P2LEFirstName;
+    QLabel *P2LPatronymic;
+    QLineEdit *P2LEPatronymic;
+    QLabel *P2LTelephone;
+    QLineEdit *P2LETelephone;
+    QLabel *P2LPasport;
+    QLineEdit *P2LEPasport;
+    QCalendarWidget *P2CWSettlementDate;
+    QCalendarWidget *P2CWEvictionDate;
+    QLabel *P2LSettlementDate;
+    QLabel *P2LEvictionDate;
+    QPushButton *P2ButtonApply;
     QPushButton *Hide;
     QGroupBox *GBP1;
     QTableView *P1TVGuests;
@@ -151,76 +151,76 @@ public:
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
         formLayout->setVerticalSpacing(55);
         formLayout->setContentsMargins(0, 0, 0, 0);
-        label_7 = new QLabel(formLayoutWidget);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
+        P2LSecondName = new QLabel(formLayoutWidget);
+        P2LSecondName->setObjectName(QString::fromUtf8("P2LSecondName"));
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_7);
+        formLayout->setWidget(2, QFormLayout::LabelRole, P2LSecondName);
 
-        lineEdit_7 = new QLineEdit(formLayoutWidget);
-        lineEdit_7->setObjectName(QString::fromUtf8("lineEdit_7"));
+        P2LESecondName = new QLineEdit(formLayoutWidget);
+        P2LESecondName->setObjectName(QString::fromUtf8("P2LESecondName"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, lineEdit_7);
+        formLayout->setWidget(2, QFormLayout::FieldRole, P2LESecondName);
 
-        label_8 = new QLabel(formLayoutWidget);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
+        P2LFirstName = new QLabel(formLayoutWidget);
+        P2LFirstName->setObjectName(QString::fromUtf8("P2LFirstName"));
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_8);
+        formLayout->setWidget(3, QFormLayout::LabelRole, P2LFirstName);
 
-        lineEdit_8 = new QLineEdit(formLayoutWidget);
-        lineEdit_8->setObjectName(QString::fromUtf8("lineEdit_8"));
+        P2LEFirstName = new QLineEdit(formLayoutWidget);
+        P2LEFirstName->setObjectName(QString::fromUtf8("P2LEFirstName"));
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, lineEdit_8);
+        formLayout->setWidget(3, QFormLayout::FieldRole, P2LEFirstName);
 
-        label_9 = new QLabel(formLayoutWidget);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
+        P2LPatronymic = new QLabel(formLayoutWidget);
+        P2LPatronymic->setObjectName(QString::fromUtf8("P2LPatronymic"));
 
-        formLayout->setWidget(4, QFormLayout::LabelRole, label_9);
+        formLayout->setWidget(4, QFormLayout::LabelRole, P2LPatronymic);
 
-        lineEdit_9 = new QLineEdit(formLayoutWidget);
-        lineEdit_9->setObjectName(QString::fromUtf8("lineEdit_9"));
+        P2LEPatronymic = new QLineEdit(formLayoutWidget);
+        P2LEPatronymic->setObjectName(QString::fromUtf8("P2LEPatronymic"));
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, lineEdit_9);
+        formLayout->setWidget(4, QFormLayout::FieldRole, P2LEPatronymic);
 
-        label_10 = new QLabel(formLayoutWidget);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
+        P2LTelephone = new QLabel(formLayoutWidget);
+        P2LTelephone->setObjectName(QString::fromUtf8("P2LTelephone"));
 
-        formLayout->setWidget(5, QFormLayout::LabelRole, label_10);
+        formLayout->setWidget(5, QFormLayout::LabelRole, P2LTelephone);
 
-        lineEdit_10 = new QLineEdit(formLayoutWidget);
-        lineEdit_10->setObjectName(QString::fromUtf8("lineEdit_10"));
+        P2LETelephone = new QLineEdit(formLayoutWidget);
+        P2LETelephone->setObjectName(QString::fromUtf8("P2LETelephone"));
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, lineEdit_10);
+        formLayout->setWidget(5, QFormLayout::FieldRole, P2LETelephone);
 
-        label_6 = new QLabel(formLayoutWidget);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
+        P2LPasport = new QLabel(formLayoutWidget);
+        P2LPasport->setObjectName(QString::fromUtf8("P2LPasport"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_6);
+        formLayout->setWidget(1, QFormLayout::LabelRole, P2LPasport);
 
-        lineEdit_6 = new QLineEdit(formLayoutWidget);
-        lineEdit_6->setObjectName(QString::fromUtf8("lineEdit_6"));
+        P2LEPasport = new QLineEdit(formLayoutWidget);
+        P2LEPasport->setObjectName(QString::fromUtf8("P2LEPasport"));
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, lineEdit_6);
+        formLayout->setWidget(1, QFormLayout::FieldRole, P2LEPasport);
 
-        calendarWidget = new QCalendarWidget(GBP2);
-        calendarWidget->setObjectName(QString::fromUtf8("calendarWidget"));
-        calendarWidget->setGeometry(QRect(340, 40, 248, 183));
-        calendarWidget_2 = new QCalendarWidget(GBP2);
-        calendarWidget_2->setObjectName(QString::fromUtf8("calendarWidget_2"));
-        calendarWidget_2->setGeometry(QRect(340, 250, 248, 183));
+        P2CWSettlementDate = new QCalendarWidget(GBP2);
+        P2CWSettlementDate->setObjectName(QString::fromUtf8("P2CWSettlementDate"));
+        P2CWSettlementDate->setGeometry(QRect(340, 40, 248, 183));
+        P2CWEvictionDate = new QCalendarWidget(GBP2);
+        P2CWEvictionDate->setObjectName(QString::fromUtf8("P2CWEvictionDate"));
+        P2CWEvictionDate->setGeometry(QRect(340, 250, 248, 183));
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(calendarWidget_2->sizePolicy().hasHeightForWidth());
-        calendarWidget_2->setSizePolicy(sizePolicy);
-        label_11 = new QLabel(GBP2);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
-        label_11->setGeometry(QRect(340, 20, 131, 16));
-        label_12 = new QLabel(GBP2);
-        label_12->setObjectName(QString::fromUtf8("label_12"));
-        label_12->setGeometry(QRect(340, 230, 241, 16));
-        pushButton_5 = new QPushButton(GBP2);
-        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(260, 450, 121, 31));
+        sizePolicy.setHeightForWidth(P2CWEvictionDate->sizePolicy().hasHeightForWidth());
+        P2CWEvictionDate->setSizePolicy(sizePolicy);
+        P2LSettlementDate = new QLabel(GBP2);
+        P2LSettlementDate->setObjectName(QString::fromUtf8("P2LSettlementDate"));
+        P2LSettlementDate->setGeometry(QRect(340, 20, 131, 16));
+        P2LEvictionDate = new QLabel(GBP2);
+        P2LEvictionDate->setObjectName(QString::fromUtf8("P2LEvictionDate"));
+        P2LEvictionDate->setGeometry(QRect(340, 230, 241, 16));
+        P2ButtonApply = new QPushButton(GBP2);
+        P2ButtonApply->setObjectName(QString::fromUtf8("P2ButtonApply"));
+        P2ButtonApply->setGeometry(QRect(260, 450, 121, 31));
         Hide = new QPushButton(Portie);
         Hide->setObjectName(QString::fromUtf8("Hide"));
         Hide->setEnabled(true);
@@ -326,14 +326,19 @@ public:
         dateEdit_4->setDisplayFormat(QApplication::translate("Portie", "yyyy-MM-dd", nullptr));
         LogOut->setText(QApplication::translate("Portie", "\320\237\320\265\321\200\320\265\320\267\320\260\320\271\321\202\320\270", nullptr));
         GBP2->setTitle(QApplication::translate("Portie", "\320\240\320\265\320\267\320\265\321\200\320\262\320\270\321\200\320\276\320\262\320\260\320\275\320\270\320\265 \320\274\320\265\321\201\321\202", nullptr));
-        label_7->setText(QApplication::translate("Portie", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", nullptr));
-        label_8->setText(QApplication::translate("Portie", "\320\230\320\274\321\217", nullptr));
-        label_9->setText(QApplication::translate("Portie", "\320\236\321\202\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
-        label_10->setText(QApplication::translate("Portie", "\320\242\320\265\320\273\320\265\321\204\320\276\320\275", nullptr));
-        label_6->setText(QApplication::translate("Portie", "\320\237\320\260\321\201\320\277\320\276\321\200\321\202", nullptr));
-        label_11->setText(QApplication::translate("Portie", "\320\224\320\260\321\202\320\260 \320\277\321\200\320\270\320\261\321\213\321\202\320\270\321\217:", nullptr));
-        label_12->setText(QApplication::translate("Portie", "\320\224\320\260\321\202\320\260 \320\262\321\213\320\265\320\267\320\264\320\260:", nullptr));
-        pushButton_5->setText(QApplication::translate("Portie", "\320\227\320\260\321\200\320\265\320\267\320\265\321\200\320\262\320\270\321\200\320\276\320\262\320\260\321\202\321\214", nullptr));
+        P2LSecondName->setText(QApplication::translate("Portie", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", nullptr));
+        P2LESecondName->setPlaceholderText(QApplication::translate("Portie", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \321\204\320\260\320\274\320\270\320\273\320\270\321\216............................", nullptr));
+        P2LFirstName->setText(QApplication::translate("Portie", "\320\230\320\274\321\217", nullptr));
+        P2LEFirstName->setPlaceholderText(QApplication::translate("Portie", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\270\320\274\321\217....................................", nullptr));
+        P2LPatronymic->setText(QApplication::translate("Portie", "\320\236\321\202\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
+        P2LEPatronymic->setPlaceholderText(QApplication::translate("Portie", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\276\321\202\321\207\320\265\321\201\321\202\320\262\320\276............................", nullptr));
+        P2LTelephone->setText(QApplication::translate("Portie", "\320\242\320\265\320\273\320\265\321\204\320\276\320\275", nullptr));
+        P2LETelephone->setPlaceholderText(QApplication::translate("Portie", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \321\202\320\265\320\273\320\265\321\204\320\276\320\275 (\320\275\320\265 \320\276\320\261\321\217\320\267\320\260\321\202\320\265\320\273\321\214\320\275\320\276)......", nullptr));
+        P2LPasport->setText(QApplication::translate("Portie", "\320\237\320\260\321\201\320\277\320\276\321\200\321\202", nullptr));
+        P2LEPasport->setPlaceholderText(QApplication::translate("Portie", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\277\320\260\321\201\320\277\320\276\321\200\321\202..............................", nullptr));
+        P2LSettlementDate->setText(QApplication::translate("Portie", "\320\224\320\260\321\202\320\260 \320\277\321\200\320\270\320\261\321\213\321\202\320\270\321\217:", nullptr));
+        P2LEvictionDate->setText(QApplication::translate("Portie", "\320\224\320\260\321\202\320\260 \320\262\321\213\320\265\320\267\320\264\320\260:", nullptr));
+        P2ButtonApply->setText(QApplication::translate("Portie", "\320\227\320\260\321\200\320\265\320\267\320\265\321\200\320\262\320\270\321\200\320\276\320\262\320\260\321\202\321\214", nullptr));
         Hide->setText(QApplication::translate("Portie", "\320\245", nullptr));
         GBP1->setTitle(QApplication::translate("Portie", "\320\237\321\200\320\276\321\201\320\274\320\276\321\202\321\200 \320\270\320\267\320\274\320\265\320\275\320\265\320\275\320\270\320\271", nullptr));
         label->setText(QApplication::translate("Portie", "\320\237\320\260\321\201\320\277\320\276\321\200\321\202", nullptr));

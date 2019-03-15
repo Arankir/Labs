@@ -200,3 +200,50 @@ void Portie::on_P1ButtonAccept_clicked()
     ui->P1TVGuests->resizeColumnsToContents();
 }
 }
+
+void Portie::on_P2ButtonApply_clicked()
+{
+    //url: /newguest.json
+    //формат: {"pasport":" " , "second_name":" ", "first_name":" ", "patronymic":" " , "telephone":" ", "settlement_date":" ", "eviction_date":" "}
+        if(ui->W3LEInvoice->text()!=""){
+            bool accept=true;
+            for (int i=0;i<JAInv.size();i++) {
+                if(JAInv[i].toObject().value("id").toString()==ui->W3LEInvoice->text()){
+                    accept=false;
+                    break;
+                    }
+                }
+            if(accept){
+                if(LIngredients.size()!=0){
+                    for (int i=0;i<LIngredients.size();i++) {
+                        if(findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text()=="")
+                            accept=false;
+                        }
+                    if(accept){
+                        QJsonObject post;
+                        post["date"]=ui->W3DEDate->text();
+                        post["stock"]=ui->W3CBStocks->currentText();
+                        post["id"]=ui->W3LEInvoice->text();
+                        QJsonArray ingredients;
+                        for (int i=0;i<LIngredients.size();i++) {
+                            QJsonObject ingredient;
+                            ingredient["title"]=LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5);
+                            ingredient["amount"]=findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text().toInt();
+                            ingredients.append(ingredient);
+                        }
+                        post["ingredients"]=ingredients;
+                        QJsonDocument doc;
+                        doc.setObject(post);
+                        qDebug() << doc;
+                        Network *net = new Network;
+                        connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_ResultAddInvoice(Network *)));
+                        net->Post("http://"+IP+":5555/addinvoice.json", doc);
+                    } else
+                        QMessageBox::warning(this,"Ошибка!","Поля с количеством ингредиентов не могут быть пустыми!");
+                } else
+                    QMessageBox::warning(this,"Ошибка!","Выберите продукты!");
+            } else
+                QMessageBox::warning(this,"Ошибка!","Накладная с таким номером уже существует!");
+        } else
+            QMessageBox::warning(this,"Ошибка!","Введите номер накладной!");
+}

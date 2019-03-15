@@ -2,7 +2,7 @@
 
 Network::Network(QWidget *parent):QMainWindow(parent){
     manager = new QNetworkAccessManager();
-    //QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QString answer="";
     QString error="";
 }

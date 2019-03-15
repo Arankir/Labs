@@ -183,78 +183,78 @@
       <number>0</number>
      </property>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="P2LSecondName">
        <property name="text">
         <string>Фамилия</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="lineEdit_7">
+      <widget class="QLineEdit" name="P2LESecondName">
        <property name="placeholderText">
-        <string>Введите фамилию</string>
+        <string>Введите фамилию............................</string>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="P2LFirstName">
        <property name="text">
         <string>Имя</string>
        </property>
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_8">
+      <widget class="QLineEdit" name="P2LEFirstName">
        <property name="placeholderText">
-        <string>Введите имя</string>
+        <string>Введите имя....................................</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="P2LPatronymic">
        <property name="text">
         <string>Отчество</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="lineEdit_9">
+      <widget class="QLineEdit" name="P2LEPatronymic">
        <property name="placeholderText">
-        <string>Введите отчество</string>
+        <string>Введите отчество............................</string>
        </property>
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="P2LTelephone">
        <property name="text">
         <string>Телефон</string>
        </property>
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="lineEdit_10">
+      <widget class="QLineEdit" name="P2LETelephone">
        <property name="placeholderText">
-        <string>Введите телефон (не обязательно)</string>
+        <string>Введите телефон (не обязательно)......</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="P2LPasport">
        <property name="text">
         <string>Паспорт</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_6">
+      <widget class="QLineEdit" name="P2LEPasport">
        <property name="placeholderText">
-        <string>Введите паспорт</string>
+        <string>Введите паспорт..............................</string>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QCalendarWidget" name="calendarWidget">
+   <widget class="QCalendarWidget" name="P2CWSettlementDate">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -264,7 +264,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCalendarWidget" name="calendarWidget_2">
+   <widget class="QCalendarWidget" name="P2CWEvictionDate">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -280,7 +280,7 @@
      </sizepolicy>
     </property>
    </widget>
-   <widget class="QLabel" name="label_11">
+   <widget class="QLabel" name="P2LSettlementDate">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -293,7 +293,7 @@
      <string>Дата прибытия:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_12">
+   <widget class="QLabel" name="P2LEvictionDate">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -306,7 +306,7 @@
      <string>Дата выезда:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="P2ButtonApply">
     <property name="geometry">
      <rect>
       <x>260</x>

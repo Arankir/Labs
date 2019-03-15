@@ -38,6 +38,8 @@ private slots:
 
     void on_P1ButtonAccept_clicked();
 
+    void on_P2ButtonApply_clicked();
+
 private:
     Ui::Portie *ui;
     QJsonDocument portie;
