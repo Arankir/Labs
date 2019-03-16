@@ -12,6 +12,15 @@ Cook::Cook(QString ips, QWidget *parent) :
     ui->GBC2->move(170,50);
     ui->GBC3->move(170,50);
     ui->GBC4->move(170,50);
+    QStringList hh;
+    hh.append("Ингредиент");
+    hh.append("Требуется");
+    hh.append("На складе");
+    QStandardItemModel *M = new QStandardItemModel;
+    M->setHorizontalHeaderLabels(hh);
+    ui->C1TVIngredients->setModel(M);
+    ui->C1TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->C2T1->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Cook::on_Hide_clicked();
 }
 
@@ -65,6 +74,10 @@ void Cook::on_createMenu_clicked()
     connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
     cooks1->Get("http://"+IP+":5555/dish.json");
     Cook::on_Hide_clicked();
+    QFormLayout *lay = new QFormLayout;
+    QWidget *wi = new QWidget;
+    wi->setLayout(lay);
+    ui->C3SA2->setWidget(wi);
     ui->GBC3->setVisible(true);
     ui->Hide->setVisible(true);
 }

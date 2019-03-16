@@ -6,6 +6,7 @@
 #include "QStandardItemModel"
 #include "QStandardItem"
 #include <QSpacerItem>
+#include <QMessageBox>
 #include <filterinvoice.h>
 
 namespace Ui {
@@ -39,6 +40,16 @@ private slots:
     void on_P1ButtonAccept_clicked();
 
     void on_P2ButtonApply_clicked();
+
+    void on_ResultNewGuest(Network *);
+
+    void on_P3TVGuests_clicked(const QModelIndex &index);
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_ResultChangeGuest(Network *);
 
 private:
     Ui::Portie *ui;

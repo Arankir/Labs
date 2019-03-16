@@ -11,6 +11,8 @@ Warehousekeeper::Warehousekeeper(QString ips, QWidget *parent) :
     ui->GBW1->move(170,50);
     ui->GBW2->move(170,50);
     ui->GBW3->move(170,50);
+    ui->W1T1->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->W2Table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Warehousekeeper::on_Hide_clicked();
 }
 
