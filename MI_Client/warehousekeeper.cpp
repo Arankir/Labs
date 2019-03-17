@@ -214,6 +214,7 @@ void Warehousekeeper::OnResultWhk3(Network *whk){
         QFormLayout *layout2 = new QFormLayout;
         widget2->setLayout(layout2);
         ui->W3SACheckedIngredients->setWidget(widget2);
+        ui->W3CBStocks->clear();
         for(int i=0;i<JASto.size();i++){
             ui->W3CBStocks->addItem(JASto[i].toString());
             }

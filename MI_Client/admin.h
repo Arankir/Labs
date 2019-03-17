@@ -22,36 +22,54 @@ class Admin : public QWidget
 public:
     explicit Admin(QString ip, QWidget *parent = nullptr);
     ~Admin();
-    void setDB(QSqlDatabase *db);
 
 private slots:
     void on_LogOut_clicked();
 
-    void on_Reg_clicked();
+    void on_Hide_clicked();
 
-    void on_hide_clicked();
+    void on_ABShow1_clicked();
 
-    void on_AddIng_clicked();
+    void on_ABShow2_clicked();
 
-    void on_AddDish_clicked();
+    void on_ABShow3_clicked();
 
-    void on_AddStock_clicked();
+    void on_ABShow4_clicked();
+
+    void on_ABShow5_clicked();
+
+    void on_ABShow6_clicked();
+
+    void on_Result_Show1(Network *);
+    void on_Result_Show2(Network *);
+    void on_Result_Show3(Network *);
+    void on_Result_Show4(Network *);
+    void on_Result_Show5(Network *);
+
+    void on_A1BApply_clicked();
+
+    void on_Result_Post_NewUser(Network *);
+
+    void on_A2BApply_clicked();
+
+    void on_Result_Post_NewIngredient(Network *);
 
 signals:
     void loginOpen();
 
 private:
     Ui::Admin *ui;
-    QSqlDatabase* db;
     Cook* cook;
     Warehousekeeper* whk;
     Portie* portie;
     QString IP;
 
-    AForm1* aform1;
-    AForm2* aform2;
-    AForm3* aform3;
-    AForm4* aform4;
+    QJsonDocument admin1;
+    QJsonDocument admin2;
+    QJsonDocument admin3;
+    QJsonDocument admin4;
+    QJsonDocument admin5;
+    QJsonDocument admin6;
 };
 
 #endif // ADMIN_H

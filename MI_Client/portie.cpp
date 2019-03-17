@@ -353,6 +353,7 @@ void Portie::on_pushButton_5_clicked()
                             qDebug() << doc;
                             Network *net = new Network;
                             connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_ResultChangeGuest(Network *)));
+                            qDebug() <<IP;
                             net->Post("http://"+IP+":5555/updateguest.json", doc);
                         } else QMessageBox::warning(this,"Ошибка!","Дата заселения не может быть позже даты отъезда!");
                     } else QMessageBox::warning(this,"Ошибка!","Отчество не может быть пустым!");

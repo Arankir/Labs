@@ -19,8 +19,7 @@ void Network::Post(QString req, QJsonDocument doc){
     QByteArray ba = QString(doc.toJson()).toLocal8Bit();
     QUrl url(req);
     connect(manager,&QNetworkAccessManager::finished,this,&Network::OnResultPost);
-    QNetworkRequest request;
-    request.setUrl(url);
+    QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     manager->post(request,ba);
 }

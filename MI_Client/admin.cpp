@@ -8,84 +8,47 @@ Admin::Admin(QString ips, QWidget *parent) :
     IP=ips;
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
-    QGridLayout* cookL = new QGridLayout;
-    QGridLayout* WhkL = new QGridLayout;
-    QGridLayout* PortieL = new QGridLayout;
 
+    QGridLayout* cookL = new QGridLayout;
     cook= new Cook(IP);
     cookL->addWidget(cook);
-    //cook->setDB(db);
     connect(cook,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
+    ui->Cook->setLayout(cookL);
 
+    QGridLayout* WhkL = new QGridLayout;
     whk = new Warehousekeeper(IP);
     WhkL->addWidget(whk);
-    //whk->setDB(db);
     connect(whk,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
+    ui->Whk->setLayout(WhkL);
 
+    QGridLayout* PortieL = new QGridLayout;
     portie = new Portie(IP);
     PortieL->addWidget(portie);
-    //whk->setDB(db);
     connect(portie,SIGNAL(loginOpen()),this,SLOT(on_LogOut_clicked()));
-
-    ui->Cook->setLayout(cookL);
-    ui->Whk->setLayout(WhkL);
     ui->Stocker->setLayout(PortieL);
 
-    QVBoxLayout *layout1 = new QVBoxLayout;
-    aform1 = new AForm1;
-    aform1->setDB(db);
-    layout1->addWidget(aform1);
-    ui->RegWid->setLayout(layout1);
-
-    QVBoxLayout *layout2 = new QVBoxLayout;
-    aform2 = new AForm2;
-    aform2->setDB(db);
-    layout2->addWidget(aform2);
-    ui->AddIngWid->setLayout(layout2);
-
-    QVBoxLayout *layout3 = new QVBoxLayout;
-    aform3 = new AForm3;
-    aform3->setDB(db);
-    layout3->addWidget(aform3);
-    ui->AddDishWid->setLayout(layout3);
-
-    QVBoxLayout *layout4 = new QVBoxLayout;
-    aform4 = new AForm4;
-    aform4->setDB(db);
-    layout4->addWidget(aform4);
-    ui->AddStockWid->setLayout(layout4);
-
-    Admin::on_hide_clicked();
-
-//    QJsonObject dish;
-//    dish["title"] = "СуперСуп";
-
-//    QJsonArray arr_ing;
-//    QJsonObject ing;
-//    ing["title"]="Морковь";
-//    ing["amount"]="5";
-//    arr_ing.append(ing);
-//    QJsonObject ing2;
-//    ing2["title"]="Свекла";
-//    ing2["amount"]="5";
-//    arr_ing.append(ing2);
-
-//    dish["ingredients"]=arr_ing;
-//    QJsonDocument doc;
-//    doc.setObject(dish);
-
-//    QByteArray reqData;
-//    reqData = QString(doc.toJson()).toLocal8Bit();
+    //ui->C3Date->setDate(QDate::currentDate());
+    ui->GBA1->move(215,50);
+    ui->GBA2->move(215,50);
+    ui->GBA3->move(215,50);
+    ui->GBA4->move(215,50);
+    ui->GBA5->move(215,50);
+    ui->GBA6->move(215,50);
+//    QStringList hh;
+//    hh.append("Ингредиент");
+//    hh.append("Требуется");
+//    hh.append("На складе");
+//    QStandardItemModel *M = new QStandardItemModel;
+//    M->setHorizontalHeaderLabels(hh);
+//    ui->C1TVIngredients->setModel(M);
+//    ui->C1TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//    ui->C2T1->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    Admin::on_Hide_clicked();
 }
 
 Admin::~Admin()
 {
     delete ui;
-}
-
-void Admin::setDB(QSqlDatabase *db)
-{
-    this->db=db;
 }
 
 void Admin::on_LogOut_clicked()
@@ -94,37 +57,260 @@ void Admin::on_LogOut_clicked()
     this->hide();
 }
 
-void Admin::on_hide_clicked()
+void Admin::on_Hide_clicked()
 {
-    ui->BdWid->hide();
-    ui->RegWid->hide();
-    ui->AddDishWid->hide();
-    ui->AddIngWid->hide();
-    ui->AddStockWid->hide();
-    ui->ChangeReqWid->hide();
+    ui->GBA1->setVisible(false);
+    ui->GBA2->setVisible(false);
+    ui->GBA3->setVisible(false);
+    ui->GBA4->setVisible(false);
+    ui->GBA5->setVisible(false);
+    ui->GBA6->setVisible(false);
+    ui->Hide->setVisible(false);
 }
 
-void Admin::on_Reg_clicked()
+void Admin::on_ABShow1_clicked()
 {
-    Admin::on_hide_clicked();
-    ui->RegWid->show();
+    Network *admins1 = new Network;
+    connect(admins1,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show1(Network *)));
+    admins1->Get("http://"+IP+":5555/auth.json");
+    Admin::on_Hide_clicked();
+    ui->GBA1->setVisible(true);
+    ui->Hide->setVisible(true);
 }
 
-
-void Admin::on_AddIng_clicked()
+void Admin::on_ABShow2_clicked()
 {
-    Admin::on_hide_clicked();
-    ui->AddIngWid->show();
+    Network *admins2 = new Network;
+    connect(admins2,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show2(Network *)));
+    admins2->Get("http://"+IP+":5555/ingredientstable.json");
+    Admin::on_Hide_clicked();
+    ui->GBA2->setVisible(true);
+    ui->Hide->setVisible(true);
 }
 
-void Admin::on_AddDish_clicked()
+void Admin::on_ABShow3_clicked()
 {
-    Admin::on_hide_clicked();
-    ui->AddDishWid->show();
+    Network *admins3 = new Network;
+    connect(admins3,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show3(Network *)));
+    admins3->Get("http://"+IP+":5555/dishtable.json");
+    Admin::on_Hide_clicked();
+    ui->GBA3->setVisible(true);
+    ui->Hide->setVisible(true);
 }
 
-void Admin::on_AddStock_clicked()
+void Admin::on_ABShow4_clicked()
 {
-    Admin::on_hide_clicked();
-    ui->AddStockWid->show();
+    Network *admins4 = new Network;
+    connect(admins4,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show4(Network *)));
+    admins4->Get("http://"+IP+":5555/stocktable.json");
+    Admin::on_Hide_clicked();
+    ui->GBA4->setVisible(true);
+    ui->Hide->setVisible(true);
+}
+
+void Admin::on_ABShow5_clicked()
+{
+    Network *admins5 = new Network;
+    connect(admins5,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show5(Network *)));
+    admins5->Get("http://"+IP+":5555/ingredientstable.json");
+    Admin::on_Hide_clicked();
+    ui->GBA5->setVisible(true);
+    ui->Hide->setVisible(true);
+}
+
+void Admin::on_ABShow6_clicked()
+{
+    Admin::on_Hide_clicked();
+    ui->GBA6->setVisible(true);
+    ui->Hide->setVisible(true);
+}
+
+void Admin::on_Result_Show1(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin1=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin1.object().value("Users").toArray();
+        QStandardItemModel *A1T1M = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Логин");
+        hh.append("Пароль");
+        hh.append("Права доступа");
+        A1T1M->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("login").toString()));
+            A1T1M->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("password").toString()));
+            A1T1M->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("role").toString()));
+            A1T1M->setItem(i,2,Item3);
+            }
+        ui->A1TVUsers->setModel(A1T1M);
+        ui->A1TVUsers->resizeRowsToContents();
+        ui->A1TVUsers->resizeColumnsToContents();
+        }
+}
+
+void Admin::on_Result_Show2(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin2=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin2.object().value("Data").toArray();
+        QStandardItemModel *A2T1M = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор");
+        hh.append("Название");
+        hh.append("Необходимое кол-во");
+        hh.append("Единицы измерения");
+        A2T1M->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            A2T1M->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
+            A2T1M->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("needonstock").toString()));
+            A2T1M->setItem(i,2,Item3);
+            QStandardItem *Item4;
+            Item4 = new QStandardItem(QString(JsonA[i].toObject().value("unit").toString()));
+            A2T1M->setItem(i,3,Item4);
+            }
+        ui->A2TVIngredients->setModel(A2T1M);
+        ui->A2TVIngredients->resizeRowsToContents();
+        ui->A2TVIngredients->resizeColumnsToContents();
+        }
+}
+
+void Admin::on_Result_Show3(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin3=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        }
+}
+
+void Admin::on_Result_Show4(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin4=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        }
+}
+
+void Admin::on_Result_Show5(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin5=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        }
+}
+
+void Admin::on_A1BApply_clicked()
+{
+//url: /register.json
+//формат: {"login":"log","password":"pass","role":"Админ"}
+    if(ui->A1LELogin->text()!=""){
+        if(ui->A1LEPassword->text()!=""){
+            bool accept=true;
+            for (int i=0;i<admin1.object().value("Users").toArray().size();i++) {
+                if(admin1.object().value("Users").toArray().at(i).toObject().value("login").toString()==ui->A1LELogin->text()){
+                    accept=false;
+                    break;
+                    }
+                }
+            if(accept){
+                QJsonObject post;
+                post["login"]=ui->A1LELogin->text();
+                post["password"]=ui->A1LEPassword->text();
+                post["role"]=ui->A1CBRole->currentText();
+                QJsonDocument doc;
+                doc.setObject(post);
+                qDebug() << doc;
+                Network *net = new Network;
+                connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Post_NewUser(Network *)));
+                net->Post("http://"+IP+":5555/register.json", doc);
+            } else QMessageBox::warning(this,"Ошибка!","Такой логин уже существует!");
+        } else QMessageBox::warning(this,"Ошибка!","Пароль не может быть пустым!");
+    } else QMessageBox::warning(this,"Ошибка!","Логин не может быть пустым!");
+}
+
+void Admin::on_Result_Post_NewUser(Network *a){
+    qDebug() << a->GetAnswer();
+    qDebug() << a->GetError();
+    if(a->GetAnswer()=="YES"){
+        QMessageBox::information(this,"Успешно!","Новый пользователь добавлен!");
+        Network *admins1 = new Network;
+        connect(admins1,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show1(Network *)));
+        admins1->Get("http://"+IP+":5555/auth.json");
+        } else {
+        if(a->GetAnswer()=="NO"){
+            QMessageBox::warning(this,"Ошибка!","Не удалось добавить пользователя!");
+            } else {
+                QMessageBox::warning(this,"Ошибка!","Не удалось добавить пользователя! ("+a->GetAnswer()+")");
+            }
+        }
+}
+
+void Admin::on_A2BApply_clicked()
+{
+//url: /newingredient.json
+//формат: {"title":"name","unit":"кг"}
+        if(ui->A2LEtitle->text()!=""){
+            if(ui->A2LEneedonstock->text()!=""){
+                bool accept=true;
+                for (int i=0;i<admin2.object().value("Data").toArray().size();i++) {
+                    if(admin2.object().value("Data").toArray().at(i).toObject().value("title").toString()==ui->A2LEtitle->text()){
+                        accept=false;
+                        break;
+                        }
+                    }
+                if(accept){
+                    if(ui->A2LEunit->text()!=""){
+                        QJsonObject post;
+                        post["title"]=ui->A2LEtitle->text();
+                        post["qweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqwe"]=ui->A2LEneedonstock->text();
+                        post["unit"]=ui->A2LEunit->text();
+                        QJsonDocument doc;
+                        doc.setObject(post);
+                        qDebug() << doc;
+                        Network *net = new Network;
+                        connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Post_NewIngredient(Network *)));
+                        net->Post("http://"+IP+":5555/newingredient.json", doc);
+                    } else QMessageBox::warning(this,"Ошибка!","Необходимо указать единицы измерения для ингредиента");
+                } else QMessageBox::warning(this,"Ошибка!","Такой ингредиент уже существует!");
+            } else QMessageBox::warning(this,"Ошибка!","Необходимое количество на складе не может быть пустым!");
+        } else QMessageBox::warning(this,"Ошибка!","Название ингредиента не может быть пустым!");
+}
+
+void Admin::on_Result_Post_NewIngredient(Network *a){
+    qDebug() << a->GetAnswer();
+    qDebug() << a->GetError();
+    if(a->GetAnswer()=="YES"){
+        QMessageBox::information(this,"Успешно!","Новый ингредиент добавлен!");
+        Network *admins1 = new Network;
+        connect(admins1,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show1(Network *)));
+        admins1->Get("http://"+IP+":5555/ingredientstable.json");
+        } else {
+        if(a->GetAnswer()=="NO"){
+            QMessageBox::warning(this,"Ошибка!","Не удалось добавить ингредиент!");
+            } else {
+                QMessageBox::warning(this,"Ошибка!","Не удалось добавить ингредиент! ("+a->GetAnswer()+")");
+            }
+        }
 }

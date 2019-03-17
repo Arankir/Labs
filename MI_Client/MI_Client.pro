@@ -30,10 +30,6 @@ SOURCES += \
     cook.cpp \
     warehousekeeper.cpp \
     admin.cpp \
-    aform1.cpp \
-    aform2.cpp \
-    aform3.cpp \
-    aform4.cpp \
     network.cpp \
     filterinvoice.cpp \
     portie.cpp
@@ -43,10 +39,6 @@ HEADERS += \
     cook.h \
     warehousekeeper.h \
     admin.h \
-    aform1.h \
-    aform2.h \
-    aform3.h \
-    aform4.h \
     network.h \
     filterinvoice.h \
     portie.h
@@ -56,10 +48,6 @@ FORMS += \
     cook.ui \
     warehousekeeper.ui \
     admin.ui \
-    aform1.ui \
-    aform2.ui \
-    aform3.ui \
-    aform4.ui \
     portie.ui
 
 # Default rules for deployment.
