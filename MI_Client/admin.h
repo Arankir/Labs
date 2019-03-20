@@ -7,10 +7,7 @@
 #include <cook.h>
 #include <warehousekeeper.h>
 #include <portie.h>
-#include <aform1.h>
-#include <aform2.h>
-#include <aform3.h>
-#include <aform4.h>
+
 namespace Ui {
 class Admin;
 }
@@ -42,7 +39,8 @@ private slots:
 
     void on_Result_Show1(Network *);
     void on_Result_Show2(Network *);
-    void on_Result_Show3(Network *);
+    void on_Result_Show3_Dish(Network *);
+    void on_Result_Show3_Ingredients(Network *);
     void on_Result_Show4(Network *);
     void on_Result_Show5(Network *);
 
@@ -54,6 +52,12 @@ private slots:
 
     void on_Result_Post_NewIngredient(Network *);
 
+    void on_A3chbIngredientPressed(int);
+
+    void on_A3BApply_clicked();
+
+    void on_Result_Post_NewDish(Network *);
+
 signals:
     void loginOpen();
 
@@ -63,10 +67,12 @@ private:
     Warehousekeeper* whk;
     Portie* portie;
     QString IP;
+    QList <QCheckBox*> LIngredients;
 
     QJsonDocument admin1;
     QJsonDocument admin2;
-    QJsonDocument admin3;
+    QJsonDocument admin3dish;
+    QJsonDocument admin3ingredient;
     QJsonDocument admin4;
     QJsonDocument admin5;
     QJsonDocument admin6;

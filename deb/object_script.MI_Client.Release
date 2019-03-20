@@ -3,10 +3,6 @@ release/mainwindow.o
 release/cook.o
 release/warehousekeeper.o
 release/admin.o
-release/aform1.o
-release/aform2.o
-release/aform3.o
-release/aform4.o
 release/network.o
 release/filterinvoice.o
 release/portie.o
@@ -15,9 +11,5 @@ release/moc_mainwindow.o
 release/moc_cook.o
 release/moc_warehousekeeper.o
 release/moc_admin.o
-release/moc_aform1.o
-release/moc_aform2.o
-release/moc_aform3.o
-release/moc_aform4.o
 release/moc_network.o
 release/moc_portie.o

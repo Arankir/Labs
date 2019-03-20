@@ -401,7 +401,7 @@
      <property name="title">
       <string>Добавление нового блюда</string>
      </property>
-     <widget class="QLineEdit" name="A2LEtitle_2">
+     <widget class="QLineEdit" name="A3LETitle">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -414,7 +414,7 @@
        <string>Не выбрано</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="A2BApply_2">
+     <widget class="QPushButton" name="A3BApply">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -427,7 +427,7 @@
        <string>Добавить</string>
       </property>
      </widget>
-     <widget class="QTableView" name="A2TVIngredients_2">
+     <widget class="QTableView" name="A3TVDish">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -437,7 +437,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="A2Ltitle_2">
+     <widget class="QLabel" name="A3LTitle">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -450,7 +450,7 @@
        <string>Название</string>
       </property>
      </widget>
-     <widget class="QScrollArea" name="scrollArea">
+     <widget class="QScrollArea" name="A3SAAllIngredients">
       <property name="geometry">
        <rect>
         <x>190</x>
@@ -473,7 +473,7 @@
        </property>
       </widget>
      </widget>
-     <widget class="QScrollArea" name="scrollArea_2">
+     <widget class="QScrollArea" name="A3SASelectedIngredients">
       <property name="geometry">
        <rect>
         <x>400</x>

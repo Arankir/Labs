@@ -191,13 +191,49 @@ void Admin::on_Result_Show2(Network *a){
         }
 }
 
-void Admin::on_Result_Show3(Network *a){
+void Admin::on_Result_Show3_Dish(Network *a){
     qDebug() << a->GetAnswer();
     if(a->GetAnswer()==""){
         qDebug() <<"Error";
         qDebug() << a->GetError();
         } else {
-        admin3=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        admin3dish=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin3dish.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Название");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
+            Model->setItem(i,0,Item1);
+            }
+        ui->A3TVDish->setModel(Model);
+        ui->A3TVDish->resizeRowsToContents();
+        ui->A3TVDish->resizeColumnsToContents();
+        }
+}
+
+void Admin::on_Result_Show3_Ingredients(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin3ingredient=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JAIng=admin3ingredient.object().value("Data").toArray();
+        QWidget* widget = new QWidget;
+        QFormLayout *layout = new QFormLayout;
+        for(int i=0;i<JAIng.size();i++){
+            QCheckBox *chb = new QCheckBox(this);
+            chb->setObjectName("A3chb"+JAIng[i].toObject().value("title").toString());
+            chb->setText(JAIng[i].toObject().value("title").toString()+" ("+JAIng[i].toObject().value("unit").toString()+")");
+            layout->addWidget(chb);
+            connect(chb,SIGNAL(stateChanged(int)),this,SLOT(on_W3chbIngredientPressed(int)));
+            }
+        LIngredients.clear();
+        widget->setLayout(layout);
+        ui->A3SAAllIngredients->setWidget(widget);
         }
 }
 
@@ -311,6 +347,89 @@ void Admin::on_Result_Post_NewIngredient(Network *a){
             QMessageBox::warning(this,"Ошибка!","Не удалось добавить ингредиент!");
             } else {
                 QMessageBox::warning(this,"Ошибка!","Не удалось добавить ингредиент! ("+a->GetAnswer()+")");
+            }
+        }
+}
+
+void Admin::on_A3chbIngredientPressed(int state){
+    QCheckBox* chb = (QCheckBox*) sender();
+    QRegExp exp("[1-9]{1}[0-9]{0,10}");
+    if(state == 2){
+        LIngredients.push_back(chb);
+        } else {
+        for(int i=0; i<LIngredients.size();i++){
+            if (LIngredients[i] == chb)
+                LIngredients.takeAt(i);
+            }
+        }
+    QFormLayout* layout = new QFormLayout;
+    QWidget* widget = new QWidget;
+    for(int i=0; i<LIngredients.size();i++){
+        QLineEdit* LiEd = new QLineEdit();
+        LiEd->setObjectName(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5));
+        LiEd->setValidator(new QRegExpValidator(exp,this));
+        QLabel *lb = new QLabel(LIngredients[i]->text());
+        lb->setObjectName("A3Lb"+LIngredients[i]->text());
+        layout->addRow(lb,LiEd);
+        }
+    widget->setLayout(layout);
+    ui->A3SASelectedIngredients->setWidget(widget);
+}
+
+void Admin::on_A3BApply_clicked(){
+//url: /newdish.json
+//формат: {"title":"name_dish","ingredients": [
+//{"title":"name_ing","amount":"30"},
+    if(ui->A3LETitle->text()!=""){
+        bool accept=true;
+        for (int i=0;i<admin3dish.object().value("Data").toArray().size();i++) {
+            if(admin3dish.object().value("Data").toArray().at(i).toObject().value("title").toString()==ui->A3LETitle->text()){
+                accept=false;
+                break;
+                }
+            }
+        if(accept){
+            if(LIngredients.size()){
+                for (int i=0;i<LIngredients.size();i++) {
+                    if(findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text()=="")
+                        accept=false;
+                    }
+                if(accept){
+                    QJsonObject post;
+                    post["title"]=ui->A3LETitle->text();
+                    QJsonArray ingredients;
+                    for (int i=0;i<LIngredients.size();i++) {
+                        QJsonObject ingredient;
+                        ingredient["title"]=findChild<QLabel*>("A3Lb"+LIngredients[i]->text())->text();
+                        ingredient["amount"]=findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text();
+                        ingredients.append(ingredient);
+                        }
+                    post["ingredients"]=ingredients;
+                    QJsonDocument doc;
+                    doc.setObject(post);
+                    qDebug() << doc;
+                    Network *net = new Network;
+                    connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Post_NewDish(Network *)));
+                    net->Post("http://"+IP+":5555/newdish.json", doc);
+                }else QMessageBox::warning(this,"Ошибка!","Введите количество ингредиентов, необходимое для блюда!");
+            }else QMessageBox::warning(this,"Ошибка!","Выберите продукты для блюда!");
+        }else QMessageBox::warning(this,"Ошибка!","Такое блюдо уже существует!");
+    }else QMessageBox::warning(this,"Ошибка!","Название продукта не может быть пустым!");
+}
+
+void Admin::on_Result_Post_NewDish(Network *a){
+    qDebug() << a->GetAnswer();
+    qDebug() << a->GetError();
+    if(a->GetAnswer()=="YES"){
+        QMessageBox::information(this,"Успешно!","Новое блюдо добавлено!");
+        Network *admins = new Network;
+        connect(admins,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show3_Dish(Network *)));
+        admins->Get("http://"+IP+":5555/dishtable.json");
+        } else {
+        if(a->GetAnswer()=="NO"){
+            QMessageBox::warning(this,"Ошибка!","Не удалось добавить блюдо!");
+            } else {
+                QMessageBox::warning(this,"Ошибка!","Не удалось добавить блюдо! ("+a->GetAnswer()+")");
             }
         }
 }
