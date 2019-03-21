@@ -7,6 +7,8 @@
 #include <cook.h>
 #include <warehousekeeper.h>
 #include <portie.h>
+#include <QLineEdit>
+#include <QTimer>
 
 namespace Ui {
 class Admin;

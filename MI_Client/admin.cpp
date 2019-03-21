@@ -90,9 +90,12 @@ void Admin::on_ABShow2_clicked()
 
 void Admin::on_ABShow3_clicked()
 {
-    Network *admins3 = new Network;
-    connect(admins3,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show3(Network *)));
-    admins3->Get("http://"+IP+":5555/dishtable.json");
+    Network *admins3d = new Network;
+    connect(admins3d,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show3_Dish(Network *)));
+    admins3d->Get("http://"+IP+":5555/dishtable.json");
+    Network *admins3i = new Network;
+    connect(admins3i,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show3_Ingredients(Network *)));
+    admins3i->Get("http://"+IP+":5555/ingredientstable.json");
     Admin::on_Hide_clicked();
     ui->GBA3->setVisible(true);
     ui->Hide->setVisible(true);
@@ -229,7 +232,7 @@ void Admin::on_Result_Show3_Ingredients(Network *a){
             chb->setObjectName("A3chb"+JAIng[i].toObject().value("title").toString());
             chb->setText(JAIng[i].toObject().value("title").toString()+" ("+JAIng[i].toObject().value("unit").toString()+")");
             layout->addWidget(chb);
-            connect(chb,SIGNAL(stateChanged(int)),this,SLOT(on_W3chbIngredientPressed(int)));
+            connect(chb,SIGNAL(stateChanged(int)),this,SLOT(on_A3chbIngredientPressed(int)));
             }
         LIngredients.clear();
         widget->setLayout(layout);
