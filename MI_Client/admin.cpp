@@ -41,8 +41,9 @@ Admin::Admin(QString ips, QWidget *parent) :
 //    QStandardItemModel *M = new QStandardItemModel;
 //    M->setHorizontalHeaderLabels(hh);
 //    ui->C1TVIngredients->setModel(M);
-//    ui->C1TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
-//    ui->C2T1->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->A1TVUsers->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->A2TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->A3TVDish->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Admin::on_Hide_clicked();
 }
 
@@ -403,7 +404,7 @@ void Admin::on_A3BApply_clicked(){
                     QJsonArray ingredients;
                     for (int i=0;i<LIngredients.size();i++) {
                         QJsonObject ingredient;
-                        ingredient["title"]=findChild<QLabel*>("A3Lb"+LIngredients[i]->text())->text();
+                        ingredient["title"]=LIngredients[i]->text().mid(0,LIngredients[i]->text().indexOf(" (",1));
                         ingredient["amount"]=findChild<QLineEdit*>(LIngredients[i]->objectName().mid(5,LIngredients[i]->objectName().length()-5))->text();
                         ingredients.append(ingredient);
                         }
