@@ -60,6 +60,8 @@ private slots:
 
     void on_Result_Post_NewDish(Network *);
 
+    void on_A4BApply_clicked();
+
 signals:
     void loginOpen();
 

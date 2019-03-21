@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Portie_t {
-    QByteArrayData data[13];
-    char stringdata0[213];
+    QByteArrayData data[20];
+    char stringdata0[340];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,7 +43,14 @@ QT_MOC_LITERAL(8, 122, 23), // "on_Result_networkPortie"
 QT_MOC_LITERAL(9, 146, 8), // "Network*"
 QT_MOC_LITERAL(10, 155, 6), // "portie"
 QT_MOC_LITERAL(11, 162, 25), // "on_P1ButtonAccept_clicked"
-QT_MOC_LITERAL(12, 188, 24) // "on_P2ButtonApply_clicked"
+QT_MOC_LITERAL(12, 188, 24), // "on_P2ButtonApply_clicked"
+QT_MOC_LITERAL(13, 213, 17), // "on_ResultNewGuest"
+QT_MOC_LITERAL(14, 231, 21), // "on_P3TVGuests_clicked"
+QT_MOC_LITERAL(15, 253, 11), // "QModelIndex"
+QT_MOC_LITERAL(16, 265, 5), // "index"
+QT_MOC_LITERAL(17, 271, 23), // "on_pushButton_4_clicked"
+QT_MOC_LITERAL(18, 295, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(19, 319, 20) // "on_ResultChangeGuest"
 
     },
     "Portie\0loginOpen\0\0on_Hide_clicked\0"
@@ -51,7 +58,10 @@ QT_MOC_LITERAL(12, 188, 24) // "on_P2ButtonApply_clicked"
     "on_pushButton_3_clicked\0on_pushButton_clicked\0"
     "on_Result_networkPortie\0Network*\0"
     "portie\0on_P1ButtonAccept_clicked\0"
-    "on_P2ButtonApply_clicked"
+    "on_P2ButtonApply_clicked\0on_ResultNewGuest\0"
+    "on_P3TVGuests_clicked\0QModelIndex\0"
+    "index\0on_pushButton_4_clicked\0"
+    "on_pushButton_5_clicked\0on_ResultChangeGuest"
 };
 #undef QT_MOC_LITERAL
 
@@ -61,7 +71,7 @@ static const uint qt_meta_data_Portie[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -69,17 +79,22 @@ static const uint qt_meta_data_Portie[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x06 /* Public */,
+       1,    0,   84,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   60,    2, 0x08 /* Private */,
-       4,    0,   61,    2, 0x08 /* Private */,
-       5,    0,   62,    2, 0x08 /* Private */,
-       6,    0,   63,    2, 0x08 /* Private */,
-       7,    0,   64,    2, 0x08 /* Private */,
-       8,    1,   65,    2, 0x08 /* Private */,
-      11,    0,   68,    2, 0x08 /* Private */,
-      12,    0,   69,    2, 0x08 /* Private */,
+       3,    0,   85,    2, 0x08 /* Private */,
+       4,    0,   86,    2, 0x08 /* Private */,
+       5,    0,   87,    2, 0x08 /* Private */,
+       6,    0,   88,    2, 0x08 /* Private */,
+       7,    0,   89,    2, 0x08 /* Private */,
+       8,    1,   90,    2, 0x08 /* Private */,
+      11,    0,   93,    2, 0x08 /* Private */,
+      12,    0,   94,    2, 0x08 /* Private */,
+      13,    1,   95,    2, 0x08 /* Private */,
+      14,    1,   98,    2, 0x08 /* Private */,
+      17,    0,  101,    2, 0x08 /* Private */,
+      18,    0,  102,    2, 0x08 /* Private */,
+      19,    1,  103,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -93,6 +108,11 @@ static const uint qt_meta_data_Portie[] = {
     QMetaType::Void, 0x80000000 | 9,   10,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 9,    2,
+    QMetaType::Void, 0x80000000 | 15,   16,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 9,    2,
 
        0        // eod
 };
@@ -112,12 +132,31 @@ void Portie::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 6: _t->on_Result_networkPortie((*reinterpret_cast< Network*(*)>(_a[1]))); break;
         case 7: _t->on_P1ButtonAccept_clicked(); break;
         case 8: _t->on_P2ButtonApply_clicked(); break;
+        case 9: _t->on_ResultNewGuest((*reinterpret_cast< Network*(*)>(_a[1]))); break;
+        case 10: _t->on_P3TVGuests_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 11: _t->on_pushButton_4_clicked(); break;
+        case 12: _t->on_pushButton_5_clicked(); break;
+        case 13: _t->on_ResultChangeGuest((*reinterpret_cast< Network*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 6:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Network* >(); break;
+            }
+            break;
+        case 9:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Network* >(); break;
+            }
+            break;
+        case 13:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -166,13 +205,13 @@ int Portie::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 14;
     }
     return _id;
 }

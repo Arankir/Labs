@@ -44,6 +44,7 @@ Admin::Admin(QString ips, QWidget *parent) :
     ui->A1TVUsers->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A2TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A3TVDish->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->A4TVStocks->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Admin::on_Hide_clicked();
 }
 
@@ -74,6 +75,15 @@ void Admin::on_ABShow1_clicked()
     Network *admins1 = new Network;
     connect(admins1,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show1(Network *)));
     admins1->Get("http://"+IP+":5555/auth.json");
+    QStandardItemModel *A1T1M = new QStandardItemModel;
+    QStringList hh;
+    hh.append("Логин");
+    hh.append("Пароль");
+    hh.append("Права доступа");
+    A1T1M->setHorizontalHeaderLabels(hh);
+    ui->A1TVUsers->setModel(A1T1M);
+    ui->A1TVUsers->resizeRowsToContents();
+    ui->A1TVUsers->resizeColumnsToContents();
     Admin::on_Hide_clicked();
     ui->GBA1->setVisible(true);
     ui->Hide->setVisible(true);
@@ -84,6 +94,16 @@ void Admin::on_ABShow2_clicked()
     Network *admins2 = new Network;
     connect(admins2,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show2(Network *)));
     admins2->Get("http://"+IP+":5555/ingredientstable.json");
+    QStandardItemModel *A2T1M = new QStandardItemModel;
+    QStringList hh;
+    hh.append("Идентификатор");
+    hh.append("Название");
+    hh.append("Необходимое кол-во");
+    hh.append("Единицы измерения");
+    A2T1M->setHorizontalHeaderLabels(hh);
+    ui->A2TVIngredients->setModel(A2T1M);
+    ui->A2TVIngredients->resizeRowsToContents();
+    ui->A2TVIngredients->resizeColumnsToContents();
     Admin::on_Hide_clicked();
     ui->GBA2->setVisible(true);
     ui->Hide->setVisible(true);
@@ -97,6 +117,12 @@ void Admin::on_ABShow3_clicked()
     Network *admins3i = new Network;
     connect(admins3i,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show3_Ingredients(Network *)));
     admins3i->Get("http://"+IP+":5555/ingredientstable.json");
+    QStandardItemModel *Model = new QStandardItemModel;
+    QStringList hh;
+    hh.append("Название");
+    ui->A3TVDish->setModel(Model);
+    ui->A3TVDish->resizeRowsToContents();
+    ui->A3TVDish->resizeColumnsToContents();
     Admin::on_Hide_clicked();
     ui->GBA3->setVisible(true);
     ui->Hide->setVisible(true);
@@ -107,6 +133,14 @@ void Admin::on_ABShow4_clicked()
     Network *admins4 = new Network;
     connect(admins4,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show4(Network *)));
     admins4->Get("http://"+IP+":5555/stocktable.json");
+    QStandardItemModel *Model = new QStandardItemModel;
+    QStringList hh;
+    hh.append("Идентификатор");
+    hh.append("Название");
+    Model->setHorizontalHeaderLabels(hh);
+    ui->A3TVDish->setModel(Model);
+    ui->A3TVDish->resizeRowsToContents();
+    ui->A3TVDish->resizeColumnsToContents();
     Admin::on_Hide_clicked();
     ui->GBA4->setVisible(true);
     ui->Hide->setVisible(true);
@@ -248,6 +282,23 @@ void Admin::on_Result_Show4(Network *a){
         qDebug() << a->GetError();
         } else {
         admin4=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin4.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор");
+        hh.append("Название");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
+            Model->setItem(i,1,Item2);
+            }
+        ui->A3TVDish->setModel(Model);
+        ui->A3TVDish->resizeRowsToContents();
+        ui->A3TVDish->resizeColumnsToContents();
         }
 }
 
@@ -437,3 +488,27 @@ void Admin::on_Result_Post_NewDish(Network *a){
             }
         }
 }
+
+void Admin::on_A4BApply_clicked(){
+//url: /newstock.json
+//формат: {"title":"name"}
+        if(ui->A4LETitle->text()!=""){
+            bool accept=true;
+            for (int i=0;i<admin4.object().value("Data").toArray().size();i++) {
+                if(admin4.object().value("Data").toArray().at(i).toObject().value("title").toString()==ui->A4LETitle->text()){
+                    accept=false;
+                    break;
+                    }
+                }
+            if(accept){
+                QJsonObject post;
+                post["title"]=ui->A4LETitle->text();
+                QJsonDocument doc;
+                doc.setObject(post);
+                qDebug() << doc;
+                Network *net = new Network;
+                connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Post_NewStock(Network *)));
+                net->Post("http://"+IP+":5555/newstock.json", doc);
+            }else QMessageBox::warning(this,"Ошибка!","Такой склад уже существует!");
+        }else QMessageBox::warning(this,"Ошибка!","Название склада не может быть пустым!");
+    }
