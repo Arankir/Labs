@@ -34,17 +34,12 @@ Admin::Admin(QString ips, QWidget *parent) :
     ui->GBA4->move(215,50);
     ui->GBA5->move(215,50);
     ui->GBA6->move(215,50);
-//    QStringList hh;
-//    hh.append("Ингредиент");
-//    hh.append("Требуется");
-//    hh.append("На складе");
-//    QStandardItemModel *M = new QStandardItemModel;
-//    M->setHorizontalHeaderLabels(hh);
-//    ui->C1TVIngredients->setModel(M);
     ui->A1TVUsers->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A2TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A3TVDish->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A4TVStocks->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //ui->A5TVStocks->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->A6TV->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Admin::on_Hide_clicked();
 }
 
@@ -88,7 +83,6 @@ void Admin::on_ABShow1_clicked()
     ui->GBA1->setVisible(true);
     ui->Hide->setVisible(true);
 }
-
 void Admin::on_ABShow2_clicked()
 {
     Network *admins2 = new Network;
@@ -108,7 +102,6 @@ void Admin::on_ABShow2_clicked()
     ui->GBA2->setVisible(true);
     ui->Hide->setVisible(true);
 }
-
 void Admin::on_ABShow3_clicked()
 {
     Network *admins3d = new Network;
@@ -127,7 +120,6 @@ void Admin::on_ABShow3_clicked()
     ui->GBA3->setVisible(true);
     ui->Hide->setVisible(true);
 }
-
 void Admin::on_ABShow4_clicked()
 {
     Network *admins4 = new Network;
@@ -138,14 +130,13 @@ void Admin::on_ABShow4_clicked()
     hh.append("Идентификатор");
     hh.append("Название");
     Model->setHorizontalHeaderLabels(hh);
-    ui->A3TVDish->setModel(Model);
-    ui->A3TVDish->resizeRowsToContents();
-    ui->A3TVDish->resizeColumnsToContents();
+    ui->A4TVStocks->setModel(Model);
+    ui->A4TVStocks->resizeRowsToContents();
+    ui->A4TVStocks->resizeColumnsToContents();
     Admin::on_Hide_clicked();
     ui->GBA4->setVisible(true);
     ui->Hide->setVisible(true);
 }
-
 void Admin::on_ABShow5_clicked()
 {
     Network *admins5 = new Network;
@@ -155,9 +146,11 @@ void Admin::on_ABShow5_clicked()
     ui->GBA5->setVisible(true);
     ui->Hide->setVisible(true);
 }
-
 void Admin::on_ABShow6_clicked()
 {
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6auth(Network *)));
+    admins6->Get("http://"+IP+":5555/authtable.json");
     Admin::on_Hide_clicked();
     ui->GBA6->setVisible(true);
     ui->Hide->setVisible(true);
@@ -193,7 +186,6 @@ void Admin::on_Result_Show1(Network *a){
         ui->A1TVUsers->resizeColumnsToContents();
         }
 }
-
 void Admin::on_Result_Show2(Network *a){
     qDebug() << a->GetAnswer();
     if(a->GetAnswer()==""){
@@ -228,7 +220,6 @@ void Admin::on_Result_Show2(Network *a){
         ui->A2TVIngredients->resizeColumnsToContents();
         }
 }
-
 void Admin::on_Result_Show3_Dish(Network *a){
     qDebug() << a->GetAnswer();
     if(a->GetAnswer()==""){
@@ -251,7 +242,6 @@ void Admin::on_Result_Show3_Dish(Network *a){
         ui->A3TVDish->resizeColumnsToContents();
         }
 }
-
 void Admin::on_Result_Show3_Ingredients(Network *a){
     qDebug() << a->GetAnswer();
     if(a->GetAnswer()==""){
@@ -274,7 +264,6 @@ void Admin::on_Result_Show3_Ingredients(Network *a){
         ui->A3SAAllIngredients->setWidget(widget);
         }
 }
-
 void Admin::on_Result_Show4(Network *a){
     qDebug() << a->GetAnswer();
     if(a->GetAnswer()==""){
@@ -296,12 +285,11 @@ void Admin::on_Result_Show4(Network *a){
             Item2 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
             Model->setItem(i,1,Item2);
             }
-        ui->A3TVDish->setModel(Model);
-        ui->A3TVDish->resizeRowsToContents();
-        ui->A3TVDish->resizeColumnsToContents();
+        ui->A4TVStocks->setModel(Model);
+        ui->A4TVStocks->resizeRowsToContents();
+        ui->A4TVStocks->resizeColumnsToContents();
         }
 }
-
 void Admin::on_Result_Show5(Network *a){
     qDebug() << a->GetAnswer();
     if(a->GetAnswer()==""){
@@ -340,7 +328,6 @@ void Admin::on_A1BApply_clicked()
         } else QMessageBox::warning(this,"Ошибка!","Пароль не может быть пустым!");
     } else QMessageBox::warning(this,"Ошибка!","Логин не может быть пустым!");
 }
-
 void Admin::on_Result_Post_NewUser(Network *a){
     qDebug() << a->GetAnswer();
     qDebug() << a->GetError();
@@ -375,7 +362,7 @@ void Admin::on_A2BApply_clicked()
                     if(ui->A2LEunit->text()!=""){
                         QJsonObject post;
                         post["title"]=ui->A2LEtitle->text();
-                        post["qweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqwe"]=ui->A2LEneedonstock->text();
+                        post["needonstock"]=ui->A2LEneedonstock->text();
                         post["unit"]=ui->A2LEunit->text();
                         QJsonDocument doc;
                         doc.setObject(post);
@@ -388,14 +375,13 @@ void Admin::on_A2BApply_clicked()
             } else QMessageBox::warning(this,"Ошибка!","Необходимое количество на складе не может быть пустым!");
         } else QMessageBox::warning(this,"Ошибка!","Название ингредиента не может быть пустым!");
 }
-
 void Admin::on_Result_Post_NewIngredient(Network *a){
     qDebug() << a->GetAnswer();
     qDebug() << a->GetError();
     if(a->GetAnswer()=="YES"){
         QMessageBox::information(this,"Успешно!","Новый ингредиент добавлен!");
         Network *admins1 = new Network;
-        connect(admins1,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show1(Network *)));
+        connect(admins1,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show2(Network *)));
         admins1->Get("http://"+IP+":5555/ingredientstable.json");
         } else {
         if(a->GetAnswer()=="NO"){
@@ -430,7 +416,6 @@ void Admin::on_A3chbIngredientPressed(int state){
     widget->setLayout(layout);
     ui->A3SASelectedIngredients->setWidget(widget);
 }
-
 void Admin::on_A3BApply_clicked(){
 //url: /newdish.json
 //формат: {"title":"name_dish","ingredients": [
@@ -471,7 +456,6 @@ void Admin::on_A3BApply_clicked(){
         }else QMessageBox::warning(this,"Ошибка!","Такое блюдо уже существует!");
     }else QMessageBox::warning(this,"Ошибка!","Название продукта не может быть пустым!");
 }
-
 void Admin::on_Result_Post_NewDish(Network *a){
     qDebug() << a->GetAnswer();
     qDebug() << a->GetError();
@@ -511,4 +495,499 @@ void Admin::on_A4BApply_clicked(){
                 net->Post("http://"+IP+":5555/newstock.json", doc);
             }else QMessageBox::warning(this,"Ошибка!","Такой склад уже существует!");
         }else QMessageBox::warning(this,"Ошибка!","Название склада не может быть пустым!");
-    }
+}
+void Admin::on_Result_Post_NewStock(Network *a){
+    qDebug() << a->GetAnswer();
+    qDebug() << a->GetError();
+    if(a->GetAnswer()=="YES"){
+        QMessageBox::information(this,"Успешно!","Новый склад добавлен!");
+        Network *admins = new Network;
+        connect(admins,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show4(Network *)));
+        admins->Get("http://"+IP+":5555/stocktable.json");
+        } else {
+        if(a->GetAnswer()=="NO"){
+            QMessageBox::warning(this,"Ошибка!","Не удалось добавить склад!");
+            } else {
+                QMessageBox::warning(this,"Ошибка!","Не удалось добавить склад! ("+a->GetAnswer()+")");
+            }
+        }
+}
+
+void Admin::on_Result_Show6auth(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Логин");
+        hh.append("Пароль");
+        hh.append("Идентификатор роли");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("login").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("password").toString()));
+            Model->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("id_role").toString()));
+            Model->setItem(i,2,Item3);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6dish(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор");
+        hh.append("Название");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
+            Model->setItem(i,1,Item2);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6guests(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор");
+        hh.append("Паспорт");
+        hh.append("Фамилия");
+        hh.append("Имя");
+        hh.append("Отчество");
+        hh.append("Телефон");
+        hh.append("Дата заезда");
+        hh.append("Дата выезда");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("pasport").toString()));
+            Model->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("second_name").toString()));
+            Model->setItem(i,2,Item3);
+            QStandardItem *Item4;
+            Item4 = new QStandardItem(QString(JsonA[i].toObject().value("first_name").toString()));
+            Model->setItem(i,3,Item4);
+            QStandardItem *Item5;
+            Item5 = new QStandardItem(QString(JsonA[i].toObject().value("patronymic").toString()));
+            Model->setItem(i,4,Item5);
+            QStandardItem *Item6;
+            Item6 = new QStandardItem(QString(JsonA[i].toObject().value("telephone").toString()));
+            Model->setItem(i,5,Item6);
+            QStandardItem *Item7;
+            Item7 = new QStandardItem(QString(JsonA[i].toObject().value("settlement_date").toString()));
+            Model->setItem(i,6,Item7);
+            QStandardItem *Item8;
+            Item8 = new QStandardItem(QString(JsonA[i].toObject().value("eviction_date").toString()));
+            Model->setItem(i,7,Item8);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6ingredients(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор");
+        hh.append("Название");
+        hh.append("Необходимое кол-во");
+        hh.append("Единицы измерения");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
+            Model->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("needonstock").toString()));
+            Model->setItem(i,2,Item3);
+            QStandardItem *Item4;
+            Item4 = new QStandardItem(QString(JsonA[i].toObject().value("unit").toString()));
+            Model->setItem(i,3,Item4);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6ingredients_dish(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Номер блюда");
+        hh.append("Номер ингредиента");
+        hh.append("Кол-во ингредиента");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id_dish").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("id_ingredient").toString()));
+            Model->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("amount").toString()));
+            Model->setItem(i,2,Item3);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6ingredients_stock(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Номер склада");
+        hh.append("Номер ингредиента");
+        hh.append("Кол-во ингредиента");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id_stock").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("id_ingredient").toString()));
+            Model->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("amount").toString()));
+            Model->setItem(i,2,Item3);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6invoice(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Номер накладной");
+        hh.append("Дата накладной");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("date").toString()));
+            Model->setItem(i,1,Item2);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6invoice_stock(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Номер накладной");
+        hh.append("Номер склада");
+        hh.append("Номер продукта");
+        hh.append("Кол-во продукта");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id_invoice").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("id_stock").toString()));
+            Model->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("id_ingredient").toString()));
+            Model->setItem(i,2,Item3);
+            QStandardItem *Item4;
+            Item4 = new QStandardItem(QString(JsonA[i].toObject().value("amount").toString()));
+            Model->setItem(i,3,Item4);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6menu(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Номер меню");
+        hh.append("Номер типа меню");
+        hh.append("Дата меню");
+        hh.append("Кол-во блюд");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("id_type").toString()));
+            Model->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("date").toString()));
+            Model->setItem(i,2,Item3);
+            QStandardItem *Item4;
+            Item4 = new QStandardItem(QString(JsonA[i].toObject().value("amount").toString()));
+            Model->setItem(i,3,Item4);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6menu_dish(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Номер меню");
+        hh.append("Номер блюда");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id_menu").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("id_dish").toString()));
+            Model->setItem(i,1,Item2);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6role(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор роли");
+        hh.append("Название роли");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("role").toString()));
+            Model->setItem(i,1,Item2);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6stock(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор");
+        hh.append("Название склада");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
+            Model->setItem(i,1,Item2);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+void Admin::on_Result_Show6type_menu(Network *a){
+    qDebug() << a->GetAnswer();
+    if(a->GetAnswer()==""){
+        qDebug() <<"Error";
+        qDebug() << a->GetError();
+        } else {
+        admin6=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin6.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор");
+        hh.append("Название типа меню");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
+            Model->setItem(i,1,Item2);
+            }
+        ui->A6TV->setModel(Model);
+        ui->A6TV->resizeRowsToContents();
+        ui->A6TV->resizeColumnsToContents();
+        }
+}
+
+void Admin::on_A6RBauth_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6auth(Network *)));
+    admins6->Get("http://"+IP+":5555/authtable.json");
+}
+void Admin::on_A6RBdish_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6dish(Network *)));
+    admins6->Get("http://"+IP+":5555/dishtable.json");
+}
+void Admin::on_A6RBguests_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6guests(Network *)));
+    admins6->Get("http://"+IP+":5555/gueststable.json");
+}
+void Admin::on_A6RBingredients_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients(Network *)));
+    admins6->Get("http://"+IP+":5555/ingredientstable.json");
+}
+void Admin::on_A6RBingredients_dish_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients_dish(Network *)));
+    admins6->Get("http://"+IP+":5555/ingredients_dishtable.json");
+}
+void Admin::on_A6RBingredients_stock_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients_stock(Network *)));
+    admins6->Get("http://"+IP+":5555/ingredients_stocktable.json");
+}
+void Admin::on_A6RBinvoice_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6invoice(Network *)));
+    admins6->Get("http://"+IP+":5555/invoicetable.json");
+}
+void Admin::on_A6RBinvoice_stock_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6invoice_stock(Network *)));
+    admins6->Get("http://"+IP+":5555/invoice_stocktable.json");
+}
+void Admin::on_A6RBmenu_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6menu(Network *)));
+    admins6->Get("http://"+IP+":5555/menutable.json");
+}
+void Admin::on_A6RBmenu_dish_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6menu_dish(Network *)));
+    admins6->Get("http://"+IP+":5555/menu_dishtable.json");
+}
+void Admin::on_A6RBrole_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6role(Network *)));
+    admins6->Get("http://"+IP+":5555/roletable.json");
+}
+void Admin::on_A6RBstock_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6stock(Network *)));
+    admins6->Get("http://"+IP+":5555/stocktable.json");
+}
+void Admin::on_A6RBtype_menu_clicked()
+{
+    Network *admins6 = new Network;
+    connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6type_menu(Network *)));
+    admins6->Get("http://"+IP+":5555/type_menutable.json");
+}
+

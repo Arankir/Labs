@@ -62,6 +62,36 @@ private slots:
 
     void on_A4BApply_clicked();
 
+    void on_Result_Post_NewStock(Network *);
+
+    void on_Result_Show6auth(Network *);
+    void on_Result_Show6dish(Network *);
+    void on_Result_Show6guests(Network *);
+    void on_Result_Show6ingredients(Network *);
+    void on_Result_Show6ingredients_dish(Network *);
+    void on_Result_Show6ingredients_stock(Network *);
+    void on_Result_Show6invoice(Network *);
+    void on_Result_Show6invoice_stock(Network *);
+    void on_Result_Show6menu(Network *);
+    void on_Result_Show6menu_dish(Network *);
+    void on_Result_Show6role(Network *);
+    void on_Result_Show6stock(Network *);
+    void on_Result_Show6type_menu(Network *);
+
+    void on_A6RBauth_clicked();
+    void on_A6RBdish_clicked();
+    void on_A6RBguests_clicked();
+    void on_A6RBingredients_clicked();
+    void on_A6RBingredients_dish_clicked();
+    void on_A6RBingredients_stock_clicked();
+    void on_A6RBinvoice_clicked();
+    void on_A6RBinvoice_stock_clicked();
+    void on_A6RBmenu_clicked();
+    void on_A6RBmenu_dish_clicked();
+    void on_A6RBrole_clicked();
+    void on_A6RBstock_clicked();
+    void on_A6RBtype_menu_clicked();
+
 signals:
     void loginOpen();
 

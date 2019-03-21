@@ -1,0 +1,15 @@
+debug/main.o
+debug/mainwindow.o
+debug/cook.o
+debug/warehousekeeper.o
+debug/admin.o
+debug/network.o
+debug/filterinvoice.o
+debug/portie.o
+debug/qrc_icons.o
+debug/moc_mainwindow.o
+debug/moc_cook.o
+debug/moc_warehousekeeper.o
+debug/moc_admin.o
+debug/moc_network.o
+debug/moc_portie.o
