@@ -92,6 +92,8 @@ private slots:
     void on_A6RBstock_clicked();
     void on_A6RBtype_menu_clicked();
 
+    void on_A6TV_clicked(const QModelIndex &index);
+
 signals:
     void loginOpen();
 
@@ -110,6 +112,7 @@ private:
     QJsonDocument admin4;
     QJsonDocument admin5;
     QJsonDocument admin6;
+    int SelectedTable=1;
 };
 
 #endif // ADMIN_H

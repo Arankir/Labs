@@ -917,77 +917,285 @@ void Admin::on_A6RBauth_clicked()
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6auth(Network *)));
     admins6->Get("http://"+IP+":5555/authtable.json");
+    SelectedTable=1;
 }
 void Admin::on_A6RBdish_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6dish(Network *)));
     admins6->Get("http://"+IP+":5555/dishtable.json");
+    SelectedTable=2;
 }
 void Admin::on_A6RBguests_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6guests(Network *)));
     admins6->Get("http://"+IP+":5555/gueststable.json");
+    SelectedTable=3;
 }
 void Admin::on_A6RBingredients_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients(Network *)));
     admins6->Get("http://"+IP+":5555/ingredientstable.json");
+    SelectedTable=4;
 }
 void Admin::on_A6RBingredients_dish_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients_dish(Network *)));
     admins6->Get("http://"+IP+":5555/ingredients_dishtable.json");
+    SelectedTable=5;
 }
 void Admin::on_A6RBingredients_stock_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients_stock(Network *)));
     admins6->Get("http://"+IP+":5555/ingredients_stocktable.json");
+    SelectedTable=6;
 }
 void Admin::on_A6RBinvoice_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6invoice(Network *)));
     admins6->Get("http://"+IP+":5555/invoicetable.json");
+    SelectedTable=7;
 }
 void Admin::on_A6RBinvoice_stock_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6invoice_stock(Network *)));
     admins6->Get("http://"+IP+":5555/invoice_stocktable.json");
+    SelectedTable=8;
 }
 void Admin::on_A6RBmenu_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6menu(Network *)));
     admins6->Get("http://"+IP+":5555/menutable.json");
+    SelectedTable=9;
 }
 void Admin::on_A6RBmenu_dish_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6menu_dish(Network *)));
     admins6->Get("http://"+IP+":5555/menu_dishtable.json");
+    SelectedTable=10;
 }
 void Admin::on_A6RBrole_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6role(Network *)));
     admins6->Get("http://"+IP+":5555/roletable.json");
+    SelectedTable=11;
 }
 void Admin::on_A6RBstock_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6stock(Network *)));
     admins6->Get("http://"+IP+":5555/stocktable.json");
+    SelectedTable=12;
 }
 void Admin::on_A6RBtype_menu_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6type_menu(Network *)));
     admins6->Get("http://"+IP+":5555/type_menutable.json");
+    SelectedTable=13;
 }
 
+void Admin::on_A6TV_clicked(const QModelIndex &index)
+{
+    ui->A6TV->selectRow(index.row());
+    QModelIndex in=ui->A6TV->model()->index(index.row(),0);
+    switch (SelectedTable) {
+    case 1://auth
+        ui->A6L1->setVisible(true);
+        ui->A6LE1->setVisible(true);
+        ui->A6L1->text()="Логин";
+        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),1);
+        ui->A6L2->setVisible(true);
+        ui->A6LE2->setVisible(true);
+        ui->A6L2->text()="Пароль";
+        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),2);
+        ui->A6L3->setVisible(true);
+        ui->A6LE3->setVisible(true);
+        ui->A6L3->text()="Роль";
+        ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),3);
+        ui->A6L4->setVisible(false);
+        ui->A6LE4->setVisible(false);
+        ui->A6L5->setVisible(false);
+        ui->A6LE5->setVisible(false);
+        ui->A6L6->setVisible(false);
+        ui->A6LE6->setVisible(false);
+        ui->A6L7->setVisible(false);
+        ui->A6DE1->setVisible(false);
+        ui->A6L8->setVisible(false);
+        ui->A6DE2->setVisible(false);
+        break;
+    case 2://dish
+        ui->A6L1->setVisible(true);
+        ui->A6LE1->setVisible(true);
+        ui->A6L1->text()="id";
+        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),1);
+        ui->A6L2->setVisible(true);
+        ui->A6LE2->setVisible(true);
+        ui->A6L2->text()="Название";
+        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),2);
+        ui->A6L3->setVisible(false);
+        ui->A6LE3->setVisible(false);
+        ui->A6L4->setVisible(false);
+        ui->A6LE4->setVisible(false);
+        ui->A6L5->setVisible(false);
+        ui->A6LE5->setVisible(false);
+        ui->A6L6->setVisible(false);
+        ui->A6LE6->setVisible(false);
+        ui->A6L7->setVisible(false);
+        ui->A6DE1->setVisible(false);
+        ui->A6L8->setVisible(false);
+        ui->A6DE2->setVisible(false);
+        break;
+    case 3://guests
+        ui->A6L1->setVisible(true);
+        ui->A6LE1->setVisible(true);
+        ui->A6L1->text()="id";
+        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),1);
+        ui->A6L2->setVisible(true);
+        ui->A6LE2->setVisible(true);
+        ui->A6L2->text()="Паспорт";
+        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),2);
+        ui->A6L3->setVisible(true);
+        ui->A6LE3->setVisible(true);
+        ui->A6L3->text()="Фамилия";
+        ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),3);
+        ui->A6L4->setVisible(true);
+        ui->A6LE4->setVisible(true);
+        ui->A6L4->text()="Имя";
+        ui->A6LE4->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),4);
+        ui->A6L5->setVisible(true);
+        ui->A6LE5->setVisible(true);
+        ui->A6L5->text()="Отчество";
+        ui->A6LE5->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),5);
+        ui->A6L6->setVisible(true);
+        ui->A6LE6->setVisible(true);
+        ui->A6L6->text()="Телефон";
+        ui->A6LE6->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),6);
+        ui->A6L7->setVisible(true);
+        ui->A6DE1->setVisible(true);
+        ui->A6L7->text()="Дата заезда";
+        ui->A6DE1->setDate(ui->A6TV->model()->data(in).toDate());
+        in=ui->A6TV->model()->index(index.row(),7);
+        ui->A6L8->setVisible(true);
+        ui->A6DE2->setVisible(true);
+        ui->A6L8->text()="Дата выезда";
+        ui->A6DE2->setDate(ui->A6TV->model()->data(in).toDate());
+        break;
+    case 4://ingredients
+        ui->A6L1->setVisible(true);
+        ui->A6LE1->setVisible(true);
+        ui->A6L1->text()="id";
+        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),1);
+        ui->A6L2->setVisible(true);
+        ui->A6LE2->setVisible(true);
+        ui->A6L2->text()="Название";
+        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),2);
+        ui->A6L3->setVisible(true);
+        ui->A6LE3->setVisible(true);
+        ui->A6L3->text()="Необходимое кол-во";
+        ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),3);
+        ui->A6L4->setVisible(true);
+        ui->A6LE4->setVisible(true);
+        ui->A6L4->text()="Ед измерения";
+        ui->A6LE4->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),4);
+        ui->A6L5->setVisible(false);
+        ui->A6LE5->setVisible(false);
+        ui->A6L6->setVisible(false);
+        ui->A6LE6->setVisible(false);
+        ui->A6L7->setVisible(false);
+        ui->A6DE1->setVisible(false);
+        ui->A6L8->setVisible(false);
+        ui->A6DE2->setVisible(false);
+        break;
+    case 5://ingredients-dish
+        ui->A6L1->setVisible(true);
+        ui->A6LE1->setVisible(true);
+        ui->A6L1->text()="Номер блюда";
+        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),1);
+        ui->A6L2->setVisible(true);
+        ui->A6LE2->setVisible(true);
+        ui->A6L2->text()="Номер ингредиента";
+        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),2);
+        ui->A6L3->setVisible(true);
+        ui->A6LE3->setVisible(true);
+        ui->A6L3->text()="Кол-во ингредиента";
+        ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
+        in=ui->A6TV->model()->index(index.row(),3);
+        ui->A6L4->setVisible(false);
+        ui->A6LE4->setVisible(false);
+        ui->A6L5->setVisible(false);
+        ui->A6LE5->setVisible(false);
+        ui->A6L6->setVisible(false);
+        ui->A6LE6->setVisible(false);
+        ui->A6L7->setVisible(false);
+        ui->A6DE1->setVisible(false);
+        ui->A6L8->setVisible(false);
+        ui->A6DE2->setVisible(false);
+        break;
+    case 6://ingredients-stock
+
+        break;
+    case 7://invoice
+
+        break;
+    case 8://invoice-stock
+
+        break;
+    case 9://menu
+
+        break;
+    case 10://menu-dish
+
+        break;
+    case 11://role
+
+        break;
+    case 12://stock
+
+        break;
+    case 13://type_menu
+
+        break;
+    }
+//    ui->A6LE1->setText(ui->P3TVGuests->model()->data(in).toString());
+//    in=ui->P3TVGuests->model()->index(index.row(),1);
+//    ui->P3LEPasport->setText(ui->P3TVGuests->model()->data(in).toString());
+//    in=ui->P3TVGuests->model()->index(index.row(),2);
+//    ui->P3LESecondName->setText(ui->P3TVGuests->model()->data(in).toString());
+//    in=ui->P3TVGuests->model()->index(index.row(),3);
+//    ui->P3LEFirstName->setText(ui->P3TVGuests->model()->data(in).toString());
+//    in=ui->P3TVGuests->model()->index(index.row(),4);
+//    ui->P3LEPatronymic->setText(ui->P3TVGuests->model()->data(in).toString());
+//    in=ui->P3TVGuests->model()->index(index.row(),5);
+//    ui->P3LETelephone->setText(ui->P3TVGuests->model()->data(in).toString());
+//    in=ui->P3TVGuests->model()->index(index.row(),6);
+//    ui->P3DESettlementDate->setDate(ui->P3TVGuests->model()->data(in).toDate());
+//    in=ui->P3TVGuests->model()->index(index.row(),7);
+//    ui->P3DEEvictionDate->setDate(ui->P3TVGuests->model()->data(in).toDate());
+    }

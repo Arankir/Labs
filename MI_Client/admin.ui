@@ -625,7 +625,7 @@
       <property name="geometry">
        <rect>
         <x>510</x>
-        <y>30</y>
+        <y>40</y>
         <width>121</width>
         <height>281</height>
        </rect>
@@ -1014,13 +1014,13 @@
          <x>0</x>
          <y>0</y>
          <width>489</width>
-         <height>45</height>
+         <height>42</height>
         </rect>
        </property>
        <widget class="QLabel" name="A6L8">
         <property name="geometry">
          <rect>
-          <x>430</x>
+          <x>460</x>
           <y>0</y>
           <width>47</width>
           <height>13</height>
@@ -1119,16 +1119,6 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="A6LE8">
-        <property name="geometry">
-         <rect>
-          <x>430</x>
-          <y>20</y>
-          <width>51</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="A6L1">
         <property name="geometry">
          <rect>
@@ -1191,14 +1181,30 @@
          <string>Text6</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="A6LE7">
+       <widget class="QDateEdit" name="A6DE1">
         <property name="geometry">
          <rect>
           <x>370</x>
           <y>20</y>
-          <width>51</width>
-          <height>20</height>
+          <width>81</width>
+          <height>22</height>
          </rect>
+        </property>
+        <property name="displayFormat">
+         <string>yyyy-MM-dd</string>
+        </property>
+       </widget>
+       <widget class="QDateEdit" name="A6DE2">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>20</y>
+          <width>81</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="displayFormat">
+         <string>yyyy-MM-dd</string>
         </property>
        </widget>
       </widget>

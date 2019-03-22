@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -116,13 +117,13 @@ public:
     QLineEdit *A6LE5;
     QLineEdit *A6LE3;
     QLineEdit *A6LE6;
-    QLineEdit *A6LE8;
     QLabel *A6L1;
     QLabel *A6L4;
     QLabel *A6L7;
     QLineEdit *A6LE4;
     QLabel *A6L6;
-    QLineEdit *A6LE7;
+    QDateEdit *A6DE1;
+    QDateEdit *A6DE2;
     QWidget *Cook;
     QWidget *Whk;
     QWidget *Stocker;
@@ -409,10 +410,10 @@ public:
         A6SA->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 489, 45));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 489, 42));
         A6L8 = new QLabel(scrollAreaWidgetContents_3);
         A6L8->setObjectName(QString::fromUtf8("A6L8"));
-        A6L8->setGeometry(QRect(430, 0, 47, 13));
+        A6L8->setGeometry(QRect(460, 0, 47, 13));
         A6L2 = new QLabel(scrollAreaWidgetContents_3);
         A6L2->setObjectName(QString::fromUtf8("A6L2"));
         A6L2->setGeometry(QRect(70, 0, 47, 13));
@@ -437,9 +438,6 @@ public:
         A6LE6 = new QLineEdit(scrollAreaWidgetContents_3);
         A6LE6->setObjectName(QString::fromUtf8("A6LE6"));
         A6LE6->setGeometry(QRect(310, 20, 51, 20));
-        A6LE8 = new QLineEdit(scrollAreaWidgetContents_3);
-        A6LE8->setObjectName(QString::fromUtf8("A6LE8"));
-        A6LE8->setGeometry(QRect(430, 20, 51, 20));
         A6L1 = new QLabel(scrollAreaWidgetContents_3);
         A6L1->setObjectName(QString::fromUtf8("A6L1"));
         A6L1->setGeometry(QRect(10, 0, 47, 13));
@@ -455,9 +453,12 @@ public:
         A6L6 = new QLabel(scrollAreaWidgetContents_3);
         A6L6->setObjectName(QString::fromUtf8("A6L6"));
         A6L6->setGeometry(QRect(310, 0, 47, 13));
-        A6LE7 = new QLineEdit(scrollAreaWidgetContents_3);
-        A6LE7->setObjectName(QString::fromUtf8("A6LE7"));
-        A6LE7->setGeometry(QRect(370, 20, 51, 20));
+        A6DE1 = new QDateEdit(scrollAreaWidgetContents_3);
+        A6DE1->setObjectName(QString::fromUtf8("A6DE1"));
+        A6DE1->setGeometry(QRect(370, 20, 81, 22));
+        A6DE2 = new QDateEdit(scrollAreaWidgetContents_3);
+        A6DE2->setObjectName(QString::fromUtf8("A6DE2"));
+        A6DE2->setGeometry(QRect(460, 20, 81, 22));
         A6SA->setWidget(scrollAreaWidgetContents_3);
         tabWidget->addTab(Admin1, QString());
         verticalLayoutWidget->raise();
@@ -560,6 +561,8 @@ public:
         A6L4->setText(QApplication::translate("Admin", "Text4", nullptr));
         A6L7->setText(QApplication::translate("Admin", "Text7", nullptr));
         A6L6->setText(QApplication::translate("Admin", "Text6", nullptr));
+        A6DE1->setDisplayFormat(QApplication::translate("Admin", "yyyy-MM-dd", nullptr));
+        A6DE2->setDisplayFormat(QApplication::translate("Admin", "yyyy-MM-dd", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Admin1), QApplication::translate("Admin", "\320\220\320\264\320\274\320\270\320\275", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Cook), QApplication::translate("Admin", "\320\237\320\276\320\262\320\260\321\200", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Whk), QApplication::translate("Admin", "\320\241\320\272\320\273\320\260\320\264\320\276\320\262\321\211\320\270\320\272", nullptr));
