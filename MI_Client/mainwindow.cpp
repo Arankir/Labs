@@ -94,13 +94,4 @@ void MainWindow::timertimeout(){
     QMessageBox::warning(this,"Ошибка!","Время ожидания ответа от сервера истекло");
 }
 
-QLineEdit *MainWindow::IP()
-{
-    return ui->IPEdit;
-}
 
-void Cook::reseveip()
-{
-    //QString text = MainWindow->IP()->toPlainText();
-    // do something with the text
-}

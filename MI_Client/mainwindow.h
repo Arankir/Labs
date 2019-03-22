@@ -24,7 +24,6 @@ public:
     Warehousekeeper *whk;
     Portie *portie;
     Admin *admin;
-    QLineEdit *IP();
 
 signals:
     void sendip(QString);

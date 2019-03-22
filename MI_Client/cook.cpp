@@ -122,6 +122,12 @@ void Cook::OnResultCook1(Network *cook){
             layout2->addWidget(rb2);
             connect(rb2,SIGNAL(stateChanged(int)),this,SLOT(chbCook3Change(int)));
         }
+        QJsonArray JsonB=cook1.object().value("Ingredients").toArray();
+        for(int i=0;i<JsonB.size();i++){
+            if(JsonB[i].toObject().value("total_amount").toString().toInt()<JsonB[i].toObject().value("needonstock").toString().toInt()){
+                QMessageBox::warning(this,"Внимание!","На складе почти не осталось продукта "+JsonB[i].toObject().value("title").toString()+" (осталось "+JsonB[i].toObject().value("total_amount").toString()+" "+JsonB[i].toObject().value("unit").toString()+", желательно иметь хотя бы "+JsonB[i].toObject().value("needonstock").toString()+" "+JsonB[i].toObject().value("unit").toString()+")");
+                }
+            }
         Ldishs.clear();
         widget1->setLayout(layout1);
         ui->C1SA1->setWidget(widget1);
@@ -479,6 +485,9 @@ if(a->GetAnswer()=="YES"){
     Network *cook4 = new Network;
     connect(cook4,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook4(Network *)));
     cook4->Get("http://"+IP+":5555/menu.json");
+    Network *cooks1 = new Network;
+    connect(cooks1,SIGNAL(onReady(Network *)),this,SLOT(OnResultCook1(Network *)));
+    cooks1->Get("http://"+IP+":5555/dish.json");
     } else {
     if(a->GetAnswer()=="NO"){
         QMessageBox::warning(this,"Ошибка!","Не удалось добавить меню!");
@@ -488,7 +497,7 @@ if(a->GetAnswer()=="YES"){
     }
 }
 
-void Cook::on_C1LE_textChanged(const QString &arg1)
+void Cook::on_C1LE_textChanged(const QString &)
 {
     QRadioButton* rb = new QRadioButton;
     for (int i=0;i<cook1.object().value("Dishs").toArray().size();i++) {

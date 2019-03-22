@@ -34,6 +34,9 @@ Admin::Admin(QString ips, QWidget *parent) :
     ui->GBA4->move(215,50);
     ui->GBA5->move(215,50);
     ui->GBA6->move(215,50);
+    ui->A6SA->setVisible(false);
+    ui->A6BI8->setVisible(false);
+    ui->A6BI9->setVisible(false);
     ui->A1TVUsers->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A2TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A3TVDish->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -541,6 +544,8 @@ void Admin::on_Result_Show6auth(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        inn=ui->A6TV->model()->index(0,0);
+        SelectedTable=1;
         }
 }
 void Admin::on_Result_Show6dish(Network *a){
@@ -567,6 +572,7 @@ void Admin::on_Result_Show6dish(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=2;
         }
 }
 void Admin::on_Result_Show6guests(Network *a){
@@ -617,6 +623,7 @@ void Admin::on_Result_Show6guests(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=3;
         }
 }
 void Admin::on_Result_Show6ingredients(Network *a){
@@ -651,6 +658,7 @@ void Admin::on_Result_Show6ingredients(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=4;
         }
 }
 void Admin::on_Result_Show6ingredients_dish(Network *a){
@@ -681,6 +689,7 @@ void Admin::on_Result_Show6ingredients_dish(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=5;
         }
 }
 void Admin::on_Result_Show6ingredients_stock(Network *a){
@@ -711,6 +720,7 @@ void Admin::on_Result_Show6ingredients_stock(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=6;
         }
 }
 void Admin::on_Result_Show6invoice(Network *a){
@@ -737,6 +747,7 @@ void Admin::on_Result_Show6invoice(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=7;
         }
 }
 void Admin::on_Result_Show6invoice_stock(Network *a){
@@ -771,6 +782,7 @@ void Admin::on_Result_Show6invoice_stock(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=8;
         }
 }
 void Admin::on_Result_Show6menu(Network *a){
@@ -805,6 +817,7 @@ void Admin::on_Result_Show6menu(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=9;
         }
 }
 void Admin::on_Result_Show6menu_dish(Network *a){
@@ -831,6 +844,7 @@ void Admin::on_Result_Show6menu_dish(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=10;
         }
 }
 void Admin::on_Result_Show6role(Network *a){
@@ -857,6 +871,7 @@ void Admin::on_Result_Show6role(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=11;
         }
 }
 void Admin::on_Result_Show6stock(Network *a){
@@ -883,6 +898,7 @@ void Admin::on_Result_Show6stock(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=12;
         }
 }
 void Admin::on_Result_Show6type_menu(Network *a){
@@ -909,293 +925,228 @@ void Admin::on_Result_Show6type_menu(Network *a){
         ui->A6TV->setModel(Model);
         ui->A6TV->resizeRowsToContents();
         ui->A6TV->resizeColumnsToContents();
+        SelectedTable=13;
         }
 }
 
-void Admin::on_A6RBauth_clicked()
-{
+void Admin::DBTableEditing(bool lv1, bool le1, QString l1, bool lv2, QString l2, bool lv3, QString l3, bool lv4, QString l4, bool lv5, QString l5, bool lv6, QString l6, bool lv7){
+    ui->A6L1->text()=l1;
+    ui->A6LE1->text().clear();
+    ui->A6LE1->setEnabled(le1);
+    ui->A6L1->setVisible(lv1);
+    ui->A6LE1->setVisible(lv1);
+    ui->A6L1->setText(l1);
+    ui->A6LE1->setEnabled(le1);
+    ui->A6L1->setVisible(lv1);
+    ui->A6LE1->setVisible(lv1);
+
+    ui->A6L2->setText(l2);
+    ui->A6L2->setVisible(lv2);
+    ui->A6LE2->setVisible(lv2);
+
+    ui->A6L3->setText(l3);
+    ui->A6L3->setVisible(lv3);
+    ui->A6LE3->setVisible(lv3);
+
+    ui->A6L4->setText(l4);
+    ui->A6L4->setVisible(lv4);
+    ui->A6LE4->setVisible(lv4);
+
+    ui->A6L5->setText(l5);
+    ui->A6L5->setVisible(lv5);
+    ui->A6LE5->setVisible(lv5);
+
+    ui->A6L6->setText(l6);
+    ui->A6L6->setVisible(lv6);
+    ui->A6LE6->setVisible(lv6);
+
+    ui->A6DE1->setDate(QDate::currentDate());
+    ui->A6L7->setVisible(lv7);
+    ui->A6DE1->setVisible(lv7);
+
+    ui->A6DE2->setDate(QDate::currentDate());
+    ui->A6L8->setVisible(lv7);
+    ui->A6DE2->setVisible(lv7);
+
+    QModelIndex in=inn;
+    ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
+    in=ui->A6TV->model()->index(in.row(),1);
+    ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
+    in=ui->A6TV->model()->index(in.row(),2);
+    ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
+    in=ui->A6TV->model()->index(in.row(),3);
+    ui->A6LE4->setText(ui->A6TV->model()->data(in).toString());
+    in=ui->A6TV->model()->index(in.row(),4);
+    ui->A6LE5->setText(ui->A6TV->model()->data(in).toString());
+    in=ui->A6TV->model()->index(in.row(),5);
+    ui->A6LE6->setText(ui->A6TV->model()->data(in).toString());
+    in=ui->A6TV->model()->index(in.row(),6);
+    ui->A6DE1->setDate(ui->A6TV->model()->data(in).toDate());
+    in=ui->A6TV->model()->index(in.row(),7);
+    ui->A6DE2->setDate(ui->A6TV->model()->data(in).toDate());
+    ui->A6SA->setVisible(true);
+}
+
+void Admin::on_A6RBauth_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6auth(Network *)));
     admins6->Get("http://"+IP+":5555/authtable.json");
-    SelectedTable=1;
 }
-void Admin::on_A6RBdish_clicked()
-{
+void Admin::on_A6RBdish_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6dish(Network *)));
     admins6->Get("http://"+IP+":5555/dishtable.json");
-    SelectedTable=2;
 }
-void Admin::on_A6RBguests_clicked()
-{
+void Admin::on_A6RBguests_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6guests(Network *)));
     admins6->Get("http://"+IP+":5555/gueststable.json");
-    SelectedTable=3;
 }
-void Admin::on_A6RBingredients_clicked()
-{
+void Admin::on_A6RBingredients_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients(Network *)));
     admins6->Get("http://"+IP+":5555/ingredientstable.json");
-    SelectedTable=4;
 }
-void Admin::on_A6RBingredients_dish_clicked()
-{
+void Admin::on_A6RBingredients_dish_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients_dish(Network *)));
     admins6->Get("http://"+IP+":5555/ingredients_dishtable.json");
-    SelectedTable=5;
 }
-void Admin::on_A6RBingredients_stock_clicked()
-{
+void Admin::on_A6RBingredients_stock_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6ingredients_stock(Network *)));
     admins6->Get("http://"+IP+":5555/ingredients_stocktable.json");
-    SelectedTable=6;
 }
-void Admin::on_A6RBinvoice_clicked()
-{
+void Admin::on_A6RBinvoice_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6invoice(Network *)));
     admins6->Get("http://"+IP+":5555/invoicetable.json");
-    SelectedTable=7;
 }
-void Admin::on_A6RBinvoice_stock_clicked()
-{
+void Admin::on_A6RBinvoice_stock_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6invoice_stock(Network *)));
     admins6->Get("http://"+IP+":5555/invoice_stocktable.json");
-    SelectedTable=8;
 }
-void Admin::on_A6RBmenu_clicked()
-{
+void Admin::on_A6RBmenu_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6menu(Network *)));
     admins6->Get("http://"+IP+":5555/menutable.json");
-    SelectedTable=9;
 }
-void Admin::on_A6RBmenu_dish_clicked()
-{
+void Admin::on_A6RBmenu_dish_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6menu_dish(Network *)));
     admins6->Get("http://"+IP+":5555/menu_dishtable.json");
-    SelectedTable=10;
 }
-void Admin::on_A6RBrole_clicked()
-{
+void Admin::on_A6RBrole_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6role(Network *)));
     admins6->Get("http://"+IP+":5555/roletable.json");
-    SelectedTable=11;
 }
-void Admin::on_A6RBstock_clicked()
-{
+void Admin::on_A6RBstock_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6stock(Network *)));
     admins6->Get("http://"+IP+":5555/stocktable.json");
-    SelectedTable=12;
 }
-void Admin::on_A6RBtype_menu_clicked()
-{
+void Admin::on_A6RBtype_menu_clicked(){
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6type_menu(Network *)));
     admins6->Get("http://"+IP+":5555/type_menutable.json");
-    SelectedTable=13;
 }
 
-void Admin::on_A6TV_clicked(const QModelIndex &index)
-{
+void Admin::on_A6TV_clicked(const QModelIndex &index){
+if(!ui->A6SA->isVisible()){
     ui->A6TV->selectRow(index.row());
-    QModelIndex in=ui->A6TV->model()->index(index.row(),0);
-    switch (SelectedTable) {
-    case 1://auth
-        ui->A6L1->setVisible(true);
-        ui->A6LE1->setVisible(true);
-        ui->A6L1->text()="Логин";
-        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),1);
-        ui->A6L2->setVisible(true);
-        ui->A6LE2->setVisible(true);
-        ui->A6L2->text()="Пароль";
-        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),2);
-        ui->A6L3->setVisible(true);
-        ui->A6LE3->setVisible(true);
-        ui->A6L3->text()="Роль";
-        ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),3);
-        ui->A6L4->setVisible(false);
-        ui->A6LE4->setVisible(false);
-        ui->A6L5->setVisible(false);
-        ui->A6LE5->setVisible(false);
-        ui->A6L6->setVisible(false);
-        ui->A6LE6->setVisible(false);
-        ui->A6L7->setVisible(false);
-        ui->A6DE1->setVisible(false);
-        ui->A6L8->setVisible(false);
-        ui->A6DE2->setVisible(false);
-        break;
-    case 2://dish
-        ui->A6L1->setVisible(true);
-        ui->A6LE1->setVisible(true);
-        ui->A6L1->text()="id";
-        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),1);
-        ui->A6L2->setVisible(true);
-        ui->A6LE2->setVisible(true);
-        ui->A6L2->text()="Название";
-        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),2);
-        ui->A6L3->setVisible(false);
-        ui->A6LE3->setVisible(false);
-        ui->A6L4->setVisible(false);
-        ui->A6LE4->setVisible(false);
-        ui->A6L5->setVisible(false);
-        ui->A6LE5->setVisible(false);
-        ui->A6L6->setVisible(false);
-        ui->A6LE6->setVisible(false);
-        ui->A6L7->setVisible(false);
-        ui->A6DE1->setVisible(false);
-        ui->A6L8->setVisible(false);
-        ui->A6DE2->setVisible(false);
-        break;
-    case 3://guests
-        ui->A6L1->setVisible(true);
-        ui->A6LE1->setVisible(true);
-        ui->A6L1->text()="id";
-        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),1);
-        ui->A6L2->setVisible(true);
-        ui->A6LE2->setVisible(true);
-        ui->A6L2->text()="Паспорт";
-        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),2);
-        ui->A6L3->setVisible(true);
-        ui->A6LE3->setVisible(true);
-        ui->A6L3->text()="Фамилия";
-        ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),3);
-        ui->A6L4->setVisible(true);
-        ui->A6LE4->setVisible(true);
-        ui->A6L4->text()="Имя";
-        ui->A6LE4->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),4);
-        ui->A6L5->setVisible(true);
-        ui->A6LE5->setVisible(true);
-        ui->A6L5->text()="Отчество";
-        ui->A6LE5->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),5);
-        ui->A6L6->setVisible(true);
-        ui->A6LE6->setVisible(true);
-        ui->A6L6->text()="Телефон";
-        ui->A6LE6->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),6);
-        ui->A6L7->setVisible(true);
-        ui->A6DE1->setVisible(true);
-        ui->A6L7->text()="Дата заезда";
-        ui->A6DE1->setDate(ui->A6TV->model()->data(in).toDate());
-        in=ui->A6TV->model()->index(index.row(),7);
-        ui->A6L8->setVisible(true);
-        ui->A6DE2->setVisible(true);
-        ui->A6L8->text()="Дата выезда";
-        ui->A6DE2->setDate(ui->A6TV->model()->data(in).toDate());
-        break;
-    case 4://ingredients
-        ui->A6L1->setVisible(true);
-        ui->A6LE1->setVisible(true);
-        ui->A6L1->text()="id";
-        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),1);
-        ui->A6L2->setVisible(true);
-        ui->A6LE2->setVisible(true);
-        ui->A6L2->text()="Название";
-        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),2);
-        ui->A6L3->setVisible(true);
-        ui->A6LE3->setVisible(true);
-        ui->A6L3->text()="Необходимое кол-во";
-        ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),3);
-        ui->A6L4->setVisible(true);
-        ui->A6LE4->setVisible(true);
-        ui->A6L4->text()="Ед измерения";
-        ui->A6LE4->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),4);
-        ui->A6L5->setVisible(false);
-        ui->A6LE5->setVisible(false);
-        ui->A6L6->setVisible(false);
-        ui->A6LE6->setVisible(false);
-        ui->A6L7->setVisible(false);
-        ui->A6DE1->setVisible(false);
-        ui->A6L8->setVisible(false);
-        ui->A6DE2->setVisible(false);
-        break;
-    case 5://ingredients-dish
-        ui->A6L1->setVisible(true);
-        ui->A6LE1->setVisible(true);
-        ui->A6L1->text()="Номер блюда";
-        ui->A6LE1->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),1);
-        ui->A6L2->setVisible(true);
-        ui->A6LE2->setVisible(true);
-        ui->A6L2->text()="Номер ингредиента";
-        ui->A6LE2->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),2);
-        ui->A6L3->setVisible(true);
-        ui->A6LE3->setVisible(true);
-        ui->A6L3->text()="Кол-во ингредиента";
-        ui->A6LE3->setText(ui->A6TV->model()->data(in).toString());
-        in=ui->A6TV->model()->index(index.row(),3);
-        ui->A6L4->setVisible(false);
-        ui->A6LE4->setVisible(false);
-        ui->A6L5->setVisible(false);
-        ui->A6LE5->setVisible(false);
-        ui->A6L6->setVisible(false);
-        ui->A6LE6->setVisible(false);
-        ui->A6L7->setVisible(false);
-        ui->A6DE1->setVisible(false);
-        ui->A6L8->setVisible(false);
-        ui->A6DE2->setVisible(false);
-        break;
-    case 6://ingredients-stock
-
-        break;
-    case 7://invoice
-
-        break;
-    case 8://invoice-stock
-
-        break;
-    case 9://menu
-
-        break;
-    case 10://menu-dish
-
-        break;
-    case 11://role
-
-        break;
-    case 12://stock
-
-        break;
-    case 13://type_menu
-
-        break;
+    inn=ui->A6TV->model()->index(index.row(),0);
+    } else {
+    QMessageBox::information(this,"Внимание!","Завершите редактирование!");
     }
-//    ui->A6LE1->setText(ui->P3TVGuests->model()->data(in).toString());
-//    in=ui->P3TVGuests->model()->index(index.row(),1);
-//    ui->P3LEPasport->setText(ui->P3TVGuests->model()->data(in).toString());
-//    in=ui->P3TVGuests->model()->index(index.row(),2);
-//    ui->P3LESecondName->setText(ui->P3TVGuests->model()->data(in).toString());
-//    in=ui->P3TVGuests->model()->index(index.row(),3);
-//    ui->P3LEFirstName->setText(ui->P3TVGuests->model()->data(in).toString());
-//    in=ui->P3TVGuests->model()->index(index.row(),4);
-//    ui->P3LEPatronymic->setText(ui->P3TVGuests->model()->data(in).toString());
-//    in=ui->P3TVGuests->model()->index(index.row(),5);
-//    ui->P3LETelephone->setText(ui->P3TVGuests->model()->data(in).toString());
-//    in=ui->P3TVGuests->model()->index(index.row(),6);
-//    ui->P3DESettlementDate->setDate(ui->P3TVGuests->model()->data(in).toDate());
-//    in=ui->P3TVGuests->model()->index(index.row(),7);
-//    ui->P3DEEvictionDate->setDate(ui->P3TVGuests->model()->data(in).toDate());
-    }
+}
+
+void Admin::on_A6BI1_clicked()
+{
+    on_A6TV_clicked(QModelIndex(ui->A6TV->model()->index(0,inn.column())));
+}
+void Admin::on_A6BI2_clicked()
+{
+    if(inn.row()!=0)
+    on_A6TV_clicked(QModelIndex(ui->A6TV->model()->index(inn.row()-1,inn.column())));
+}
+void Admin::on_A6BI3_clicked(){
+    if(inn.data().isValid()){
+        if(!ui->A6SA->isVisible()){
+            ui->A6BI8->setVisible(true);
+            ui->A6BI9->setVisible(true);
+            switch (SelectedTable) {
+                case 1:
+                    DBTableEditing(true,false,"Логин",true,"Пароль",true,"Идентификатор роли",false,"",false,"",false,"",false);
+                    break;
+                case 2:
+                    DBTableEditing(true,false,"Идентификатор",true,"Название",false,"",false,"",false,"",false,"",false);
+                    break;
+                case 3:
+                    DBTableEditing(true,false,"Идентификатор",true,"Паспорт",true,"Фамилия",true,"Имя",true,"Отчество",true,"Телефон",true);
+                    break;
+                case 4:
+                    DBTableEditing(true,false,"Идентификатор",true,"Название",true,"Необходимое кол-во",true,"Единицы измерения",false,"",false,"",false);
+                    break;
+                case 5:
+                    DBTableEditing(true,true,"Номер блюда",true,"Номер ингредиента",true,"Кол-во ингредиента",false,"",false,"",false,"",false);
+                    break;
+                case 6:
+                    DBTableEditing(true,true,"Номер склада",true,"Номер ингредиента",true,"Кол-во ингредиента",false,"",false,"",false,"",false);
+                    break;
+                case 7:
+                    DBTableEditing(true,false,"Номер накладной",true,"Дата накладной",false,"",false,"",false,"",false,"",false);
+                    break;
+                case 8:
+                    DBTableEditing(true,false,"Номер накладной",true,"Номер склада",true,"Номер продукта",true,"Кол-во продукта",false,"",false,"",false);
+                    break;
+                case 9:
+                    DBTableEditing(true,false,"Номер меню",true,"Номер типа меню",true,"Дата меню",true,"Кол-во блюд",false,"",false,"",false);
+                    break;
+                case 10:
+                    DBTableEditing(true,true,"Номер меню",true,"Номер блюда",false,"",false,"",false,"",false,"",false);
+                    break;
+                case 11:
+                    ui->A6BI8->setVisible(false);
+                    ui->A6BI9->setVisible(false);
+                    QMessageBox::information(this,"Внимание!","Эту таблицу нельзя редактировать!");
+                    break;
+                case 12:
+                    DBTableEditing(true,true,"Идентификатор",true,"Название склада",false,"",false,"",false,"",false,"",false);
+                    break;
+                case 13:
+                    DBTableEditing(true,true,"Идентификатор",true,"Название типа меню",false,"",false,"",false,"",false,"",false);
+                }
+        } else QMessageBox::warning(this,"Ошибка!","Завершите прошлое редактирование");
+    } else QMessageBox::warning(this,"Ошибка!","Выберите строку!");
+}
+void Admin::on_A6BI4_clicked()
+{
+    if(inn.row()!=ui->A6TV->model()->rowCount()-1)
+    on_A6TV_clicked(QModelIndex(ui->A6TV->model()->index(inn.row()+1,inn.column())));
+}
+void Admin::on_A6BI5_clicked()
+{
+    on_A6TV_clicked(QModelIndex(ui->A6TV->model()->index(ui->A6TV->model()->rowCount()-1,inn.column())));
+}
+void Admin::on_A6BI6_clicked()
+{
+
+}
+void Admin::on_A6BI7_clicked()
+{
+
+}
+void Admin::on_A6BI8_clicked()
+{
+
+    ui->A6BI8->setVisible(false);
+    ui->A6BI9->setVisible(false);
+}
+void Admin::on_A6BI9_clicked()
+{
+    ui->A6SA->setVisible(false);
+    ui->A6BI8->setVisible(false);
+    ui->A6BI9->setVisible(false);
+}

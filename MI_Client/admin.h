@@ -78,6 +78,8 @@ private slots:
     void on_Result_Show6stock(Network *);
     void on_Result_Show6type_menu(Network *);
 
+    void DBTableEditing(bool,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool);
+
     void on_A6RBauth_clicked();
     void on_A6RBdish_clicked();
     void on_A6RBguests_clicked();
@@ -93,6 +95,24 @@ private slots:
     void on_A6RBtype_menu_clicked();
 
     void on_A6TV_clicked(const QModelIndex &index);
+
+    void on_A6BI1_clicked();
+
+    void on_A6BI2_clicked();
+
+    void on_A6BI3_clicked();
+
+    void on_A6BI4_clicked();
+
+    void on_A6BI5_clicked();
+
+    void on_A6BI6_clicked();
+
+    void on_A6BI7_clicked();
+
+    void on_A6BI8_clicked();
+
+    void on_A6BI9_clicked();
 
 signals:
     void loginOpen();
@@ -113,6 +133,7 @@ private:
     QJsonDocument admin5;
     QJsonDocument admin6;
     int SelectedTable=1;
+    QModelIndex inn;
 };
 
 #endif // ADMIN_H

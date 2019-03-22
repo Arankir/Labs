@@ -942,8 +942,8 @@
      <widget class="QPushButton" name="A6BI8">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>350</y>
+        <x>530</x>
+        <y>470</y>
         <width>21</width>
         <height>23</height>
        </rect>
@@ -961,8 +961,8 @@
      <widget class="QPushButton" name="A6BI9">
       <property name="geometry">
        <rect>
-        <x>600</x>
-        <y>350</y>
+        <x>510</x>
+        <y>470</y>
         <width>21</width>
         <height>23</height>
        </rect>
@@ -1014,7 +1014,7 @@
          <x>0</x>
          <y>0</y>
          <width>489</width>
-         <height>42</height>
+         <height>45</height>
         </rect>
        </property>
        <widget class="QLabel" name="A6L8">
@@ -1022,12 +1022,12 @@
          <rect>
           <x>460</x>
           <y>0</y>
-          <width>47</width>
-          <height>13</height>
+          <width>81</width>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
-         <string>Text8</string>
+         <string>Дата выезда</string>
         </property>
        </widget>
        <widget class="QLabel" name="A6L2">
@@ -1036,7 +1036,7 @@
           <x>70</x>
           <y>0</y>
           <width>47</width>
-          <height>13</height>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
@@ -1059,7 +1059,7 @@
           <x>250</x>
           <y>0</y>
           <width>47</width>
-          <height>13</height>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
@@ -1082,7 +1082,7 @@
           <x>130</x>
           <y>0</y>
           <width>47</width>
-          <height>13</height>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
@@ -1125,7 +1125,7 @@
           <x>10</x>
           <y>0</y>
           <width>47</width>
-          <height>13</height>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
@@ -1138,7 +1138,7 @@
           <x>190</x>
           <y>0</y>
           <width>47</width>
-          <height>13</height>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
@@ -1150,12 +1150,12 @@
          <rect>
           <x>370</x>
           <y>0</y>
-          <width>47</width>
-          <height>13</height>
+          <width>71</width>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
-         <string>Text7</string>
+         <string>Дата въезда</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="A6LE4">
@@ -1174,7 +1174,7 @@
           <x>310</x>
           <y>0</y>
           <width>47</width>
-          <height>13</height>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
