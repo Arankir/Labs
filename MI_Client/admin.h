@@ -28,15 +28,10 @@ private slots:
     void on_Hide_clicked();
 
     void on_ABShow1_clicked();
-
     void on_ABShow2_clicked();
-
     void on_ABShow3_clicked();
-
     void on_ABShow4_clicked();
-
     void on_ABShow5_clicked();
-
     void on_ABShow6_clicked();
 
     void on_Result_Show1(Network *);
@@ -47,21 +42,16 @@ private slots:
     void on_Result_Show5(Network *);
 
     void on_A1BApply_clicked();
-
     void on_Result_Post_NewUser(Network *);
 
     void on_A2BApply_clicked();
-
     void on_Result_Post_NewIngredient(Network *);
-
     void on_A3chbIngredientPressed(int);
 
     void on_A3BApply_clicked();
-
     void on_Result_Post_NewDish(Network *);
 
     void on_A4BApply_clicked();
-
     void on_Result_Post_NewStock(Network *);
 
     void on_Result_Show6auth(Network *);
@@ -97,22 +87,18 @@ private slots:
     void on_A6TV_clicked(const QModelIndex &index);
 
     void on_A6BI1_clicked();
-
     void on_A6BI2_clicked();
-
     void on_A6BI3_clicked();
-
     void on_A6BI4_clicked();
-
     void on_A6BI5_clicked();
-
     void on_A6BI6_clicked();
-
     void on_A6BI7_clicked();
-
     void on_A6BI8_clicked();
-
     void on_A6BI9_clicked();
+
+    void on_A5TV_clicked(const QModelIndex &index);
+    void on_A5BApply_clicked();
+    void on_Result_Post_UpdateNeedOnStock(Network *);
 
 signals:
     void loginOpen();
@@ -134,6 +120,7 @@ private:
     QJsonDocument admin6;
     int SelectedTable=1;
     QModelIndex inn;
+    bool ins=false;
 };
 
 #endif // ADMIN_H

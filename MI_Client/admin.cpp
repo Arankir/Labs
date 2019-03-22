@@ -41,7 +41,7 @@ Admin::Admin(QString ips, QWidget *parent) :
     ui->A2TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A3TVDish->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A4TVStocks->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    //ui->A5TVStocks->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->A5TV->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A6TV->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Admin::on_Hide_clicked();
 }
@@ -300,6 +300,31 @@ void Admin::on_Result_Show5(Network *a){
         qDebug() << a->GetError();
         } else {
         admin5=QJsonDocument::fromJson(a->GetAnswer().toUtf8());
+        QJsonArray JsonA=admin5.object().value("Data").toArray();
+        QStandardItemModel *Model = new QStandardItemModel;
+        QStringList hh;
+        hh.append("Идентификатор");
+        hh.append("Название");
+        hh.append("Необходимо на складе");
+        hh.append("Ед измерения");
+        Model->setHorizontalHeaderLabels(hh);
+        for(int i=0;i<JsonA.size();i++){
+            QStandardItem *Item1;
+            Item1 = new QStandardItem(QString(JsonA[i].toObject().value("id").toString()));
+            Model->setItem(i,0,Item1);
+            QStandardItem *Item2;
+            Item2 = new QStandardItem(QString(JsonA[i].toObject().value("title").toString()));
+            Model->setItem(i,1,Item2);
+            QStandardItem *Item3;
+            Item3 = new QStandardItem(QString(JsonA[i].toObject().value("needonstock").toString()));
+            Model->setItem(i,2,Item3);
+            QStandardItem *Item4;
+            Item4 = new QStandardItem(QString(JsonA[i].toObject().value("unit").toString()));
+            Model->setItem(i,3,Item4);
+            }
+        ui->A5TV->setModel(Model);
+        ui->A5TV->resizeRowsToContents();
+        ui->A5TV->resizeColumnsToContents();
         }
 }
 
@@ -1149,4 +1174,53 @@ void Admin::on_A6BI9_clicked()
     ui->A6SA->setVisible(false);
     ui->A6BI8->setVisible(false);
     ui->A6BI9->setVisible(false);
+}
+
+void Admin::on_A5TV_clicked(const QModelIndex &index){
+    ui->A5TV->selectRow(index.row());
+    QModelIndex in=ui->A5TV->model()->index(index.row(),0);
+    ui->A5LEid->setText(ui->A5TV->model()->data(in).toString());
+    in=ui->A5TV->model()->index(in.row(),1);
+    ui->A5LEtitle->setText(ui->A5TV->model()->data(in).toString());
+    in=ui->A5TV->model()->index(in.row(),2);
+    ui->A5LEneedonstock->setText(ui->A5TV->model()->data(in).toString());
+    in=ui->A5TV->model()->index(in.row(),3);
+    ui->A5LEunit->setText(ui->A5TV->model()->data(in).toString());
+}
+void Admin::on_A5BApply_clicked(){
+//url: /updatebyid.json
+//формат: {"table":"name","valUES":["val1","val2",...],"id":"1"}
+    if(ui->A5LEneedonstock->text()!=""){
+        QJsonObject post;
+        post["table"]="ingredients";
+        QJsonArray vals;
+        vals.append(ui->A5LEid->text());
+        vals.append(ui->A5LEtitle->text());
+        vals.append(ui->A5LEneedonstock->text());
+        vals.append(ui->A5LEunit->text());
+        post["values"]=vals;
+        post["id"]=ui->A5LEid->text();
+        QJsonDocument doc;
+        doc.setObject(post);
+        qDebug() << doc;
+        Network *net = new Network;
+        connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Post_UpdateNeedOnStock(Network *)));
+        net->Post("http://"+IP+":5555/updatebyid.json", doc);
+    } else QMessageBox::warning(this,"Ошибка!","Поле необходимого количества на складе не может быть пустым!");
+}
+void Admin::on_Result_Post_UpdateNeedOnStock(Network *a){
+    qDebug() << a->GetAnswer();
+    qDebug() << a->GetError();
+    if(a->GetAnswer()=="YES"){
+        QMessageBox::information(this,"Успешно!","Данные обновлены!");
+        Network *admins1 = new Network;
+        connect(admins1,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show5(Network *)));
+        admins1->Get("http://"+IP+":5555/ingredientstable.json");
+        } else {
+        if(a->GetAnswer()=="NO"){
+            QMessageBox::warning(this,"Ошибка!","Не удалось обновить данные!");
+            } else {
+                QMessageBox::warning(this,"Ошибка!","Не удалось обновить данные! ("+a->GetAnswer()+")");
+            }
+        }
 }
