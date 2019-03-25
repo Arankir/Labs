@@ -54,6 +54,10 @@ private slots:
     void on_A4BApply_clicked();
     void on_Result_Post_NewStock(Network *);
 
+    void on_A5TV_clicked(const QModelIndex &index);
+    void on_A5BApply_clicked();
+    void on_Result_Post_UpdateNeedOnStock(Network *);
+
     void on_Result_Show6auth(Network *);
     void on_Result_Show6dish(Network *);
     void on_Result_Show6guests(Network *);
@@ -68,7 +72,8 @@ private slots:
     void on_Result_Show6stock(Network *);
     void on_Result_Show6type_menu(Network *);
 
-    void DBTableEditing(bool,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool);
+    void DBTableEditing(bool,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool);
+    void DBTableCreate(bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool,QString,bool);
 
     void on_A6RBauth_clicked();
     void on_A6RBdish_clicked();
@@ -96,9 +101,31 @@ private slots:
     void on_A6BI8_clicked();
     void on_A6BI9_clicked();
 
-    void on_A5TV_clicked(const QModelIndex &index);
-    void on_A5BApply_clicked();
-    void on_Result_Post_UpdateNeedOnStock(Network *);
+    void on_Result_Post_UpdateDBEditing(Network *);
+    void on_Result_Post_UpdateDBDelete(Network *);
+
+    void on_A6HSB_sliderMoved(int position);
+
+    void on_Result_DBEditing_case5_1(Network *);
+    void on_Result_DBEditing_case5_2(Network *);
+    void on_Result_DBEditing_case6_1(Network *);
+    void on_Result_DBEditing_case6_2(Network *);
+    void on_Result_DBEditing_case8_1(Network *);
+    void on_Result_DBEditing_case8_2(Network *);
+    void on_Result_DBEditing_case10_1(Network *);
+    void on_Result_DBEditing_case10_2(Network *);
+
+    void on_A6Help_clicked();
+
+    void on_Result_DBCreate_case5_1(Network *);
+    void on_Result_DBCreate_case5_2(Network *);
+    void on_Result_DBCreate_case6_1(Network *);
+    void on_Result_DBCreate_case6_2(Network *);
+    void on_Result_DBCreate_case8_1(Network *);
+    void on_Result_DBCreate_case8_2(Network *);
+    void on_Result_DBCreate_case8_3(Network *);
+    void on_Result_DBCreate_case10_1(Network *);
+    void on_Result_DBCreate_case10_2(Network *);
 
 signals:
     void loginOpen();

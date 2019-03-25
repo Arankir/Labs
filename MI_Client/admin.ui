@@ -10,6 +10,9 @@
     <height>639</height>
    </rect>
   </property>
+  <property name="tabletTracking">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -86,142 +89,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QGroupBox" name="GBA1">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>590</y>
-       <width>641</width>
-       <height>511</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Регистрация нового пользователя</string>
-     </property>
-     <widget class="QLabel" name="A1LLogin">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>180</y>
-        <width>41</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Логин</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="A1LPassword">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>220</y>
-        <width>51</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Пароль</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="A1CBRole">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>260</y>
-        <width>111</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Повар</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Складовщик</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Портье</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Администратор</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLineEdit" name="A1LELogin">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>180</y>
-        <width>111</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="placeholderText">
-       <string>Не выбрано</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="A1LEPassword">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>220</y>
-        <width>111</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="placeholderText">
-       <string>Не выбрано</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="A1BApply">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>310</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Зарегестрировать</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="A1LRole">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>260</y>
-        <width>81</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Права доступа</string>
-      </property>
-     </widget>
-     <widget class="QTableView" name="A1TVUsers">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>291</width>
-        <height>471</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
     <widget class="QGroupBox" name="GBA2">
      <property name="geometry">
       <rect>
        <x>190</x>
-       <y>580</y>
+       <y>570</y>
        <width>641</width>
        <height>511</height>
       </rect>
@@ -480,7 +352,7 @@
        <x>830</x>
        <y>60</y>
        <width>21</width>
-       <height>23</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="layoutDirection">
@@ -677,7 +549,7 @@
      <property name="geometry">
       <rect>
        <x>220</x>
-       <y>40</y>
+       <y>50</y>
        <width>641</width>
        <height>511</height>
       </rect>
@@ -1006,8 +878,8 @@
      <widget class="QPushButton" name="A6BI8">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>470</y>
+        <x>570</x>
+        <y>410</y>
         <width>21</width>
         <height>23</height>
        </rect>
@@ -1025,8 +897,8 @@
      <widget class="QPushButton" name="A6BI9">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>470</y>
+        <x>540</x>
+        <y>410</y>
         <width>21</width>
         <height>23</height>
        </rect>
@@ -1056,18 +928,21 @@
        <rect>
         <x>10</x>
         <y>440</y>
-        <width>491</width>
+        <width>621</width>
         <height>61</height>
        </rect>
       </property>
-      <property name="sizeIncrement">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
@@ -1077,18 +952,24 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>489</width>
-         <height>45</height>
+         <width>619</width>
+         <height>59</height>
         </rect>
        </property>
        <widget class="QLabel" name="A6L8">
         <property name="geometry">
          <rect>
-          <x>460</x>
+          <x>340</x>
           <y>0</y>
           <width>81</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
         <property name="text">
          <string>Дата выезда</string>
@@ -1097,11 +978,17 @@
        <widget class="QLabel" name="A6L2">
         <property name="geometry">
          <rect>
-          <x>70</x>
+          <x>50</x>
           <y>0</y>
           <width>47</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
         <property name="text">
          <string>Text2</string>
@@ -1112,7 +999,7 @@
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>51</width>
+          <width>31</width>
           <height>20</height>
          </rect>
         </property>
@@ -1120,11 +1007,17 @@
        <widget class="QLabel" name="A6L5">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>170</x>
           <y>0</y>
           <width>47</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
         <property name="text">
          <string>Text5</string>
@@ -1133,9 +1026,9 @@
        <widget class="QLineEdit" name="A6LE2">
         <property name="geometry">
          <rect>
-          <x>70</x>
+          <x>50</x>
           <y>20</y>
-          <width>51</width>
+          <width>31</width>
           <height>20</height>
          </rect>
         </property>
@@ -1143,11 +1036,17 @@
        <widget class="QLabel" name="A6L3">
         <property name="geometry">
          <rect>
-          <x>130</x>
+          <x>90</x>
           <y>0</y>
           <width>47</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
         <property name="text">
          <string>Text3</string>
@@ -1156,9 +1055,9 @@
        <widget class="QLineEdit" name="A6LE5">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>170</x>
           <y>20</y>
-          <width>51</width>
+          <width>31</width>
           <height>20</height>
          </rect>
         </property>
@@ -1166,9 +1065,9 @@
        <widget class="QLineEdit" name="A6LE3">
         <property name="geometry">
          <rect>
-          <x>130</x>
+          <x>90</x>
           <y>20</y>
-          <width>51</width>
+          <width>31</width>
           <height>20</height>
          </rect>
         </property>
@@ -1176,9 +1075,9 @@
        <widget class="QLineEdit" name="A6LE6">
         <property name="geometry">
          <rect>
-          <x>310</x>
+          <x>210</x>
           <y>20</y>
-          <width>51</width>
+          <width>31</width>
           <height>20</height>
          </rect>
         </property>
@@ -1192,6 +1091,12 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>Text1</string>
         </property>
@@ -1199,11 +1104,17 @@
        <widget class="QLabel" name="A6L4">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>130</x>
           <y>0</y>
           <width>47</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
         <property name="text">
          <string>Text4</string>
@@ -1212,11 +1123,17 @@
        <widget class="QLabel" name="A6L7">
         <property name="geometry">
          <rect>
-          <x>370</x>
+          <x>250</x>
           <y>0</y>
           <width>71</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
         <property name="text">
          <string>Дата въезда</string>
@@ -1225,9 +1142,9 @@
        <widget class="QLineEdit" name="A6LE4">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>130</x>
           <y>20</y>
-          <width>51</width>
+          <width>31</width>
           <height>20</height>
          </rect>
         </property>
@@ -1235,11 +1152,17 @@
        <widget class="QLabel" name="A6L6">
         <property name="geometry">
          <rect>
-          <x>310</x>
+          <x>210</x>
           <y>0</y>
           <width>47</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
         <property name="text">
          <string>Text6</string>
@@ -1248,7 +1171,7 @@
        <widget class="QDateEdit" name="A6DE1">
         <property name="geometry">
          <rect>
-          <x>370</x>
+          <x>250</x>
           <y>20</y>
           <width>81</width>
           <height>22</height>
@@ -1261,7 +1184,7 @@
        <widget class="QDateEdit" name="A6DE2">
         <property name="geometry">
          <rect>
-          <x>460</x>
+          <x>340</x>
           <y>20</y>
           <width>81</width>
           <height>22</height>
@@ -1271,37 +1194,43 @@
          <string>yyyy-MM-dd</string>
         </property>
        </widget>
+       <widget class="QScrollBar" name="A6HSB">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>40</y>
+          <width>621</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
       </widget>
      </widget>
-     <widget class="QPushButton" name="A6BI7_2">
+     <widget class="QPushButton" name="A6Help">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>350</y>
+        <x>590</x>
+        <y>10</y>
         <width>21</width>
-        <height>23</height>
+        <height>21</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <family>Webdings</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
       <property name="text">
-       <string></string>
+       <string>?</string>
       </property>
      </widget>
     </widget>
     <zorder>verticalLayoutWidget</zorder>
     <zorder>LogOut</zorder>
-    <zorder>Hide</zorder>
-    <zorder>GBA1</zorder>
     <zorder>GBA2</zorder>
     <zorder>GBA3</zorder>
     <zorder>GBA4</zorder>
     <zorder>GBA5</zorder>
     <zorder>GBA6</zorder>
+    <zorder>Hide</zorder>
    </widget>
    <widget class="QWidget" name="Cook">
     <attribute name="title">
@@ -1317,6 +1246,137 @@
     <attribute name="title">
      <string>Портье</string>
     </attribute>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="GBA1">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>620</y>
+     <width>641</width>
+     <height>511</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Регистрация нового пользователя</string>
+   </property>
+   <widget class="QLabel" name="A1LLogin">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>180</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Логин</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="A1LPassword">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>220</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Пароль</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="A1CBRole">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>260</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Повар</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Складовщик</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Портье</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Админ</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="A1LELogin">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>180</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="A1LEPassword">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>220</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Не выбрано</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="A1BApply">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>310</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Зарегестрировать</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="A1LRole">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>260</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Права доступа</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="A1TVUsers">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>291</width>
+      <height>471</height>
+     </rect>
+    </property>
    </widget>
   </widget>
  </widget>
