@@ -365,7 +365,6 @@ void Warehousekeeper::on_W3BApply_clicked(){
                     post["ingredients"]=ingredients;
                     QJsonDocument doc;
                     doc.setObject(post);
-                    qDebug() << doc;
                     Network *net = new Network;
                     connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_ResultAddInvoice(Network *)));
                     net->Post("http://"+IP+":5555/addinvoice.json", doc);

@@ -9,6 +9,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QTextCodec>
+#include <QTcpSocket>
 
 class Network : public QMainWindow
 {
@@ -28,10 +29,11 @@ private:
     QNetworkAccessManager *manager;
     QString answer;
     QString error;
+    QTcpSocket *Socket;
 
 public slots:
     void OnResultGet(QNetworkReply *reply);
-    void OnResultPost(QNetworkReply *reply);
+    void OnResultPost();
 };
 
 #endif // MYCLIENT_H
