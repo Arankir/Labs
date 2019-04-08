@@ -1223,6 +1223,137 @@
       </property>
      </widget>
     </widget>
+    <widget class="QGroupBox" name="GBA1">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>580</y>
+       <width>641</width>
+       <height>511</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Регистрация нового пользователя</string>
+     </property>
+     <widget class="QLabel" name="A1LLogin">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>180</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Логин</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="A1LPassword">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>220</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Пароль</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="A1CBRole">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>260</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Повар</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Складовщик</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Портье</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Админ</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLineEdit" name="A1LELogin">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>180</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Не выбрано</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="A1LEPassword">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>220</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Не выбрано</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="A1BApply">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>310</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Зарегестрировать</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="A1LRole">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>260</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Права доступа</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="A1TVUsers">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>291</width>
+        <height>471</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
     <zorder>verticalLayoutWidget</zorder>
     <zorder>LogOut</zorder>
     <zorder>GBA2</zorder>
@@ -1231,6 +1362,7 @@
     <zorder>GBA5</zorder>
     <zorder>GBA6</zorder>
     <zorder>Hide</zorder>
+    <zorder>GBA1</zorder>
    </widget>
    <widget class="QWidget" name="Cook">
     <attribute name="title">
@@ -1246,137 +1378,6 @@
     <attribute name="title">
      <string>Портье</string>
     </attribute>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="GBA1">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>620</y>
-     <width>641</width>
-     <height>511</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Регистрация нового пользователя</string>
-   </property>
-   <widget class="QLabel" name="A1LLogin">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>180</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Логин</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="A1LPassword">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>220</y>
-      <width>51</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Пароль</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="A1CBRole">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>260</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Повар</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Складовщик</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Портье</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Админ</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLineEdit" name="A1LELogin">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>180</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Не выбрано</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="A1LEPassword">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>220</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Не выбрано</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="A1BApply">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>310</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Зарегестрировать</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="A1LRole">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>260</y>
-      <width>81</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Права доступа</string>
-    </property>
-   </widget>
-   <widget class="QTableView" name="A1TVUsers">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>291</width>
-      <height>471</height>
-     </rect>
-    </property>
    </widget>
   </widget>
  </widget>
