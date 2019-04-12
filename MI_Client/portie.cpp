@@ -15,6 +15,24 @@ Portie::Portie(QString ips, QWidget *parent) :
     ui->P1TVGuests->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->P3TVGuests->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Portie::on_Hide_clicked();
+    QRegExp expnumber("[1-9]{1}[0-9]{0,10}");
+    QRegExp exppasport("[1-9]{1}[0-9]{0,9}");
+    QRegExp expsimvol("[А-Я]{1}[а-я]{0,19}");
+    ui->P1LEPasport->setValidator(new QRegExpValidator(exppasport,this));
+    ui->P1LEFirstName->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P1LESecondName->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P1LEPatronymic->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P1LETelephone->setValidator(new QRegExpValidator(expnumber,this));
+    ui->P2LEPasport->setValidator(new QRegExpValidator(exppasport,this));
+    ui->P2LEFirstName->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P2LESecondName->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P2LEPatronymic->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P2LETelephone->setValidator(new QRegExpValidator(expnumber,this));
+    ui->P3LEPasport->setValidator(new QRegExpValidator(exppasport,this));
+    ui->P3LESecondName->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P3LEFirstName->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P3LEPatronymic->setValidator(new QRegExpValidator(expsimvol,this));
+    ui->P3LETelephone->setValidator(new QRegExpValidator(expnumber,this));
 }
 
 Portie::~Portie()
@@ -162,22 +180,25 @@ void Portie::on_Result_networkPortie(Network *porties){
         ui->P3TVGuests->setModel(P3T1M);
         ui->P3TVGuests->resizeRowsToContents();
         ui->P3TVGuests->resizeColumnsToContents();
-        ui->P3Lid->setGeometry(30,415,ui->P3TVGuests->columnWidth(0),20);
-        ui->P3LPasport->setGeometry(ui->P3Lid->x()+ui->P3Lid->width(),415,ui->P3TVGuests->columnWidth(1),20);
-        ui->P3LSecondName->setGeometry(ui->P3LPasport->x()+ui->P3LPasport->width(),415,ui->P3TVGuests->columnWidth(2),20);
-        ui->P3LFirstName->setGeometry(ui->P3LSecondName->x()+ui->P3LSecondName->width(),415,ui->P3TVGuests->columnWidth(3),20);
-        ui->P3LPatronymic->setGeometry(ui->P3LFirstName->x()+ui->P3LFirstName->width(),415,ui->P3TVGuests->columnWidth(4),20);
-        ui->P3LTelephone->setGeometry(ui->P3LPatronymic->x()+ui->P3LPatronymic->width(),415,ui->P3TVGuests->columnWidth(5),20);
-        ui->P3LSettlementDate->setGeometry(ui->P3LTelephone->x()+ui->P3LPatronymic->width()-20,415,ui->P3TVGuests->columnWidth(6),20);
-        ui->P3LEvictionDate->setGeometry(ui->P3LSettlementDate->x()+ui->P3LSettlementDate->width(),415,ui->P3TVGuests->columnWidth(7),20);
-        ui->P3LEid->setGeometry(30,435,ui->P3TVGuests->columnWidth(0),20);
-        ui->P3LEPasport->setGeometry(ui->P3LEid->x()+ui->P3LEid->width(),435,ui->P3TVGuests->columnWidth(1),20);
-        ui->P3LESecondName->setGeometry(ui->P3LEPasport->x()+ui->P3LEPasport->width(),435,ui->P3TVGuests->columnWidth(2),20);
-        ui->P3LEFirstName->setGeometry(ui->P3LESecondName->x()+ui->P3LESecondName->width(),435,ui->P3TVGuests->columnWidth(3),20);
-        ui->P3LEPatronymic->setGeometry(ui->P3LEFirstName->x()+ui->P3LEFirstName->width(),435,ui->P3TVGuests->columnWidth(4),20);
-        ui->P3LETelephone->setGeometry(ui->P3LEPatronymic->x()+ui->P3LEPatronymic->width(),435,ui->P3TVGuests->columnWidth(5),20);
-        ui->P3DESettlementDate->setGeometry(ui->P3LETelephone->x()+ui->P3LEPatronymic->width()-20,435,ui->P3TVGuests->columnWidth(6),20);
-        ui->P3DEEvictionDate->setGeometry(ui->P3DESettlementDate->x()+ui->P3DESettlementDate->width(),435,ui->P3TVGuests->columnWidth(7),20);
+        ui->P3Lid->setGeometry(10,398,ui->P3TVGuests->columnWidth(0),20);
+        ui->P3LPasport->setGeometry(ui->P3Lid->x()+ui->P3Lid->width(),398,ui->P3TVGuests->columnWidth(1),20);
+        ui->P3LSecondName->setGeometry(ui->P3LPasport->x()+ui->P3LPasport->width(),398,ui->P3TVGuests->columnWidth(2),20);
+        ui->P3LFirstName->setGeometry(ui->P3LSecondName->x()+ui->P3LSecondName->width(),398,ui->P3TVGuests->columnWidth(3),20);
+        ui->P3LPatronymic->setGeometry(ui->P3LFirstName->x()+ui->P3LFirstName->width(),398,ui->P3TVGuests->columnWidth(4),20);
+
+        ui->P3LTelephone->setGeometry(10,435,ui->P3TVGuests->columnWidth(5),20);
+        ui->P3LSettlementDate->setGeometry(ui->P3LTelephone->x()+ui->P3LTelephone->width(),435,ui->P3TVGuests->columnWidth(6),20);
+        ui->P3LEvictionDate->setGeometry(ui->P3LSettlementDate->x()+ui->P3LSettlementDate->width(),435,ui->P3TVGuests->columnWidth(7),20);
+
+        ui->P3LEid->setGeometry(10,415,ui->P3TVGuests->columnWidth(0),20);
+        ui->P3LEPasport->setGeometry(ui->P3LEid->x()+ui->P3LEid->width(),415,ui->P3TVGuests->columnWidth(1),20);
+        ui->P3LESecondName->setGeometry(ui->P3LEPasport->x()+ui->P3LEPasport->width(),415,ui->P3TVGuests->columnWidth(2),20);
+        ui->P3LEFirstName->setGeometry(ui->P3LESecondName->x()+ui->P3LESecondName->width(),415,ui->P3TVGuests->columnWidth(3),20);
+        ui->P3LEPatronymic->setGeometry(ui->P3LEFirstName->x()+ui->P3LEFirstName->width(),415,ui->P3TVGuests->columnWidth(4),20);
+
+        ui->P3LETelephone->setGeometry(10,450,ui->P3TVGuests->columnWidth(5),20);
+        ui->P3DESettlementDate->setGeometry(ui->P3LETelephone->x()+ui->P3LETelephone->width(),450,ui->P3TVGuests->columnWidth(6),20);
+        ui->P3DEEvictionDate->setGeometry(ui->P3DESettlementDate->x()+ui->P3DESettlementDate->width(),450,ui->P3TVGuests->columnWidth(7),20);
 
     }
 }

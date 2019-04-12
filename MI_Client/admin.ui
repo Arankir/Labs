@@ -14,7 +14,7 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Санаторий</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
@@ -1371,7 +1371,7 @@
    </widget>
    <widget class="QWidget" name="Whk">
     <attribute name="title">
-     <string>Складовщик</string>
+     <string>Кладовщик</string>
     </attribute>
    </widget>
    <widget class="QWidget" name="Stocker">

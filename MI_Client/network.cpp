@@ -67,7 +67,7 @@ void Network::OnResultPost(){
 //    if(str){
 //        error=reply->errorString();
 //        } else {
-        answer=str;
+        answer=str.remove("HTTP/1.1 200 OK \r\nContent-Type: application/json\r\n\r\n");
 //        }
     emit onReady(this);
 }

@@ -22,6 +22,8 @@ Cook::Cook(QString ips, QWidget *parent) :
     ui->C1TVIngredients->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->C2T1->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Cook::on_Hide_clicked();
+    QRegExp exp("[1-9]{1}[0-9]{0,6}");
+    ui->C1LE->setValidator(new QRegExpValidator(exp,this));
 }
 
 Cook::~Cook()
@@ -123,11 +125,13 @@ void Cook::OnResultCook1(Network *cook){
             connect(rb2,SIGNAL(stateChanged(int)),this,SLOT(chbCook3Change(int)));
         }
         QJsonArray JsonB=cook1.object().value("Ingredients").toArray();
+        QString str="";
         for(int i=0;i<JsonB.size();i++){
             if(JsonB[i].toObject().value("total_amount").toString().toInt()<JsonB[i].toObject().value("needonstock").toString().toInt()){
-                QMessageBox::warning(this,"Внимание!","На складе почти не осталось продукта "+JsonB[i].toObject().value("title").toString()+" (осталось "+JsonB[i].toObject().value("total_amount").toString()+" "+JsonB[i].toObject().value("unit").toString()+", желательно иметь хотя бы "+JsonB[i].toObject().value("needonstock").toString()+" "+JsonB[i].toObject().value("unit").toString()+")");
+                str+="\r\n"+JsonB[i].toObject().value("title").toString()+" (осталось "+JsonB[i].toObject().value("total_amount").toString()+" "+JsonB[i].toObject().value("unit").toString()+", желательно иметь хотя бы "+JsonB[i].toObject().value("needonstock").toString()+" "+JsonB[i].toObject().value("unit").toString()+")";
                 }
             }
+        QMessageBox::warning(this,"Внимание!","На складе почти не осталось:"+str);
         Ldishs.clear();
         widget1->setLayout(layout1);
         ui->C1SA1->setWidget(widget1);
@@ -424,7 +428,7 @@ if(cook->GetAnswer()==""){
         CookAddMenuIngOnStock->Get("http://"+IP+":5555/stock_ingredients.json");
         int am;
         if(ui->C3CBGuests->isChecked()){
-            am=cook3.object().value("count").toInt();
+            am=ui->C3CBGuests->text().remove("на количество отдыхающих (").remove(" чел)").toInt();
         } else
             am=ui->C3LEGuests->text().toInt();
         if(am>0){
@@ -505,7 +509,7 @@ void Cook::on_C1LE_textChanged(const QString &)
             rb=findChild<QRadioButton*>("C1rb"+cook1.object().value("Dishs").toArray().at(i).toObject().value("dish").toString());
             break;
             }
-    }
+        }
     QJsonObject JO = cook1.object();
     QJsonArray JAI=JO.value("Dishs").toArray();
     QJsonArray JAU=JO.value("Ingredients").toArray();
@@ -558,16 +562,5 @@ void Cook::on_C1LE_textChanged(const QString &)
 
 void Cook::on_pushButton_clicked()
 {
-    QStandardItem it;
-    QLabel *lb = new QLabel(this);
-    lb->move(20,20);
-    lb->show();
-    lb->setText("567");
-    lb->setStyleSheet("background-image: url(:/icons/warning.jpg);");\
-    lb->setToolTip("Хуй соси губой тряси");
-    QFormLayout *lay = new QFormLayout;
-    QWidget *wid = new QWidget;
-    lay->addWidget(lb);
-    wid->setLayout(lay);
-   // ui->GBC1->setsetWidget(wid);
+
 }

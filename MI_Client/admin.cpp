@@ -44,6 +44,19 @@ Admin::Admin(QString ips, QWidget *parent) :
     ui->A5TV->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->A6TV->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Admin::on_Hide_clicked();
+    QRegExp expnumber("[1-9]{1}[0-9]{0,10}");
+    QRegExp expengsimvol("[A-Z,a-z,0-9]{0,20}");
+    QRegExp exprusimvol("[А-Я,а-я,\\s]{0,20}");
+    QRegExp expunit("[а-я]{0,3}");
+
+    ui->A1LELogin->setValidator(new QRegExpValidator(expengsimvol,this));
+    ui->A1LEPassword->setValidator(new QRegExpValidator(expengsimvol,this));
+    ui->A2LEtitle->setValidator(new QRegExpValidator(exprusimvol,this));
+    ui->A2LEneedonstock->setValidator(new QRegExpValidator(expnumber,this));
+    ui->A2LEunit->setValidator(new QRegExpValidator(expunit,this));
+    ui->A3LETitle->setValidator(new QRegExpValidator(exprusimvol,this));
+    ui->A4LETitle->setValidator(new QRegExpValidator(exprusimvol,this));
+    ui->A5LEneedonstock->setValidator(new QRegExpValidator(expnumber,this));
 }
 
 Admin::~Admin()
@@ -153,7 +166,46 @@ void Admin::on_ABShow6_clicked()
 {
     Network *admins6 = new Network;
     connect(admins6,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Show6auth(Network *)));
-    admins6->Get("http://"+IP+":5555/authtable.json");
+    switch (SelectedTable) {
+        case 1:
+        admins6->Get("http://"+IP+":5555/authtable.json");
+            break;
+        case 2:
+        admins6->Get("http://"+IP+":5555/dishtable.json");
+            break;
+        case 3:
+        admins6->Get("http://"+IP+":5555/gueststable.json");
+            break;
+        case 4:
+        admins6->Get("http://"+IP+":5555/ingredientstable.json");
+            break;
+        case 5:
+        admins6->Get("http://"+IP+":5555/ingredients_dishtable.json");
+            break;
+        case 6:
+        admins6->Get("http://"+IP+":5555/ingredients_stocktable.json");
+            break;
+        case 7:
+        admins6->Get("http://"+IP+":5555/invoicetable.json");
+            break;
+        case 8:
+        admins6->Get("http://"+IP+":5555/invoice_stocktable.json");
+            break;
+        case 9:
+        admins6->Get("http://"+IP+":5555/menutable.json");
+            break;
+        case 10:
+        admins6->Get("http://"+IP+":5555/menu_dishtable.json");
+            break;
+        case 11:
+        admins6->Get("http://"+IP+":5555/roletable.json");
+            break;
+        case 12:
+        admins6->Get("http://"+IP+":5555/stocktable.json");
+            break;
+        case 13:
+        admins6->Get("http://"+IP+":5555/type_menutable.json");
+    }
     Admin::on_Hide_clicked();
     ui->GBA6->setVisible(true);
     ui->Hide->setVisible(true);
@@ -1099,7 +1151,7 @@ void Admin::DBTableCreate(bool s1, QString l1, bool s2, QString l2, bool s3, QSt
     ui->A6L1->setText(l1);
     ui->A6L1->setVisible(s1);
     ui->A6L1->setGeometry(10,0,ui->A6TV->columnWidth(0),20);
-    ui->A6LE1->text().clear();
+    ui->A6LE1->setText("");
     ui->A6LE1->setEnabled(true);
     ui->A6LE1->setVisible(s1);
     ui->A6LE1->setGeometry(10,20,ui->A6TV->columnWidth(0),20);
@@ -1118,32 +1170,32 @@ void Admin::DBTableCreate(bool s1, QString l1, bool s2, QString l2, bool s3, QSt
 
     ui->A6L2->setText(l2);
     ui->A6L2->setVisible(s2);
-    ui->A6LE2->text().clear();
+    ui->A6LE2->setText("");
     ui->A6LE2->setVisible(s2);
 
     ui->A6L3->setText(l3);
     ui->A6L3->setVisible(s3);
-    ui->A6LE3->text().clear();
+    ui->A6LE3->setText("");
     ui->A6LE3->setVisible(s3);
 
     ui->A6L4->setText(l4);
     ui->A6L4->setVisible(s4);
     ui->A6L4->setGeometry(ui->A6LE3->x()+ui->A6LE3->width()+10,0,ui->A6TV->columnWidth(3),20);
-    ui->A6LE4->text().clear();
+    ui->A6LE4->setText("");
     ui->A6LE4->setVisible(s4);
     ui->A6LE4->setGeometry(ui->A6LE3->x()+ui->A6LE3->width()+10,20,ui->A6TV->columnWidth(3),20);
 
     ui->A6L5->setText(l5);
     ui->A6L5->setVisible(s5);
     ui->A6L5->setGeometry(ui->A6LE4->x()+ui->A6LE4->width()+10,0,ui->A6TV->columnWidth(4),20);
-    ui->A6LE5->text().clear();
+    ui->A6LE5->setText("");
     ui->A6LE5->setVisible(s5);
     ui->A6LE5->setGeometry(ui->A6LE4->x()+ui->A6LE4->width()+10,20,ui->A6TV->columnWidth(4),20);
 
     ui->A6L6->setText(l6);
     ui->A6L6->setVisible(s6);
     ui->A6L6->setGeometry(ui->A6LE5->x()+ui->A6LE5->width()+10,0,ui->A6TV->columnWidth(5),20);
-    ui->A6LE6->text().clear();
+    ui->A6LE6->setText("");
     ui->A6LE6->setVisible(s6);
     ui->A6LE6->setGeometry(ui->A6LE5->x()+ui->A6LE5->width()+10,20,ui->A6TV->columnWidth(5),20);
 
@@ -1265,6 +1317,7 @@ void Admin::on_A6BI2_clicked()
 void Admin::on_A6BI3_clicked(){
     if(inn.data().isValid()){
         if(!ui->A6SA->isVisible()){
+            ins=false;
             ui->A6BI8->setVisible(true);
             ui->A6BI9->setVisible(true);
             switch (SelectedTable) {
@@ -1432,7 +1485,7 @@ if(btn==QMessageBox::Yes)
             }///ingredientstable.json
         case 5:{
             QJsonObject post;
-            post["table"]="ingredients-dish";
+            post["table"]="ingredients_dish";
             QModelIndex in=ui->A6TV->model()->index(inn.row(),0);
             post["where1"]=ui->A6TV->model()->data(in).toString();
             in=ui->A6TV->model()->index(inn.row(),1);
@@ -1447,7 +1500,7 @@ if(btn==QMessageBox::Yes)
             }///ingredients_dishtable.json
         case 6:{
             QJsonObject post;
-            post["table"]="ingredients-stock";
+            post["table"]="ingredients_stock";
             QModelIndex in=ui->A6TV->model()->index(inn.row(),0);
             post["where1"]=ui->A6TV->model()->data(in).toString();
             in=ui->A6TV->model()->index(inn.row(),1);
@@ -1475,7 +1528,7 @@ if(btn==QMessageBox::Yes)
             }///invoicetable.json
         case 8:{
             QJsonObject post;
-            post["table"]="invoice-stock";
+            post["table"]="invoice_stock";
             QModelIndex in=ui->A6TV->model()->index(inn.row(),0);
             post["where1"]=ui->A6TV->model()->data(in).toString();
             in=ui->A6TV->model()->index(inn.row(),2);
@@ -1503,7 +1556,7 @@ if(btn==QMessageBox::Yes)
             }///menutable.json
         case 10:{
             QJsonObject post;
-            post["table"]="menu-dish";
+            post["table"]="menu_dish";
             QModelIndex in=ui->A6TV->model()->index(inn.row(),0);
             post["where1"]=ui->A6TV->model()->data(in).toString();
             in=ui->A6TV->model()->index(inn.row(),1);
@@ -1538,6 +1591,7 @@ if(btn==QMessageBox::Yes)
         }
 }
 void Admin::on_A6BI8_clicked(){
+qDebug() << ins;
 if(ins){
     switch (SelectedTable) {
         case 1:
@@ -1830,13 +1884,16 @@ if(ins){
                     vals.append(ui->A6LE2->text());
                     vals.append(ui->A6LE3->text());
                     post["values"]=vals;
-                    post["id"]=ui->A6LE1->text();
+                    QModelIndex in=ui->A6TV->model()->index(inn.row(),0);
+                    post["where1"]=ui->A6TV->model()->data(in).toString();
+                    in=ui->A6TV->model()->index(inn.row(),1);
+                    post["where2"]=ui->A6TV->model()->data(in).toString();
                     QJsonDocument doc;
                     doc.setObject(post);
                     qDebug() << doc;
                     Network *net = new Network;
                     connect(net,SIGNAL(onReady(Network *)),this,SLOT(on_Result_Post_UpdateDBEditing(Network *)));
-                    net->Post("http://"+IP+":5555/updatebyid.json", doc);
+                    net->Post("http://"+IP+":5555/updatebywhere.json", doc);
                 } else QMessageBox::warning(this,"Ошибка!","Идентификатор роли может принимать значения только 1,2,3 или 4!");
             } else QMessageBox::warning(this,"Ошибка!","Пароль не может быть пустым!");
             break;
@@ -2076,6 +2133,7 @@ if(ins){
         } else QMessageBox::warning(this,"Ошибка!","Название склада не может быть пустым!");
             }
     }
+ins=false;
 }
 void Admin::on_A6BI9_clicked()
 {
@@ -2285,7 +2343,7 @@ void Admin::on_Result_DBEditing_case5_2(Network *a){
             }
             if(accept){
                 QJsonObject post;
-                post["table"]="ingredients-dish";
+                post["table"]="ingredients_dish";
                 QJsonArray vals;
                 vals.append(ui->A6LE1->text());
                 vals.append(ui->A6LE2->text());
@@ -2341,7 +2399,7 @@ void Admin::on_Result_DBEditing_case6_2(Network *a){
         }
         if(accept){
             QJsonObject post;
-            post["table"]="ingredients-stock";
+            post["table"]="ingredients_stock";
             QJsonArray vals;
             vals.append(ui->A6LE1->text());
             vals.append(ui->A6LE2->text());
@@ -2397,7 +2455,7 @@ void Admin::on_Result_DBEditing_case8_2(Network *a){
         }
         if(accept){
             QJsonObject post;
-            post["table"]="invoice-stock";
+            post["table"]="invoice_stock";
             QJsonArray vals;
             vals.append(ui->A6LE1->text());
             vals.append(ui->A6LE3->text());
@@ -2454,7 +2512,7 @@ void Admin::on_Result_DBEditing_case10_2(Network *a){
         }
         if(accept){
             QJsonObject post;
-            post["table"]="menu-dish";
+            post["table"]="menu_dish";
             QJsonArray vals;
             vals.append(ui->A6LE1->text());
             vals.append(ui->A6LE2->text());
@@ -2515,7 +2573,7 @@ void Admin::on_Result_DBCreate_case5_2(Network *a){
             }
             if(accept){
                 QJsonObject post;
-                post["table"]="ingredients-dish";
+                post["table"]="ingredients_dish";
                 QJsonArray vals;
                 vals.append(ui->A6LE1->text());
                 vals.append(ui->A6LE2->text());
@@ -2567,7 +2625,7 @@ void Admin::on_Result_DBCreate_case6_2(Network *a){
         }
         if(accept){
             QJsonObject post;
-            post["table"]="ingredients-stock";
+            post["table"]="ingredients_stock";
             QJsonArray vals;
             vals.append(ui->A6LE1->text());
             vals.append(ui->A6LE2->text());
@@ -2640,7 +2698,7 @@ void Admin::on_Result_DBCreate_case8_3(Network *a){
         }
         if(accept){
             QJsonObject post;
-            post["table"]="invoice-stock";
+            post["table"]="invoice_stock";
             QJsonArray vals;
             vals.append(ui->A6LE1->text());
             vals.append(ui->A6LE3->text());
@@ -2693,7 +2751,7 @@ void Admin::on_Result_DBCreate_case10_2(Network *a){
         }
         if(accept){
             QJsonObject post;
-            post["table"]="menu-dish";
+            post["table"]="menu_dish";
             QJsonArray vals;
             vals.append(ui->A6LE1->text());
             vals.append(ui->A6LE2->text());

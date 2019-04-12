@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Санаторий</string>
   </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
@@ -49,8 +49,8 @@
   <widget class="QGroupBox" name="GBP3">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>520</y>
+     <x>170</x>
+     <y>30</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -67,15 +67,15 @@
       <x>10</x>
       <y>20</y>
       <width>591</width>
-      <height>391</height>
+      <height>381</height>
      </rect>
     </property>
    </widget>
    <widget class="QLineEdit" name="P3LEPasport">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>430</y>
+      <x>30</x>
+      <y>415</y>
       <width>71</width>
       <height>20</height>
      </rect>
@@ -87,8 +87,8 @@
    <widget class="QLineEdit" name="P3LESecondName">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>430</y>
+      <x>100</x>
+      <y>415</y>
       <width>71</width>
       <height>20</height>
      </rect>
@@ -97,8 +97,8 @@
    <widget class="QLineEdit" name="P3LEFirstName">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>430</y>
+      <x>170</x>
+      <y>415</y>
       <width>91</width>
       <height>20</height>
      </rect>
@@ -107,8 +107,8 @@
    <widget class="QLineEdit" name="P3LEPatronymic">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>430</y>
+      <x>260</x>
+      <y>415</y>
       <width>71</width>
       <height>20</height>
      </rect>
@@ -117,8 +117,8 @@
    <widget class="QDateEdit" name="P3DESettlementDate">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>430</y>
+      <x>90</x>
+      <y>450</y>
       <width>81</width>
       <height>22</height>
      </rect>
@@ -130,8 +130,8 @@
    <widget class="QDateEdit" name="P3DEEvictionDate">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>430</y>
+      <x>170</x>
+      <y>450</y>
       <width>81</width>
       <height>22</height>
      </rect>
@@ -143,8 +143,8 @@
    <widget class="QLineEdit" name="P3LETelephone">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>430</y>
+      <x>10</x>
+      <y>450</y>
       <width>81</width>
       <height>20</height>
      </rect>
@@ -156,8 +156,8 @@
    <widget class="QLabel" name="P3LPasport">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>415</y>
+      <x>30</x>
+      <y>400</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -169,8 +169,8 @@
    <widget class="QLabel" name="P3LSecondName">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>415</y>
+      <x>100</x>
+      <y>400</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -182,8 +182,8 @@
    <widget class="QLabel" name="P3LFirstName">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>415</y>
+      <x>170</x>
+      <y>400</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -195,8 +195,8 @@
    <widget class="QLabel" name="P3LPatronymic">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>415</y>
+      <x>260</x>
+      <y>400</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -208,8 +208,8 @@
    <widget class="QLabel" name="P3LTelephone">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>415</y>
+      <x>10</x>
+      <y>435</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -221,8 +221,8 @@
    <widget class="QLabel" name="P3LSettlementDate">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>415</y>
+      <x>90</x>
+      <y>435</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -234,8 +234,8 @@
    <widget class="QLabel" name="P3LEvictionDate">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>415</y>
+      <x>170</x>
+      <y>435</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -247,8 +247,8 @@
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>460</y>
+      <x>10</x>
+      <y>480</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -261,7 +261,7 @@
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>460</y>
+      <y>480</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -276,8 +276,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>430</y>
+      <x>10</x>
+      <y>415</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -286,8 +286,8 @@
    <widget class="QLabel" name="P3Lid">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>413</y>
+      <x>10</x>
+      <y>398</y>
       <width>21</width>
       <height>20</height>
      </rect>
@@ -313,8 +313,8 @@
   <widget class="QGroupBox" name="GBP2">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>40</y>
+     <x>720</x>
+     <y>490</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -504,8 +504,8 @@
   <widget class="QGroupBox" name="GBP1">
    <property name="geometry">
     <rect>
-     <x>790</x>
-     <y>110</y>
+     <x>780</x>
+     <y>410</y>
      <width>641</width>
      <height>511</height>
     </rect>

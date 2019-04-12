@@ -14,6 +14,9 @@ Warehousekeeper::Warehousekeeper(QString ips, QWidget *parent) :
     ui->W1T1->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->W2Table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     Warehousekeeper::on_Hide_clicked();
+    QRegExp exp("[1-9]{1}[0-9]{0,6}");
+    ui->W3LEInvoice->setValidator(new QRegExpValidator(exp,this));
+    ui->W2LEInvoice->setValidator(new QRegExpValidator(exp,this));
 }
 
 Warehousekeeper::~Warehousekeeper(){
@@ -312,7 +315,7 @@ void Warehousekeeper::on_W2RBDecChanges_clicked()
 
 void Warehousekeeper::on_W3chbPressed(int state){
     QCheckBox* chb = (QCheckBox*) sender();
-    QRegExp exp("[1-9]{1}[0-9]{0,10}");
+    QRegExp exp("[1-9]{1}[0-9]{0,6}");
     if(state == 2){
         LIngredients.push_back(chb);
         } else {

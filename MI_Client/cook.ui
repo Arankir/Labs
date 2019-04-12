@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Санаторий</string>
   </property>
   <widget class="QPushButton" name="LogOut">
    <property name="geometry">
@@ -48,8 +48,8 @@
   <widget class="QGroupBox" name="GBC1">
    <property name="geometry">
     <rect>
-     <x>680</x>
-     <y>540</y>
+     <x>210</x>
+     <y>50</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -101,9 +101,6 @@
       <width>113</width>
       <height>20</height>
      </rect>
-    </property>
-    <property name="inputMask">
-     <string>00000000000</string>
     </property>
     <property name="text">
      <string>1</string>
@@ -162,8 +159,8 @@
   <widget class="QGroupBox" name="GBC3">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>50</y>
+     <x>780</x>
+     <y>460</y>
      <width>641</width>
      <height>511</height>
     </rect>
