@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>0</string>
+   <string>Санаторий (Кладовщик)</string>
   </property>
   <widget class="QPushButton" name="LogOut">
    <property name="geometry">

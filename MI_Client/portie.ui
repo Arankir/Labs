@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Санаторий</string>
+   <string>Санаторий (Портье)</string>
   </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
@@ -81,7 +81,7 @@
      </rect>
     </property>
     <property name="inputMask">
-     <string>00000000000</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLineEdit" name="P3LESecondName">
@@ -150,7 +150,7 @@
      </rect>
     </property>
     <property name="inputMask">
-     <string>00000000000</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="P3LPasport">

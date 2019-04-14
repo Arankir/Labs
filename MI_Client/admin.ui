@@ -14,7 +14,7 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>Санаторий</string>
+   <string>Санаторий (Администратор)</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
@@ -548,8 +548,8 @@
     <widget class="QGroupBox" name="GBA6">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>50</y>
+       <x>820</x>
+       <y>340</y>
        <width>641</width>
        <height>511</height>
       </rect>
@@ -1327,7 +1327,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Зарегестрировать</string>
+       <string>Зарегистрировать</string>
       </property>
      </widget>
      <widget class="QLabel" name="A1LRole">
