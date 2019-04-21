@@ -48,8 +48,8 @@
   <widget class="QGroupBox" name="GBC1">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>50</y>
+     <x>800</x>
+     <y>290</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -159,8 +159,8 @@
   <widget class="QGroupBox" name="GBC3">
    <property name="geometry">
     <rect>
-     <x>780</x>
-     <y>460</y>
+     <x>770</x>
+     <y>440</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -368,8 +368,8 @@
   <widget class="QGroupBox" name="GBC4">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>520</y>
+     <x>720</x>
+     <y>510</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -517,8 +517,8 @@
   <widget class="QGroupBox" name="GBC2">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>560</y>
+     <x>260</x>
+     <y>540</y>
      <width>641</width>
      <height>511</height>
     </rect>
@@ -549,7 +549,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>ингридиент</string>
+     <string>ингредиент</string>
     </property>
    </widget>
    <widget class="QPushButton" name="C2BSearch">
