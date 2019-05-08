@@ -240,6 +240,7 @@ void Admin::on_Result_Show1(Network *a){
         ui->A1TVUsers->resizeRowsToContents();
         ui->A1TVUsers->resizeColumnsToContents();
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show2(Network *a){
     qDebug() << a->GetAnswer();
@@ -274,6 +275,7 @@ void Admin::on_Result_Show2(Network *a){
         ui->A2TVIngredients->resizeRowsToContents();
         ui->A2TVIngredients->resizeColumnsToContents();
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show3_Dish(Network *a){
     qDebug() << a->GetAnswer();
@@ -296,6 +298,7 @@ void Admin::on_Result_Show3_Dish(Network *a){
         ui->A3TVDish->resizeRowsToContents();
         ui->A3TVDish->resizeColumnsToContents();
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show3_Ingredients(Network *a){
     qDebug() << a->GetAnswer();
@@ -318,6 +321,7 @@ void Admin::on_Result_Show3_Ingredients(Network *a){
         widget->setLayout(layout);
         ui->A3SAAllIngredients->setWidget(widget);
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show4(Network *a){
     qDebug() << a->GetAnswer();
@@ -344,6 +348,7 @@ void Admin::on_Result_Show4(Network *a){
         ui->A4TVStocks->resizeRowsToContents();
         ui->A4TVStocks->resizeColumnsToContents();
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show5(Network *a){
     qDebug() << a->GetAnswer();
@@ -378,10 +383,10 @@ void Admin::on_Result_Show5(Network *a){
         ui->A5TV->resizeRowsToContents();
         ui->A5TV->resizeColumnsToContents();
         }
+    a->deleteLater();
 }
 
-void Admin::on_A1BApply_clicked()
-{
+void Admin::on_A1BApply_clicked(){
 //url: /register.json
 //формат: {"login":"log","password":"pass","role":"Админ"}
     if(ui->A1LELogin->text()!=""){
@@ -423,10 +428,10 @@ void Admin::on_Result_Post_NewUser(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось добавить пользователя! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }
 
-void Admin::on_A2BApply_clicked()
-{
+void Admin::on_A2BApply_clicked(){
 //url: /newingredient.json
 //формат: {"title":"name","unit":"кг"}
         if(ui->A2LEtitle->text()!=""){
@@ -470,6 +475,7 @@ void Admin::on_Result_Post_NewIngredient(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось добавить ингредиент! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }
 
 void Admin::on_A3chbIngredientPressed(int state){
@@ -551,6 +557,7 @@ void Admin::on_Result_Post_NewDish(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось добавить блюдо! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }
 
 void Admin::on_A4BApply_clicked(){
@@ -591,6 +598,7 @@ void Admin::on_Result_Post_NewStock(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось добавить склад! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }
 
 void Admin::on_A5TV_clicked(const QModelIndex &index){
@@ -640,6 +648,7 @@ void Admin::on_Result_Post_UpdateNeedOnStock(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось обновить данные! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }
 
 void Admin::on_Result_Show6auth(Network *a){
@@ -673,6 +682,7 @@ void Admin::on_Result_Show6auth(Network *a){
         inn=ui->A6TV->model()->index(0,0);
         SelectedTable=1;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6dish(Network *a){
     qDebug() << a->GetAnswer();
@@ -700,6 +710,7 @@ void Admin::on_Result_Show6dish(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=2;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6guests(Network *a){
     qDebug() << a->GetAnswer();
@@ -751,6 +762,7 @@ void Admin::on_Result_Show6guests(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=3;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6ingredients(Network *a){
     qDebug() << a->GetAnswer();
@@ -786,6 +798,7 @@ void Admin::on_Result_Show6ingredients(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=4;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6ingredients_dish(Network *a){
     qDebug() << a->GetAnswer();
@@ -817,6 +830,7 @@ void Admin::on_Result_Show6ingredients_dish(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=5;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6ingredients_stock(Network *a){
     qDebug() << a->GetAnswer();
@@ -848,6 +862,7 @@ void Admin::on_Result_Show6ingredients_stock(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=6;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6invoice(Network *a){
     qDebug() << a->GetAnswer();
@@ -875,6 +890,7 @@ void Admin::on_Result_Show6invoice(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=7;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6invoice_stock(Network *a){
     qDebug() << a->GetAnswer();
@@ -910,6 +926,7 @@ void Admin::on_Result_Show6invoice_stock(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=8;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6menu(Network *a){
     qDebug() << a->GetAnswer();
@@ -945,6 +962,7 @@ void Admin::on_Result_Show6menu(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=9;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6menu_dish(Network *a){
     qDebug() << a->GetAnswer();
@@ -972,6 +990,7 @@ void Admin::on_Result_Show6menu_dish(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=10;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6role(Network *a){
     qDebug() << a->GetAnswer();
@@ -999,6 +1018,7 @@ void Admin::on_Result_Show6role(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=11;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6stock(Network *a){
     qDebug() << a->GetAnswer();
@@ -1026,6 +1046,7 @@ void Admin::on_Result_Show6stock(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=12;
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Show6type_menu(Network *a){
     qDebug() << a->GetAnswer();
@@ -1053,6 +1074,7 @@ void Admin::on_Result_Show6type_menu(Network *a){
         ui->A6TV->resizeColumnsToContents();
         SelectedTable=13;
         }
+    a->deleteLater();
 }
 
 void Admin::DBTableEditing(bool lv1, bool le1, QString l1, bool lv2, QString l2, bool lv3, QString l3, bool lv4, QString l4, bool lv5, QString l5, bool lv6, QString l6, bool lv7, QString l7, bool lv8){
@@ -1305,12 +1327,10 @@ if(!ui->A6SA->isVisible()){
     }
 }
 
-void Admin::on_A6BI1_clicked()
-{
+void Admin::on_A6BI1_clicked(){
     on_A6TV_clicked(QModelIndex(ui->A6TV->model()->index(0,inn.column())));
 }
-void Admin::on_A6BI2_clicked()
-{
+void Admin::on_A6BI2_clicked(){
     if(inn.row()!=0)
     on_A6TV_clicked(QModelIndex(ui->A6TV->model()->index(inn.row()-1,inn.column())));
 }
@@ -1367,13 +1387,11 @@ void Admin::on_A6BI3_clicked(){
         } else QMessageBox::warning(this,"Ошибка!","Завершите прошлое редактирование");
     } else QMessageBox::warning(this,"Ошибка!","Выберите строку!");
 }
-void Admin::on_A6BI4_clicked()
-{
+void Admin::on_A6BI4_clicked(){
     if(inn.row()!=ui->A6TV->model()->rowCount()-1)
     on_A6TV_clicked(QModelIndex(ui->A6TV->model()->index(inn.row()+1,inn.column())));
 }
-void Admin::on_A6BI5_clicked()
-{
+void Admin::on_A6BI5_clicked(){
     on_A6TV_clicked(QModelIndex(ui->A6TV->model()->index(ui->A6TV->model()->rowCount()-1,inn.column())));
 }
 void Admin::on_A6BI6_clicked(){
@@ -2135,8 +2153,7 @@ if(ins){
     }
 ins=false;
 }
-void Admin::on_A6BI9_clicked()
-{
+void Admin::on_A6BI9_clicked(){
     ui->A6SA->setVisible(false);
     ui->A6BI8->setVisible(false);
     ui->A6BI9->setVisible(false);
@@ -2214,6 +2231,7 @@ void Admin::on_Result_Post_UpdateDBEditing(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось обновить данные! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }
 void Admin::on_Result_Post_UpdateDBDelete(Network *a){
     qDebug() << a->GetAnswer();
@@ -2283,9 +2301,9 @@ void Admin::on_Result_Post_UpdateDBDelete(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось удалить запись! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }
-void Admin::on_A6HSB_sliderMoved(int position)
-{
+void Admin::on_A6HSB_sliderMoved(int position){
     int v=ui->A6HSB->value()-position;
     ui->A6L1->move(ui->A6L1->x()+v,0);
     ui->A6LE1->move(ui->A6LE1->x()+v,20);
@@ -2326,6 +2344,7 @@ void Admin::on_Result_DBEditing_case5_1(Network *a){
                 net->Get("http://"+IP+":5555/ingredientstable.json");
             } else QMessageBox::warning(this,"Ошибка!","Блюда с таким идентификатором не существует!");
         }
+        a->deleteLater();
 }
 void Admin::on_Result_DBEditing_case5_2(Network *a){
         qDebug() << a->GetAnswer();
@@ -2361,6 +2380,7 @@ void Admin::on_Result_DBEditing_case5_2(Network *a){
                 net->Post("http://"+IP+":5555/updatebywhere.json", doc);
             } else QMessageBox::warning(this,"Ошибка!","Ингредиента с таким идентификатором не существует!");
         }
+        a->deleteLater();
 }
 void Admin::on_Result_DBEditing_case6_1(Network *a){
     qDebug() << a->GetAnswer();
@@ -2382,6 +2402,7 @@ void Admin::on_Result_DBEditing_case6_1(Network *a){
             net->Get("http://"+IP+":5555/ingredientstable.json");
         } else QMessageBox::warning(this,"Ошибка!","Подвала с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBEditing_case6_2(Network *a){
     qDebug() << a->GetAnswer();
@@ -2417,6 +2438,7 @@ void Admin::on_Result_DBEditing_case6_2(Network *a){
             net->Post("http://"+IP+":5555/updatebywhere.json", doc);
         } else QMessageBox::warning(this,"Ошибка!","Ингредиента с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBEditing_case8_1(Network *a){
     qDebug() << a->GetAnswer();
@@ -2438,6 +2460,7 @@ void Admin::on_Result_DBEditing_case8_1(Network *a){
             net->Get("http://"+IP+":5555/ingredientstable.json");
         } else QMessageBox::warning(this,"Ошибка!","Накладной с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBEditing_case8_2(Network *a){
     qDebug() << a->GetAnswer();
@@ -2474,6 +2497,7 @@ void Admin::on_Result_DBEditing_case8_2(Network *a){
             net->Post("http://"+IP+":5555/updatebywhere.json", doc);
         } else QMessageBox::warning(this,"Ошибка!","Ингредиента с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBEditing_case10_1(Network *a){
     qDebug() << a->GetAnswer();
@@ -2495,6 +2519,7 @@ void Admin::on_Result_DBEditing_case10_1(Network *a){
             net->Get("http://"+IP+":5555/dishtable.json");
         } else QMessageBox::warning(this,"Ошибка!","Меню с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBEditing_case10_2(Network *a){
     qDebug() << a->GetAnswer();
@@ -2529,10 +2554,10 @@ void Admin::on_Result_DBEditing_case10_2(Network *a){
             net->Post("http://"+IP+":5555/updatebywhere.json", doc);
         } else QMessageBox::warning(this,"Ошибка!","Блюда с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 
-void Admin::on_A6Help_clicked()
-{
+void Admin::on_A6Help_clicked(){
     QMessageBox::information(this,"Информация!","Внимание!\nЭта функция рекомендована для использования только опытными специалистами!\nНе рекомендуется ручное редактирование таблицы ingredients-stock\nПри удалении записей из таблиц, необходимо удалить все записи связанные с ней из других таблиц!");
 }
 
@@ -2556,6 +2581,7 @@ void Admin::on_Result_DBCreate_case5_1(Network *a){
                 net->Get("http://"+IP+":5555/ingredientstable.json");
             } else QMessageBox::warning(this,"Ошибка!","Блюда с таким идентификатором не существует!");
         }
+        a->deleteLater();
 }
 void Admin::on_Result_DBCreate_case5_2(Network *a){
         qDebug() << a->GetAnswer();
@@ -2587,6 +2613,7 @@ void Admin::on_Result_DBCreate_case5_2(Network *a){
                 net->Post("http://"+IP+":5555/insert.json", doc);
             } else QMessageBox::warning(this,"Ошибка!","Ингредиента с таким идентификатором не существует!");
         }
+        a->deleteLater();
 }
 void Admin::on_Result_DBCreate_case6_1(Network *a){
     qDebug() << a->GetAnswer();
@@ -2608,6 +2635,7 @@ void Admin::on_Result_DBCreate_case6_1(Network *a){
             net->Get("http://"+IP+":5555/ingredientstable.json");
         } else QMessageBox::warning(this,"Ошибка!","Подвала с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBCreate_case6_2(Network *a){
     qDebug() << a->GetAnswer();
@@ -2639,6 +2667,7 @@ void Admin::on_Result_DBCreate_case6_2(Network *a){
             net->Post("http://"+IP+":5555/insert.json", doc);
         } else QMessageBox::warning(this,"Ошибка!","Ингредиента с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBCreate_case8_1(Network *a){
     qDebug() << a->GetAnswer();
@@ -2660,6 +2689,7 @@ void Admin::on_Result_DBCreate_case8_1(Network *a){
             net->Get("http://"+IP+":5555/ingredientstable.json");
         } else QMessageBox::warning(this,"Ошибка!","Накладной с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBCreate_case8_2(Network *a){
     qDebug() << a->GetAnswer();
@@ -2681,6 +2711,7 @@ void Admin::on_Result_DBCreate_case8_2(Network *a){
             net->Get("http://"+IP+":5555/stocktable.json");
         } else QMessageBox::warning(this,"Ошибка!","Ингредиента с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBCreate_case8_3(Network *a){
     qDebug() << a->GetAnswer();
@@ -2713,6 +2744,7 @@ void Admin::on_Result_DBCreate_case8_3(Network *a){
             net->Post("http://"+IP+":5555/insert.json", doc);
         } else QMessageBox::warning(this,"Ошибка!","Склада с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBCreate_case10_1(Network *a){
     qDebug() << a->GetAnswer();
@@ -2734,6 +2766,7 @@ void Admin::on_Result_DBCreate_case10_1(Network *a){
             net->Get("http://"+IP+":5555/dishtable.json");
         } else QMessageBox::warning(this,"Ошибка!","Меню с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }
 void Admin::on_Result_DBCreate_case10_2(Network *a){
     qDebug() << a->GetAnswer();
@@ -2764,4 +2797,5 @@ void Admin::on_Result_DBCreate_case10_2(Network *a){
             net->Post("http://"+IP+":5555/insert.json", doc);
         } else QMessageBox::warning(this,"Ошибка!","Блюда с таким идентификатором не существует!");
     }
+    a->deleteLater();
 }

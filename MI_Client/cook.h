@@ -71,8 +71,6 @@ private slots:
 
     void on_C1LE_textChanged(const QString &arg1);
 
-    void on_pushButton_clicked();
-
 private:
     Ui::Cook *ui;
     QJsonDocument cook1;

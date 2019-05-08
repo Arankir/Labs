@@ -199,13 +199,12 @@ void Portie::on_Result_networkPortie(Network *porties){
         ui->P3LETelephone->setGeometry(10,450,ui->P3TVGuests->columnWidth(5),20);
         ui->P3DESettlementDate->setGeometry(ui->P3LETelephone->x()+ui->P3LETelephone->width(),450,ui->P3TVGuests->columnWidth(6),20);
         ui->P3DEEvictionDate->setGeometry(ui->P3DESettlementDate->x()+ui->P3DESettlementDate->width(),450,ui->P3TVGuests->columnWidth(7),20);
-
     }
+    porties->deleteLater();
 }
 
 void Portie::on_P1ButtonAccept_clicked()
 {
-
     TitleFunc FPasport=&FilterInvoice::IngredientEmpty;
     TitleFunc FSName=&FilterInvoice::IngredientEmpty;
     TitleFunc FFName=&FilterInvoice::IngredientEmpty;
@@ -323,6 +322,7 @@ void Portie::on_ResultNewGuest(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось добавить посетителя! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }
 
 void Portie::on_P3TVGuests_clicked(const QModelIndex &index)
@@ -398,4 +398,5 @@ void Portie::on_ResultChangeGuest(Network *a){
                 QMessageBox::warning(this,"Ошибка!","Не удалось изменить данные! ("+a->GetAnswer()+")");
             }
         }
+    a->deleteLater();
 }

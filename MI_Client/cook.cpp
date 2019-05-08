@@ -138,6 +138,7 @@ void Cook::OnResultCook1(Network *cook){
         widget2->setLayout(layout2);
         ui->C3SA1->setWidget(widget2);
         }
+    cook->deleteLater();
 }
 
 void Cook::OnResultCook2(Network *cook){
@@ -181,6 +182,7 @@ if(cook->GetAnswer()==""){
     ui->C2T1->resizeRowsToContents();
     ui->C2T1->resizeColumnsToContents();
     }
+cook->deleteLater();
 }
 
 void Cook::OnResultCook3(Network *cook){
@@ -192,6 +194,7 @@ if(cook->GetAnswer()==""){
     cook3=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
     ui->C3CBGuests->setText("на количество отдыхающих ("+cook3.object().value("count").toString()+" чел)");
     }
+cook->deleteLater();
 }
 
 void Cook::OnResultCook4(Network *cook){
@@ -202,10 +205,11 @@ if(cook->GetAnswer()==""){
     } else {
     cook4=QJsonDocument::fromJson(cook->GetAnswer().toUtf8());
     }
+cook->deleteLater();
 }
 
 void Cook::rbCook1Change(){
-    QRadioButton* rb = (QRadioButton*) sender();
+    QRadioButton* rb = qobject_cast<QRadioButton*> (sender());
     QJsonObject JO = cook1.object();
     QJsonArray JAI=JO.value("Dishs").toArray();
     QJsonArray JAU=JO.value("Ingredients").toArray();
@@ -257,7 +261,7 @@ void Cook::rbCook1Change(){
 }
 
 void Cook::chbCook3Change(int stat){
-QCheckBox* chb = (QCheckBox*) sender();
+QCheckBox* chb = qobject_cast<QCheckBox*> (sender());
 int i=0;
 while(cook1.object().value("Dishs").toArray().at(i).toObject().value("dish").toString()!=chb->text())
     i++;
@@ -382,19 +386,15 @@ void Cook::on_C3Date_userDateChanged(const QDate &){
 void Cook::on_breakfast_clicked(){
     Typemenu="Завтрак";
 }
-
 void Cook::on_lunch_clicked(){
     Typemenu="Обед";
 }
-
 void Cook::on_dinner_clicked(){
     Typemenu="Ужин";
 }
-
 void Cook::on_other_clicked(){
     Typemenu="Другое";
 }
-
 void Cook::on_C3BCancel_clicked()
 {
 for (int i=Ldishs.size();i>0;i--) {
@@ -479,6 +479,7 @@ if(cook->GetAnswer()==""){
     QMessageBox::warning(this,"Ошибка!","Такое меню уже есть!");
     }
     }
+cook->deleteLater();
 }
 
 void Cook::OnResultAddMenu(Network *a){
@@ -499,6 +500,7 @@ if(a->GetAnswer()=="YES"){
             QMessageBox::warning(this,"Ошибка!","Не удалось добавить меню! ("+a->GetAnswer()+")");
         }
     }
+a->deleteLater();
 }
 
 void Cook::on_C1LE_textChanged(const QString &)
@@ -560,7 +562,3 @@ void Cook::on_C1LE_textChanged(const QString &)
     ui->C1TVIngredients->resizeRowsToContents();
 }
 
-void Cook::on_pushButton_clicked()
-{
-
-}

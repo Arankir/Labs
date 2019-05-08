@@ -36,8 +36,6 @@ void MainWindow::logShow()
     this->show();
 }
 
-
-
 void MainWindow::OnResult(Network *auth){
 qDebug() << auth->GetAnswer();
 qDebug() << auth->GetError();
@@ -87,6 +85,7 @@ if(auth->GetAnswer()==""){
             }
     }
     }
+auth->deleteLater();
 }
 
 void MainWindow::timertimeout(){

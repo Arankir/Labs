@@ -74,6 +74,7 @@ void Network::OnResultPost(){
 
 Network::~Network(){
     delete manager;
+    delete Socket;
 }
 
 QString Network::GetAnswer(){
